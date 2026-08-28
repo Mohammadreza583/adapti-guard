@@ -1,0 +1,18 @@
+{
+  "experiment_id": "EXP-016",
+  "version": "V16",
+  "status": "VERIFIED",
+  "dataset": "NotInject",
+  "split": "smoke",
+  "samples": 1000,
+  "tp": 306,
+  "tn": 510,
+  "fp": 64,
+  "fn": 120,
+  "precision": 0.827,
+  "recall": 0.7183,
+  "f1": 0.7688,
+  "balanced_accuracy": 0.8034,
+  "fpr": 0.1115,
+  "fnr": 0.2817
+}

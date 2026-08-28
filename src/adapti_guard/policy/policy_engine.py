@@ -1,7 +1,10 @@
 from dataclasses import dataclass
 
-from src.adapti_guard.core.models import DefenseAction, RiskLevel
-from src.adapti_guard.risk.risk_engine import RiskAssessment
+from src.adapti_guard.core.models import (
+    DefenseAction,
+    RiskAssessment,
+    RiskLevel,
+)
 
 
 @dataclass
@@ -11,16 +14,6 @@ class PolicyDecision:
 
 
 class DefensePolicyEngine:
-    """
-    Utility-aware adaptive defense policy.
-
-    Risk determines the baseline defense.
-
-    Historical defense level provides additional protection
-    only when the current risk justifies it.
-
-    The policy avoids permanently blocking low-risk requests.
-    """
 
     def decide(
         self,
@@ -29,76 +22,40 @@ class DefensePolicyEngine:
         defense_level: int = 0,
     ) -> PolicyDecision:
 
-        if defense_level < 0 or defense_level > 3:
+        if defense_level not in (0, 1, 2, 3):
             raise ValueError(
                 f"Unsupported defense level: {defense_level}"
             )
 
-        # -------------------------------------------------
-        # Baseline policy from current risk
-        # -------------------------------------------------
-
-        if risk.level == RiskLevel.LOW:
+        # High risk with a sensitive tool uses tool restriction
+        # to preserve security while maintaining utility.
+        if risk.level == RiskLevel.HIGH:
 
             if tool_sensitive:
-                baseline = DefenseAction.TOOL_RESTRICTION
-                reason = "low_risk_tool_sensitive"
-            else:
-                baseline = DefenseAction.NO_INTERVENTION
-                reason = "low_risk"
+                return PolicyDecision(
+                    action=DefenseAction.TOOL_RESTRICTION,
+                    reason="high_risk_sensitive_tool",
+                )
 
-        elif risk.level == RiskLevel.MEDIUM:
-
-            if tool_sensitive:
-                baseline = DefenseAction.TOOL_RESTRICTION
-                reason = "medium_risk_tool_sensitive"
-            else:
-                baseline = DefenseAction.SANITIZE
-                reason = "medium_risk"
-
-        elif risk.level == RiskLevel.HIGH:
-
-            if tool_sensitive:
-                baseline = DefenseAction.TOOL_RESTRICTION
-                reason = "high_risk_tool_sensitive"
-            else:
-                baseline = DefenseAction.BLOCK
-                reason = "high_risk"
-
-        else:
-            raise ValueError(
-                f"Unsupported risk level: {risk.level}"
+            return PolicyDecision(
+                action=DefenseAction.BLOCK,
+                reason="high_risk_block",
             )
 
-        # -------------------------------------------------
-        # Adaptive escalation
-        # -------------------------------------------------
-
-        strength = {
-            DefenseAction.NO_INTERVENTION: 0,
-            DefenseAction.SANITIZE: 1,
-            DefenseAction.TOOL_RESTRICTION: 2,
-            DefenseAction.BLOCK: 3,
-        }
-
-        adaptive_action = {
-            0: DefenseAction.NO_INTERVENTION,
-            1: DefenseAction.SANITIZE,
-            2: DefenseAction.TOOL_RESTRICTION,
-            3: DefenseAction.BLOCK,
-        }[defense_level]
-
-        # -------------------------------------------------
-        # Important:
-        #
-        # Do NOT let a historical level permanently block
-        # LOW-risk interactions.
-        #
-        # Level 1/2 can strengthen LOW/MEDIUM risk.
-        # Level 3 only forces BLOCK for MEDIUM/HIGH.
-        # -------------------------------------------------
-
+        # Adaptive escalation for LOW risk.
         if risk.level == RiskLevel.LOW:
+
+            if defense_level >= 3:
+                return PolicyDecision(
+                    action=DefenseAction.BLOCK,
+                    reason="adaptive_low_risk_level_3",
+                )
+
+            if defense_level == 2:
+                return PolicyDecision(
+                    action=DefenseAction.TOOL_RESTRICTION,
+                    reason="adaptive_low_risk_level_2",
+                )
 
             if defense_level == 1:
                 return PolicyDecision(
@@ -106,19 +63,18 @@ class DefensePolicyEngine:
                     reason="adaptive_low_risk_level_1",
                 )
 
-            if defense_level >= 2:
+            if tool_sensitive:
                 return PolicyDecision(
                     action=DefenseAction.TOOL_RESTRICTION,
-                    reason="adaptive_low_risk_level_2",
+                    reason="low_risk_tool_sensitive",
                 )
 
             return PolicyDecision(
-                action=baseline,
-                reason=reason,
+                action=DefenseAction.NO_INTERVENTION,
+                reason="low_risk",
             )
 
-        # MEDIUM risk
-
+        # Adaptive escalation for MEDIUM risk.
         if risk.level == RiskLevel.MEDIUM:
 
             if defense_level >= 3:
@@ -127,26 +83,17 @@ class DefensePolicyEngine:
                     reason="adaptive_medium_risk_level_3",
                 )
 
-            if defense_level >= 2:
+            if defense_level >= 2 or tool_sensitive:
                 return PolicyDecision(
                     action=DefenseAction.TOOL_RESTRICTION,
                     reason="adaptive_medium_risk_level_2",
                 )
 
-            if defense_level >= 1:
-                return PolicyDecision(
-                    action=DefenseAction.SANITIZE,
-                    reason="adaptive_medium_risk_level_1",
-                )
-
             return PolicyDecision(
-                action=baseline,
-                reason=reason,
+                action=DefenseAction.SANITIZE,
+                reason="medium_risk",
             )
 
-        # HIGH risk
-
-        return PolicyDecision(
-            action=baseline,
-            reason=reason,
+        raise ValueError(
+            f"Unsupported risk level: {risk.level}"
         )

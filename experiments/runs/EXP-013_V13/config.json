@@ -1,0 +1,12 @@
+{
+  "experiment_id": "EXP-013",
+  "version": "V13",
+  "status": "HISTORICAL_ARTIFACT",
+  "component": "detector",
+  "change": "Historical detector version; change not reconstructed",
+  "source_files": [
+    "src/adapti_guard/detector/prompt_injection_detector.py.v13_backup",
+    "src/adapti_guard/detector/prompt_injection_detector.py.v13_backup2"
+  ],
+  "verified_metrics": {}
+}

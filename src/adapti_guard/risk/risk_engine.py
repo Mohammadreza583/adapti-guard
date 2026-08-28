@@ -1,76 +1,118 @@
-from dataclasses import dataclass
+from typing import Any, Optional
 
-from src.adapti_guard.core.models import RiskLevel
-from src.adapti_guard.detector.prompt_injection_detector import DetectionResult
-
-
-@dataclass
-class RiskAssessment:
-    score: float
-    level: RiskLevel
-    reasons: list[str]
+from src.adapti_guard.core.models import (
+    RiskAssessment,
+    RiskLevel,
+)
 
 
-class RiskAssessmentEngine:
-    """
-    Interpretable risk assessment engine for ADAPTI-GUARD MVP.
-    """
+class RiskEngine:
 
-    def __init__(
-        self,
-        low_threshold: float = 0.30,
-        high_threshold: float = 0.70,
-    ):
-        self.low_threshold = low_threshold
-        self.high_threshold = high_threshold
+    ATTACK_WEIGHTS = {
+        "PROMPT_INJECTION": 0.8,
+        "SYSTEM_PROMPT_EXTRACTION": 1.0,
+        "JAILBREAK": 1.0,
+        "ROLE_ATTACK": 0.9,
+        "CONTEXT_ATTACK": 0.9,
+        "RAG_ATTACK": 0.9,
+        "MULTI_ATTACK": 1.0,
+    }
 
     def assess(
         self,
-        detection: DetectionResult,
-        tool_sensitive: bool = False,
+        detection,
+        metadata: Optional[dict[str, Any]] = None,
+        *,
         contextual_risk: float = 0.0,
+        tool_sensitive: bool = False,
         historical_attack: float = 0.0,
     ) -> RiskAssessment:
 
-        contextual_risk = max(0.0, min(1.0, contextual_risk))
-        historical_attack = max(0.0, min(1.0, historical_attack))
+        metadata = dict(metadata or {})
 
-        score = (
-            0.60 * detection.score
-            + 0.20 * float(tool_sensitive)
-            + 0.15 * contextual_risk
-            + 0.05 * historical_attack
+        # Backward-compatible metadata extraction.
+        attack_type = metadata.get("attack_type", "PROMPT_INJECTION")
+        if not detection.indicators and attack_type == "PROMPT_INJECTION":
+            attack_type = "NONE"
+
+        # Detection signal.
+        detection_score = float(
+            getattr(
+                detection,
+                "injection_probability",
+                getattr(detection, "score", 0.0),
+            )
         )
 
-        # Injection presence creates a minimum risk floor.
-        if detection.is_injection:
-            score = max(score, 0.35)
+        contextual_risk = max(0.0, min(1.0, float(contextual_risk)))
+        historical_attack = max(0.0, min(1.0, float(historical_attack)))
+
+        # Weighted security score.
+        weight = self.ATTACK_WEIGHTS.get(
+            attack_type,
+            0.8,
+        )
+
+        if attack_type == "NONE" and detection_score < 0.25:
+            base_score = detection_score
+        else:
+            base_score = detection_score * weight
+
+        # Context and history increase risk.
+        score = (
+            0.70 * base_score
+            + 0.20 * contextual_risk
+            + 0.10 * historical_attack
+        )
+
+        # Sensitive tools increase risk.
+        if tool_sensitive:
+            score += 0.15
 
         score = max(0.0, min(1.0, score))
 
-        reasons = []
+        # Explicit attack indicators should not remain LOW.
+        if detection_score >= 0.25 and score < 0.25:
+            score = 0.25
 
-        if detection.is_injection:
-            reasons.append("prompt_injection_detected")
+        if attack_type in {
+            "SYSTEM_PROMPT_EXTRACTION",
+            "JAILBREAK",
+            "MULTI_ATTACK",
+        }:
+            score = max(score, 0.75)
 
-        if tool_sensitive:
-            reasons.append("sensitive_tool_context")
-
-        if contextual_risk > 0:
-            reasons.append("elevated_contextual_risk")
-
-        if historical_attack > 0:
-            reasons.append("historical_attack_evidence")
-
-        if score < self.low_threshold:
-            level = RiskLevel.LOW
-        elif score < self.high_threshold:
+        if score >= 0.60:
+            level = RiskLevel.HIGH
+        elif score >= 0.25:
             level = RiskLevel.MEDIUM
         else:
-            level = RiskLevel.HIGH
+            level = RiskLevel.LOW
+
+        features = {
+            "detection_score": round(detection_score, 3),
+            "contextual_risk": round(contextual_risk, 3),
+            "historical_attack": round(historical_attack, 3),
+            "tool_sensitive": float(tool_sensitive),
+        }
+
+        reasons = list(getattr(detection, "indicators", []))
+
+        if contextual_risk > 0:
+            reasons.append("contextual_risk")
+
+        if historical_attack > 0:
+            reasons.append("historical_attack")
+
+        if tool_sensitive:
+            reasons.append("tool_sensitive")
 
         return RiskAssessment(
-            score=round(score, 4),
+            score=round(score, 3),
             level=level,
+            features=features,
             reasons=reasons,
         )
+
+
+RiskAssessmentEngine = RiskEngine

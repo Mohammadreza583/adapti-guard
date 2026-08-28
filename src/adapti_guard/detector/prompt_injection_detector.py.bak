@@ -1,0 +1,126 @@
+import re
+
+from src.adapti_guard.core.models import DetectionResult
+
+
+class PromptInjectionDetector:
+
+    PATTERNS = {
+        "ignore_previous_instructions": [
+            r"\bignore\s+(all\s+)?previous\s+instructions?\b",
+            r"\bignore\s+(all\s+)?prior\s+instructions?\b",
+        ],
+        "follow_instead": [
+            r"\bfollow\s+this\s+instruction\s+instead\b",
+            r"\bfollow\s+the\s+following\s+instruction\b",
+        ],
+        "system_prompt_extraction": [
+            r"\breveal\s+(your\s+)?system\s+prompt\b",
+            r"\bshow\s+(me\s+)?your\s+system\s+prompt\b",
+            r"\bprint\s+(your\s+)?system\s+prompt\b",
+            r"\breveal\s+protected\s+information\b",
+        ],
+        "instruction_override": [
+            r"\byou\s+are\s+now\b",
+            r"\bnew\s+instructions?\b",
+            r"\boverride\s+(the\s+)?instructions?\b",
+            r"\bsuperseded\b",
+            r"\bno\s+longer\s+applicable\b",
+        ],
+        "system_authority_impersonation": [
+            r"\bsystem\s+(update|message|instruction)\b",
+            r"\btrusted\s+(system\s+)?instruction\b",
+            r"\bhigher\s+priority\b",
+            r"\bsystem\s+authorizes?\b",
+            r"\bsystem\s+has\s+authorized\b",
+        ],
+        "tool_output_injection": [
+            r"\btool\s+result\b",
+            r"\btool\s+output\b",
+            r"\btrusted\s+tool\s+output\b",
+            r"\bexecute\s+the\s+following\s+instruction\b",
+        ],
+        "context_manipulation": [
+            r"\bsecurity\s+policy\s+was\s+updated\b",
+            r"\bsecurity\s+policy\s+has\s+been\s+updated\b",
+            r"\bprevious\s+security\s+policy\b",
+            r"\bprevious\s+safety\s+constraints\b",
+            r"\bconstraints\s+have\s+been\s+superseded\b",
+            r"\binstructions\s+contained\s+in\s+this\s+context\b",
+        ],
+        "jailbreak_language": [
+            r"\bbypass\s+(the\s+)?(safety|security)\b",
+            r"\bdisable\s+(the\s+)?safety\b",
+            r"\bdo\s+not\s+follow\s+(the\s+)?rules\b",
+        ],
+        "secret_extraction": [
+            r"\breveal\s+(the\s+)?secret\b",
+            r"\bshow\s+(me\s+)?confidential\b",
+            r"\bexfiltrate\b",
+        ],
+    }
+
+    ATTACK_TYPE_MAP = {
+        "ignore_previous_instructions": "PROMPT_INJECTION",
+        "follow_instead": "PROMPT_INJECTION",
+        "system_prompt_extraction": "SYSTEM_PROMPT_EXTRACTION",
+        "instruction_override": "PROMPT_INJECTION",
+        "system_authority_impersonation": "ROLE_ATTACK",
+        "tool_output_injection": "CONTEXT_ATTACK",
+        "context_manipulation": "CONTEXT_ATTACK",
+        "jailbreak_language": "JAILBREAK",
+        "secret_extraction": "SYSTEM_PROMPT_EXTRACTION",
+    }
+
+    def detect(self, text: str) -> DetectionResult:
+        if not text:
+            return DetectionResult(
+                injection_probability=0.0,
+                indicators=[],
+            )
+
+        text_lower = text.lower()
+        indicators = []
+
+        for category, patterns in self.PATTERNS.items():
+            for pattern in patterns:
+                if re.search(pattern, text_lower):
+                    indicators.append(category)
+                    break
+
+        probability = min(
+            len(indicators) * 0.25,
+            1.0,
+        )
+
+        return DetectionResult(
+            injection_probability=round(probability, 3),
+            indicators=indicators,
+        )
+
+    def metadata(self, detection: DetectionResult) -> dict:
+        attack_types = []
+
+        for indicator in detection.indicators:
+            attack_type = self.ATTACK_TYPE_MAP.get(
+                indicator,
+                "PROMPT_INJECTION",
+            )
+
+            if attack_type not in attack_types:
+                attack_types.append(attack_type)
+
+        if not attack_types:
+            attack_type = "NONE"
+        elif len(attack_types) == 1:
+            attack_type = attack_types[0]
+        else:
+            attack_type = "MULTI_ATTACK"
+
+        return {
+            "is_injection": detection.injection_probability >= 0.25,
+            "confidence": detection.injection_probability,
+            "matches": list(detection.indicators),
+            "attack_type": attack_type,
+            "attack_types": attack_types,
+        }

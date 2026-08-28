@@ -1,0 +1,9 @@
+{
+  "experiment_id": "EXP-004",
+  "version": "V4",
+  "status": "UNRECOVERED",
+  "component": "detector",
+  "change": "",
+  "source_files": [],
+  "verified_metrics": {}
+}

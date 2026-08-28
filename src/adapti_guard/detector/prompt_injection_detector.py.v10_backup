@@ -1,0 +1,289 @@
+import re
+
+from src.adapti_guard.core.models import DetectionResult
+
+
+class PromptInjectionDetector:
+
+    PATTERNS = {
+        "ignore_previous_instructions": [
+            r"\bignore\s+(all\s+)?(the\s+)?previous\s+(instructions?|tasks?|commands?|directions?|information)\b",
+            r"\bignore\s+(all\s+)?(the\s+)?prior\s+(instructions?|tasks?|commands?|directions?)\b",
+            r"\bignore\s+(the\s+)?above\s+(instructions?|commands?|directions?)\b",
+            r"\bdisregard\s+(all\s+)?(the\s+)?previous\s+(instructions?|tasks?|commands?)\b",
+            r"\bdisregard\s+(the\s+)?above\s+(instructions?|commands?)\b",
+            r"\bforget\s+(all\s+)?(the\s+)?previous\s+(instructions?|tasks?|information|assignments?)\b",
+            r"\bforget\s+everything\b",
+            r"\bleave\s+(all\s+)?previous\s+information\s+behind\b",
+        ],
+
+        "instruction_override": [
+            r"\bnew\s+(instructions?|task|commands?)\b",
+            r"\bstart\s+over\b",
+            r"\bstart\s+from\s+scratch\b",
+            r"\bnew\s+task\b",
+            r"\bnow\s+focus\s+on\s+(your\s+)?new\s+task\b",
+            r"\boverride\s+(the\s+)?instructions?\b",
+            r"\bsuperseded\b",
+            r"\bno\s+longer\s+applicable\b",
+            r"\bprevious\s+tasks?\b",
+            r"\bprevious\s+assignments?\b",
+        ],
+
+        "follow_instead": [
+            r"\bfollow\s+this\s+instruction\s+instead\b",
+            r"\bfollow\s+the\s+following\s+instruction\b",
+            r"\binstead\s+(do|output|write|show|provide)\b",
+        ],
+
+        "prompt_extraction": [
+            r"\b(reveal|show|print|display|output|give)\s+(me\s+)?(your\s+)?(full\s+)?prompt\b",
+            r"\b(reveal|show|print|display|output|give)\s+(me\s+)?(your\s+)?system\s+prompt\b",
+            r"\bshow\s+(me\s+)?all\s+(your\s+)?prompt\s+texts?\b",
+            r"\bcopy\s+(the\s+)?full\s+prompt\b",
+            r"\bcopy\s+(the\s+)?prompt\s+text\b",
+            r"\bprompt\s+texts?\b",
+        ],
+
+        "role_attack": [
+            # Explicit role-play requests
+            r"\bpretend\s+(you\s+are|to\s+be)\b",
+            r"\bact\s+as\s+(an?\s+)?[a-z][a-z0-9_-]*(?:\s+[a-z][a-z0-9_-]*){0,4}\b",
+            r"\bplay\s+(the\s+)?role\s+of\b",
+            r"\broleplay\b",
+            r"\brole[-\s]?play\b",
+            r"\bfrom\s+now\s+on\s+you\s+are\b",
+
+            # Identity reassignment with a named/persona target
+            r"\bnow\s+you\s+are\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3}\b",
+            r"\byou\s+are\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3}\b",
+
+            # Explicit persona/character framing
+            r"\b(?:assume|adopt|take\s+on)\s+(?:the\s+)?(?:role|persona|character)\s+of\b",
+            r"\b(?:respond|answer|speak|write)\s+(?:as|like)\s+(?:a|an|the)\b",
+        ],
+
+        "authority_impersonation": [
+            r"\bsystem\s+(update|message|instruction)\b",
+            r"\bsystem\s+authorizes?\b",
+            r"\bsystem\s+has\s+authorized\b",
+            r"\bhigher\s+priority\b",
+            r"\btrusted\s+(system\s+)?instruction\b",
+            r"\bdeveloper\s+message\b",
+            r"\bdeveloper\s+instruction\b",
+        ],
+
+        "tool_context_attack": [
+            r"\btool\s+(result|output|response)\b",
+            r"\btrusted\s+tool\s+output\b",
+            r"\bexecute\s+the\s+following\s+instruction\b",
+            r"\binstructions?\s+contained\s+in\s+(this|the)\s+context\b",
+        ],
+
+        "jailbreak": [
+            r"\bbypass\s+(the\s+)?(safety|security|rules?)\b",
+            r"\bdisable\s+(the\s+)?safety\b",
+            r"\bdo\s+not\s+follow\s+(the\s+)?rules\b",
+            r"\bignore\s+(the\s+)?safety\b",
+            r"\bwithout\s+(any\s+)?restrictions?\b",
+        ],
+
+        "secret_extraction": [
+            r"\breveal\s+(the\s+)?secret\b",
+            r"\bshow\s+(me\s+)?confidential\b",
+            r"\bexfiltrate\b",
+            r"\bhidden\s+instructions?\b",
+            r"\bhidden\s+prompt\b",
+            r"\bprivate\s+instructions?\b",
+        ],
+    }
+
+    ATTACK_TYPE_MAP = {
+        "ignore_previous_instructions": "PROMPT_INJECTION",
+        "instruction_override": "PROMPT_INJECTION",
+        "follow_instead": "PROMPT_INJECTION",
+        "prompt_extraction": "SYSTEM_PROMPT_EXTRACTION",
+        "role_attack": "ROLE_ATTACK",
+        "authority_impersonation": "ROLE_ATTACK",
+        "tool_context_attack": "CONTEXT_ATTACK",
+        "jailbreak": "JAILBREAK",
+        "secret_extraction": "SYSTEM_PROMPT_EXTRACTION",
+    }
+
+    def detect(self, text: str) -> DetectionResult:
+        if not text:
+            return DetectionResult(
+                injection_probability=0.0,
+                indicators=[],
+            )
+
+        text_lower = text.lower()
+        indicators = []
+
+        # ---------------------------------------------------------
+        # Base pattern detection
+        # ---------------------------------------------------------
+        for category, patterns in self.PATTERNS.items():
+            for pattern in patterns:
+                if re.search(pattern, text_lower):
+                    indicators.append(category)
+                    break
+
+        # ---------------------------------------------------------
+        # Override / instruction manipulation
+        # ---------------------------------------------------------
+        override_patterns = [
+            r"\bignore\s+(all\s+)?(previous|prior|above|earlier)\b",
+            r"\bforget\s+(everything|all|your|the)\b",
+            r"\bdisregard\s+(all\s+)?(previous|prior|above|earlier)\b",
+            r"\bstart\s+over\b",
+            r"\bnew\s+(task|instructions?)\b",
+            r"\bfrom\s+now\s+on\b",
+            r"\bvergiss\s+(alle\s+)?vorherigen\b",
+            r"\bignoriere\s+(alle\s+)?vorherigen\b",
+        ]
+
+        if any(re.search(p, text_lower) for p in override_patterns):
+            if "instruction_override" not in indicators:
+                indicators.append("instruction_override")
+
+        # ---------------------------------------------------------
+        # Prompt / instruction extraction
+        # ---------------------------------------------------------
+        extraction_patterns = [
+            r"\b(show|reveal|display|print|tell|give|copy)\b.{0,80}"
+            r"\b(system\s+prompt|prompt|instructions?)\b",
+            r"\bwhat\s+was\s+written\b",
+            r"\bwhat\s+is\s+written\s+(above|before|at\s+the\s+beginning)\b",
+            r"\bwhat\s+are\s+your\s+(instructions?|rules?)\b",
+            r"\bzeige\s+mir\b.{0,80}\bprompt\b",
+        ]
+
+        if any(re.search(p, text_lower) for p in extraction_patterns):
+            if "prompt_extraction" not in indicators:
+                indicators.append("prompt_extraction")
+
+        # ---------------------------------------------------------
+        # Output-control manipulation
+        # ---------------------------------------------------------
+        output_control = bool(
+            re.search(
+                r"\b(do\s+not|don't|only|just)\b.{0,80}"
+                r"\b(output|say|write|respond|answer|print)\b",
+                text_lower,
+            )
+            or re.search(
+                r"\b(output|say|write|respond)\s+only\b",
+                text_lower,
+            )
+        )
+
+        # ---------------------------------------------------------
+        # Role-play
+        # ---------------------------------------------------------
+        role_present = "role_attack" in indicators or bool(
+            re.search(
+                r"\b(pretend|act\s+as|play\s+the\s+role)\b",
+                text_lower,
+            )
+        )
+
+        # Role + suspicious objective
+        malicious_role_context = role_present and bool(
+            re.search(
+                r"\b(evil|unrestricted|unfiltered|hack|break\s+into|"
+                r"destroy|kill|bypass|ignore|rules?|instructions?|"
+                r"secret|hidden|system|prompt)\b",
+                text_lower,
+            )
+        )
+
+        # ---------------------------------------------------------
+        # Jailbreak
+        # ---------------------------------------------------------
+        jailbreak_context = bool(
+            re.search(
+                r"\b(ignore|forget|disregard)\b.{0,60}"
+                r"\b(rules?|safety|restrictions?|limitations?|polic(?:y|ies))\b",
+                text_lower,
+            )
+            or re.search(
+                r"\b(bypass|disable|break)\b.{0,40}"
+                r"\b(safety|security|rules?|restrictions?)\b",
+                text_lower,
+            )
+            or re.search(
+                r"\bwithout\s+(any\s+)?restrictions?\b",
+                text_lower,
+            )
+        )
+
+        if jailbreak_context and "jailbreak" not in indicators:
+            indicators.append("jailbreak")
+
+        # ---------------------------------------------------------
+        # Scoring
+        # ---------------------------------------------------------
+        score = 0.0
+
+        for indicator in indicators:
+            if indicator == "ignore_previous_instructions":
+                score += 0.45
+            elif indicator == "prompt_extraction":
+                score += 0.45
+            elif indicator in {
+                "jailbreak",
+                "authority_impersonation",
+                "secret_extraction",
+            }:
+                score += 0.35
+            elif indicator == "role_attack":
+                if malicious_role_context:
+                    score += 0.35
+            elif indicator == "instruction_override":
+                score += 0.30
+            else:
+                score += 0.25
+
+        if output_control:
+            score += 0.30
+
+        if malicious_role_context:
+            score += 0.15
+
+        if len(indicators) >= 2:
+            score += 0.10
+
+        score = min(score, 1.0)
+
+        return DetectionResult(
+            injection_probability=round(score, 3),
+            indicators=indicators,
+        )
+
+    def metadata(self, detection: DetectionResult) -> dict:
+        attack_types = []
+
+        for indicator in detection.indicators:
+            attack_type = self.ATTACK_TYPE_MAP.get(
+                indicator,
+                "PROMPT_INJECTION",
+            )
+
+            if attack_type not in attack_types:
+                attack_types.append(attack_type)
+
+        if not attack_types:
+            attack_type = "NONE"
+        elif len(attack_types) == 1:
+            attack_type = attack_types[0]
+        else:
+            attack_type = "MULTI_ATTACK"
+
+        return {
+            "is_injection": detection.injection_probability >= 0.25,
+            "confidence": detection.injection_probability,
+            "matches": list(detection.indicators),
+            "attack_type": attack_type,
+            "attack_types": attack_types,
+        }

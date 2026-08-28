@@ -38,6 +38,14 @@ class DetectionResult:
     injection_probability: float
     indicators: List[str] = field(default_factory=list)
 
+    @property
+    def is_injection(self) -> bool:
+        return self.injection_probability >= 0.25
+
+    @property
+    def score(self) -> float:
+        return self.injection_probability
+
     def __post_init__(self):
         self.injection_probability = max(
             0.0, min(1.0, self.injection_probability)
@@ -49,6 +57,7 @@ class RiskAssessment:
     score: float
     level: RiskLevel
     features: Dict[str, float] = field(default_factory=dict)
+    reasons: List[str] = field(default_factory=list)
 
     def __post_init__(self):
         self.score = max(0.0, min(1.0, self.score))

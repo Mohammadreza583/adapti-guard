@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import re
 
 from src.adapti_guard.core.models import DefenseAction
 
@@ -13,15 +14,6 @@ class DefenseResult:
 
 
 class DefenseActionLayer:
-    """
-    Executes the defense action selected by the policy engine.
-
-    MVP implementation:
-    A0 = allow
-    A1 = sanitize
-    A2 = restrict tools
-    A3 = block
-    """
 
     def execute(
         self,
@@ -30,6 +22,7 @@ class DefenseActionLayer:
     ) -> DefenseResult:
 
         if action == DefenseAction.NO_INTERVENTION:
+
             return DefenseResult(
                 action=action,
                 allowed=True,
@@ -39,6 +32,7 @@ class DefenseActionLayer:
             )
 
         if action == DefenseAction.SANITIZE:
+
             sanitized = self._sanitize(content)
 
             return DefenseResult(
@@ -50,6 +44,7 @@ class DefenseActionLayer:
             )
 
         if action == DefenseAction.TOOL_RESTRICTION:
+
             return DefenseResult(
                 action=action,
                 allowed=True,
@@ -59,6 +54,7 @@ class DefenseActionLayer:
             )
 
         if action == DefenseAction.BLOCK:
+
             return DefenseResult(
                 action=action,
                 allowed=False,
@@ -67,33 +63,101 @@ class DefenseActionLayer:
                 reason="interaction_blocked",
             )
 
-        raise ValueError(f"Unsupported defense action: {action}")
+        raise ValueError(
+            f"Unsupported defense action: {action}"
+        )
 
     def _sanitize(self, content: str) -> str:
-        """
-        Lightweight MVP sanitization.
 
-        Removes common instruction-like attack markers while
-        preserving the remaining user/content text.
-        """
+        if not content:
+            return ""
 
-        patterns = [
-            "ignore previous instructions",
-            "ignore all previous instructions",
-            "ignore prior instructions",
-            "reveal your system prompt",
+        sanitized = content.strip()
+
+        remove_patterns = [
+
+            r"\bignore\s+(?:all\s+)?(?:previous|prior)\s+instructions?\b",
+
+            r"\bfollow\s+this\s+instruction\s+instead\b",
+
+            r"\bfollow\s+the\s+following\s+instruction\b",
+
+            r"\breveal\s+(?:your\s+)?system\s+prompt\b",
+
+            r"\bshow\s+(?:me\s+)?(?:your\s+)?system\s+prompt\b",
+
+            r"\bprint\s+(?:your\s+)?system\s+prompt\b",
+
+            r"\bsystem\s+(?:update|message|instruction)\b",
+
+            r"\btrusted\s+(?:system\s+)?instruction\b",
+
+            r"\bhigher\s+priority\b",
+
+            r"\btool\s+(?:result|output)\b",
+
+            r"\btrusted\s+tool\s+output\b",
+
+            r"\bexecute\s+the\s+following\s+instruction\b",
+
+            r"\bprevious\s+security\s+policy\b",
+
+            r"\bsecurity\s+policy\s+(?:was|has\s+been)\s+updated\b",
+
+            r"\bno\s+longer\s+applicable\b",
+
+            r"\bconstraints\s+have\s+been\s+superseded\b",
+
+            r"\bsuperseded\b",
+
+            r"\bsystem\s+(?:has\s+)?authorized\b",
+
+            r"\bsystem\s+authorizes?\b",
         ]
 
-        import re
+        for pattern in remove_patterns:
 
-        sanitized = content
-
-        for pattern in patterns:
             sanitized = re.sub(
-                re.escape(pattern),
+                pattern,
                 "",
                 sanitized,
                 flags=re.IGNORECASE,
             )
 
-        return sanitized.strip()
+        sanitized = re.sub(
+            r"\s{2,}",
+            " ",
+            sanitized,
+        )
+
+        sanitized = sanitized.strip(
+            " ,:;.-"
+        ).strip()
+
+        residual_patterns = [
+
+            r"\bsystem\s+prompt\b",
+            r"\bprotected\s+information\b",
+            r"\bconfidential\b",
+            r"\bsecret\b",
+            r"\bexfiltrat",
+            r"\bexecute\b",
+            r"\btrusted\s+tool\b",
+            r"\bsystem\s+authoriz",
+        ]
+
+        if any(
+            re.search(
+                pattern,
+                sanitized,
+                flags=re.IGNORECASE,
+            )
+            for pattern in residual_patterns
+        ):
+
+            return "[SANITIZED]"
+
+        if not sanitized:
+            return "[SANITIZED]"
+
+        return sanitized

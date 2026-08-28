@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 
-from src.adapti_guard.evaluation.outcome_evaluator import OutcomeResult
+from src.adapti_guard.evaluation.outcome_evaluator import (
+    OutcomeResult,
+)
 
 
 @dataclass
@@ -13,18 +15,6 @@ class FeedbackSignal:
 
 
 class FeedbackEngine:
-    """
-    Converts evaluation outcomes into adaptive feedback.
-
-    The feedback balances:
-
-        Security
-        Utility
-        Defense Cost
-
-    A legitimate task blocked by strong defense is treated
-    as evidence that the policy is too restrictive.
-    """
 
     def __init__(
         self,
@@ -51,39 +41,49 @@ class FeedbackEngine:
             - self.cost_weight * cost_penalty
         )
 
-        # -------------------------------------------------
-        # Adaptive signals
-        # -------------------------------------------------
+        # ---------------------------------------------------------
+        # UTILITY-AWARE ADAPTATION
+        # ---------------------------------------------------------
 
-        if outcome.attack_success:
-
-            adaptation_signal = "INCREASE_DEFENSE"
-
-        elif (
+        # 1. Legitimate request was blocked/rejected.
+        #    This is a utility failure and should reduce defense.
+        if (
             outcome.legitimate_success
-            and outcome.defense_cost >= 0.25
+            and cost_penalty >= 0.50
         ):
-
-            # Legitimate request succeeded despite
-            # unnecessarily expensive defense.
-            adaptation_signal = "REDUCE_DEFENSE"
+            signal = "REDUCE_DEFENSE"
 
         elif (
             not outcome.legitimate_success
-            and outcome.defense_cost >= 0.50
+            and utility_feedback == 0.0
+            and cost_penalty >= 0.50
         ):
+            signal = "REDUCE_DEFENSE"
 
-            # Strong defense blocked a legitimate task.
-            adaptation_signal = "REDUCE_DEFENSE"
+        # 2. Attack successfully bypassed the defense.
+        elif outcome.attack_success:
+            signal = "INCREASE_DEFENSE"
+
+        # 3. Attack was contained.
+        #    Continued attack pressure is evidence for stronger defense.
+        elif (
+            security_feedback >= 1.0
+            and utility_feedback == 0.0
+            and cost_penalty < 0.50
+        ):
+            signal = "INCREASE_DEFENSE"
+
+        # 4. Legitimate task succeeded with acceptable cost.
+        elif outcome.legitimate_success:
+            signal = "MAINTAIN"
 
         else:
-
-            adaptation_signal = "MAINTAIN"
+            signal = "MAINTAIN"
 
         return FeedbackSignal(
-            reward=reward,
+            reward=round(reward, 4),
             security_feedback=security_feedback,
             utility_feedback=utility_feedback,
             cost_penalty=cost_penalty,
-            adaptation_signal=adaptation_signal,
+            adaptation_signal=signal,
         )
