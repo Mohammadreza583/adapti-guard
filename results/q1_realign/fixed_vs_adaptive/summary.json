@@ -1,0 +1,265 @@
+{
+  "experiment": "fixed_vs_adaptive",
+  "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+  "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+  "protocol": {
+    "attack": 75,
+    "legitimate": 25,
+    "schedule": "phase7_v2_75_25",
+    "attack_stream": "common_attack_stream_v1_first_75",
+    "stream_sha256": "d101f94d97e0a29e8b9f9cc4dacb92472e29cd9af403114cb09b8f1d50a06c47",
+    "schedule_sha256": "03460724e2e60a391585d8f400a65ba5d7de3b79eea02584bd893ca3e8b14b23"
+  },
+  "determinism_note": "Pipeline is deterministic given frozen stream+schedule; cross-seed std is expected to be 0 and is not robustness evidence.",
+  "fixed": [
+    {
+      "method": "fixed_level_0",
+      "defense_level": 0,
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 1.0,
+      "legitimate_task_success": 1.0,
+      "intervention_rate": 0.0,
+      "false_intervention_rate": 0.0,
+      "defense_cost_mean": 0.0,
+      "escalation_count": 0,
+      "deescalation_count": 0,
+      "transition_count": 0,
+      "defense_rate": 0.0,
+      "fixed_action": "A0",
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f"
+    },
+    {
+      "method": "fixed_level_1",
+      "defense_level": 1,
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 0.72,
+      "legitimate_task_success": 1.0,
+      "intervention_rate": 1.0,
+      "false_intervention_rate": 1.0,
+      "defense_cost_mean": 0.1,
+      "escalation_count": 0,
+      "deescalation_count": 0,
+      "transition_count": 0,
+      "defense_rate": 0.28,
+      "fixed_action": "A1",
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f"
+    },
+    {
+      "method": "fixed_level_2",
+      "defense_level": 2,
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 0.76,
+      "legitimate_task_success": 1.0,
+      "intervention_rate": 1.0,
+      "false_intervention_rate": 1.0,
+      "defense_cost_mean": 0.25,
+      "escalation_count": 0,
+      "deescalation_count": 0,
+      "transition_count": 0,
+      "defense_rate": 0.24,
+      "fixed_action": "A2",
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f"
+    },
+    {
+      "method": "fixed_level_3",
+      "defense_level": 3,
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 0.0,
+      "legitimate_task_success": 0.0,
+      "intervention_rate": 1.0,
+      "false_intervention_rate": 1.0,
+      "defense_cost_mean": 0.5,
+      "escalation_count": 0,
+      "deescalation_count": 0,
+      "transition_count": 0,
+      "defense_rate": 1.0,
+      "fixed_action": "A3",
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f"
+    }
+  ],
+  "adaptive_seeds": [
+    {
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 0.37333333333333335,
+      "legitimate_task_success": 1.0,
+      "intervention_rate": 0.99,
+      "false_intervention_rate": 0.96,
+      "defense_cost_mean": 0.32899999999999996,
+      "reward_mean": 0.42710000000000004,
+      "escalation_count": 14,
+      "deescalation_count": 11,
+      "transition_count": 25,
+      "final_defense_level": 3,
+      "mean_defense_level": 2.43,
+      "seed": 1,
+      "ablation": {
+        "enable_escalation": true,
+        "enable_deescalation": true,
+        "use_cost_gate": true,
+        "use_historical_signal": true,
+        "use_live_adaptive_attacker": false
+      },
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "attack_mode": "frozen_stream"
+    },
+    {
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 0.37333333333333335,
+      "legitimate_task_success": 1.0,
+      "intervention_rate": 0.99,
+      "false_intervention_rate": 0.96,
+      "defense_cost_mean": 0.32899999999999996,
+      "reward_mean": 0.42710000000000004,
+      "escalation_count": 14,
+      "deescalation_count": 11,
+      "transition_count": 25,
+      "final_defense_level": 3,
+      "mean_defense_level": 2.43,
+      "seed": 2,
+      "ablation": {
+        "enable_escalation": true,
+        "enable_deescalation": true,
+        "use_cost_gate": true,
+        "use_historical_signal": true,
+        "use_live_adaptive_attacker": false
+      },
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "attack_mode": "frozen_stream"
+    },
+    {
+      "episodes": 100,
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "asr": 0.37333333333333335,
+      "legitimate_task_success": 1.0,
+      "intervention_rate": 0.99,
+      "false_intervention_rate": 0.96,
+      "defense_cost_mean": 0.32899999999999996,
+      "reward_mean": 0.42710000000000004,
+      "escalation_count": 14,
+      "deescalation_count": 11,
+      "transition_count": 25,
+      "final_defense_level": 3,
+      "mean_defense_level": 2.43,
+      "seed": 3,
+      "ablation": {
+        "enable_escalation": true,
+        "enable_deescalation": true,
+        "use_cost_gate": true,
+        "use_historical_signal": true,
+        "use_live_adaptive_attacker": false
+      },
+      "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "attack_mode": "frozen_stream"
+    }
+  ],
+  "adaptive_aggregate": {
+    "n_seeds": 3,
+    "seeds": [
+      1,
+      2,
+      3
+    ],
+    "by_metric": {
+      "asr": {
+        "mean": 0.37333333333333335,
+        "std": 0.0,
+        "values": [
+          0.37333333333333335,
+          0.37333333333333335,
+          0.37333333333333335
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "legitimate_task_success": {
+        "mean": 1.0,
+        "std": 0.0,
+        "values": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "intervention_rate": {
+        "mean": 0.9899999999999999,
+        "std": 1.3597399555105182e-16,
+        "values": [
+          0.99,
+          0.99,
+          0.99
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "false_intervention_rate": {
+        "mean": 0.96,
+        "std": 0.0,
+        "values": [
+          0.96,
+          0.96,
+          0.96
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "defense_cost_mean": {
+        "mean": 0.32899999999999996,
+        "std": 0.0,
+        "values": [
+          0.32899999999999996,
+          0.32899999999999996,
+          0.32899999999999996
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "escalation_count": {
+        "mean": 14.0,
+        "std": 0.0,
+        "values": [
+          14,
+          14,
+          14
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "deescalation_count": {
+        "mean": 11.0,
+        "std": 0.0,
+        "values": [
+          11,
+          11,
+          11
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      },
+      "transition_count": {
+        "mean": 25.0,
+        "std": 0.0,
+        "values": [
+          25,
+          25,
+          25
+        ],
+        "note": "std=0 expected under deterministic pipeline"
+      }
+    }
+  }
+}

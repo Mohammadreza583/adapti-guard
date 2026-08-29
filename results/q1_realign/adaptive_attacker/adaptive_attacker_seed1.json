@@ -1,0 +1,27 @@
+{
+  "episodes": 100,
+  "attack_episodes": 75,
+  "legitimate_episodes": 25,
+  "asr": 0.37333333333333335,
+  "legitimate_task_success": 1.0,
+  "intervention_rate": 1.0,
+  "false_intervention_rate": 1.0,
+  "defense_cost_mean": 0.3285,
+  "reward_mean": 0.42715000000000003,
+  "escalation_count": 14,
+  "deescalation_count": 11,
+  "transition_count": 25,
+  "final_defense_level": 3,
+  "mean_defense_level": 2.49,
+  "seed": 1,
+  "ablation": {
+    "enable_escalation": true,
+    "enable_deescalation": true,
+    "use_cost_gate": true,
+    "use_historical_signal": true,
+    "use_live_adaptive_attacker": true
+  },
+  "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+  "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+  "attack_mode": "live_AdaptiveAttacker"
+}

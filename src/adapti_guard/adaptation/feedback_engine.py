@@ -24,6 +24,11 @@ class FeedbackEngine:
 
     A legitimate task blocked by strong defense is treated
     as evidence that the policy is too restrictive.
+
+    Ablation flags (defaults preserve Phase7 behavior):
+        enable_escalation — emit INCREASE_DEFENSE on attack success
+        enable_deescalation — emit REDUCE_DEFENSE on legitimate/cost evidence
+        use_cost_gate — require defense_cost thresholds for de-escalation
     """
 
     def __init__(
@@ -31,10 +36,16 @@ class FeedbackEngine:
         security_weight: float = 0.5,
         utility_weight: float = 0.4,
         cost_weight: float = 0.1,
+        enable_escalation: bool = True,
+        enable_deescalation: bool = True,
+        use_cost_gate: bool = True,
     ):
         self.security_weight = security_weight
         self.utility_weight = utility_weight
         self.cost_weight = cost_weight
+        self.enable_escalation = enable_escalation
+        self.enable_deescalation = enable_deescalation
+        self.use_cost_gate = use_cost_gate
 
     def generate(
         self,
@@ -55,13 +66,18 @@ class FeedbackEngine:
         # Adaptive signals
         # -------------------------------------------------
 
-        if outcome.attack_success:
+        success_cost_threshold = 0.25 if self.use_cost_gate else 0.0
+        block_cost_threshold = 0.50 if self.use_cost_gate else 0.0
+
+        if outcome.attack_success and self.enable_escalation:
 
             adaptation_signal = "INCREASE_DEFENSE"
 
         elif (
-            outcome.legitimate_success
-            and outcome.defense_cost >= 0.25
+            self.enable_deescalation
+            and outcome.legitimate_task
+            and outcome.legitimate_success
+            and outcome.defense_cost >= success_cost_threshold
         ):
 
             # Legitimate request succeeded despite
@@ -69,8 +85,10 @@ class FeedbackEngine:
             adaptation_signal = "REDUCE_DEFENSE"
 
         elif (
-            not outcome.legitimate_success
-            and outcome.defense_cost >= 0.50
+            self.enable_deescalation
+            and outcome.legitimate_task
+            and not outcome.legitimate_success
+            and outcome.defense_cost >= block_cost_threshold
         ):
 
             # Strong defense blocked a legitimate task.
