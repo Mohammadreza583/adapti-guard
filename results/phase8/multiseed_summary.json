@@ -1,0 +1,336 @@
+{
+  "experiment": "phase8a",
+  "version": "multiseed_v1",
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "methods": [
+    "fixed_level_0",
+    "fixed_level_1",
+    "fixed_level_2",
+    "fixed_level_3",
+    "adaptive"
+  ],
+  "n_runs": 25,
+  "statistical_method": {
+    "interval": "95% Student-t CI",
+    "formula": "mean \u00b1 t_(0.975, n-1) * std / sqrt(n)",
+    "n": 5,
+    "df": 4,
+    "t_crit": 2.7764451051977925,
+    "std": "sample std (ddof=1)"
+  },
+  "protocol": {
+    "episodes": 100,
+    "attack": 75,
+    "legitimate": 25,
+    "schedule": "phase7_v2_75_25",
+    "attack_stream": "common_attack_stream_v1_first_75",
+    "attack_stream_slice": [
+      0,
+      75
+    ]
+  },
+  "determinism": {
+    "note": "Controlled Phase 7/8A pipeline is deterministic given frozen stream + schedule; cross-seed std is expected to be 0 unless stochastic components are introduced.",
+    "by_method": {
+      "fixed_level_0": {
+        "max_std": 0.0,
+        "all_zero_std": true
+      },
+      "fixed_level_1": {
+        "max_std": 0.0,
+        "all_zero_std": true
+      },
+      "fixed_level_2": {
+        "max_std": 0.0,
+        "all_zero_std": true
+      },
+      "fixed_level_3": {
+        "max_std": 0.0,
+        "all_zero_std": true
+      },
+      "adaptive": {
+        "max_std": 0.0,
+        "all_zero_std": true
+      }
+    }
+  },
+  "summary": [
+    {
+      "method": "fixed_level_0",
+      "metric": "asr",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_0",
+      "metric": "defense_rate",
+      "mean": 0.0,
+      "std": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_0",
+      "metric": "utility",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_0",
+      "metric": "defense_cost",
+      "mean": 0.0,
+      "std": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_0",
+      "metric": "reward",
+      "mean": 0.225,
+      "std": 0.0,
+      "ci95_low": 0.225,
+      "ci95_high": 0.225,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_0",
+      "metric": "security_score",
+      "mean": 0.25,
+      "std": 0.0,
+      "ci95_low": 0.25,
+      "ci95_high": 0.25,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "asr",
+      "mean": 0.72,
+      "std": 0.0,
+      "ci95_low": 0.72,
+      "ci95_high": 0.72,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "defense_rate",
+      "mean": 0.28,
+      "std": 0.0,
+      "ci95_low": 0.28,
+      "ci95_high": 0.28,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "utility",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "defense_cost",
+      "mean": 0.1,
+      "std": 0.0,
+      "ci95_low": 0.1,
+      "ci95_high": 0.1,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "reward",
+      "mean": 0.32,
+      "std": 0.0,
+      "ci95_low": 0.32,
+      "ci95_high": 0.32,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "security_score",
+      "mean": 0.4600000000000001,
+      "std": 0.0,
+      "ci95_low": 0.4600000000000001,
+      "ci95_high": 0.4600000000000001,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "asr",
+      "mean": 0.76,
+      "std": 0.0,
+      "ci95_low": 0.76,
+      "ci95_high": 0.76,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "defense_rate",
+      "mean": 0.24,
+      "std": 0.0,
+      "ci95_low": 0.24,
+      "ci95_high": 0.24,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "utility",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "defense_cost",
+      "mean": 0.25,
+      "std": 0.0,
+      "ci95_low": 0.25,
+      "ci95_high": 0.25,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "reward",
+      "mean": 0.29,
+      "std": 0.0,
+      "ci95_low": 0.29,
+      "ci95_high": 0.29,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "security_score",
+      "mean": 0.43,
+      "std": 0.0,
+      "ci95_low": 0.43,
+      "ci95_high": 0.43,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "asr",
+      "mean": 0.0,
+      "std": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "defense_rate",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "utility",
+      "mean": 0.0,
+      "std": 0.0,
+      "ci95_low": 0.0,
+      "ci95_high": 0.0,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "defense_cost",
+      "mean": 0.5,
+      "std": 0.0,
+      "ci95_low": 0.5,
+      "ci95_high": 0.5,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "reward",
+      "mean": 0.45,
+      "std": 0.0,
+      "ci95_low": 0.45,
+      "ci95_high": 0.45,
+      "n": 5
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "security_score",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "adaptive",
+      "metric": "asr",
+      "mean": 0.373333333333,
+      "std": 0.0,
+      "ci95_low": 0.373333333333,
+      "ci95_high": 0.373333333333,
+      "n": 5
+    },
+    {
+      "method": "adaptive",
+      "metric": "defense_rate",
+      "mean": 0.626666666667,
+      "std": 0.0,
+      "ci95_low": 0.626666666667,
+      "ci95_high": 0.626666666667,
+      "n": 5
+    },
+    {
+      "method": "adaptive",
+      "metric": "utility",
+      "mean": 1.0,
+      "std": 0.0,
+      "ci95_low": 1.0,
+      "ci95_high": 1.0,
+      "n": 5
+    },
+    {
+      "method": "adaptive",
+      "metric": "defense_cost",
+      "mean": 0.329,
+      "std": 0.0,
+      "ci95_low": 0.329,
+      "ci95_high": 0.329,
+      "n": 5
+    },
+    {
+      "method": "adaptive",
+      "metric": "reward",
+      "mean": 0.4271,
+      "std": 0.0,
+      "ci95_low": 0.4271,
+      "ci95_high": 0.4271,
+      "n": 5
+    },
+    {
+      "method": "adaptive",
+      "metric": "security_score",
+      "mean": 0.72,
+      "std": 0.0,
+      "ci95_low": 0.72,
+      "ci95_high": 0.72,
+      "n": 5
+    }
+  ],
+  "timestamp_utc": "2026-08-29T08:31:57.786878+00:00"
+}

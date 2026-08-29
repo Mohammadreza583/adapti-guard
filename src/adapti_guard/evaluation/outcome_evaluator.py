@@ -7,6 +7,8 @@ from src.adapti_guard.core.models import DefenseAction
 class OutcomeResult:
     attack_success: bool
     legitimate_success: bool
+    attack_present: bool
+    legitimate_task: bool
     defense_cost: float
     security_score: float
     utility_score: float
@@ -57,6 +59,8 @@ class OutcomeEvaluator:
         return OutcomeResult(
             attack_success=attack_success,
             legitimate_success=legitimate_success,
+            attack_present=attack_present,
+            legitimate_task=legitimate_task,
             defense_cost=defense_cost,
             security_score=security_score,
             utility_score=utility_score,

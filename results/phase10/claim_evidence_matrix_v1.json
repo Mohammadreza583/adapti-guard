@@ -1,0 +1,817 @@
+{
+  "phase": "10",
+  "analysis": "claim_to_evidence",
+  "version": "v1",
+  "timestamp_utc": "2026-08-29T10:32:38.947944+00:00",
+  "phase7_frozen": true,
+  "phase8_frozen": true,
+  "phase9_source": "results/phase9/evidence_audit_v1.json",
+  "phase9_generalization_status": "LIMITED",
+  "source_artifacts": [
+    "results/phase7/adaptive_100_v2.json",
+    "results/phase7/phase7_manifest.json",
+    "results/phase8/ablation_v1.json",
+    "results/phase8/attack_family_analysis_v1.json",
+    "results/phase8/evolving_attack_stream_v1.json",
+    "results/phase8/multiseed_summary.json",
+    "results/phase8/novel_attack_set_v1.json",
+    "results/phase8/robustness_v1.json",
+    "results/phase8/security_utility_cost_v1.json",
+    "results/phase8/statistical_comparison_v1.json",
+    "results/phase8/temporal_analysis_v1.json",
+    "results/phase9/evidence_audit_v1.json"
+  ],
+  "source_artifact_hashes": {
+    "results/phase7/adaptive_100_v2.json": "b7335bcae9751b9c57dcb114ff2cae7a91c25af67c7e109188bba91888268f96",
+    "results/phase7/phase7_manifest.json": "62568845f0ce00039125b250f5f83b44d34262542f422c90ce61a06b3435bd9b",
+    "results/phase8/ablation_v1.json": "fa4a26b55e092c3cd37b4f0084c31724765cb5db5a71686b39084304eb4d3059",
+    "results/phase8/attack_family_analysis_v1.json": "ca3470c9b21d0fb44a4b1ebae91ef239bdeae76a7775d998684bb10b8cf9ebd0",
+    "results/phase8/evolving_attack_stream_v1.json": "0b6e5b03dea2ab09514d74f4e1ffe093e76957063c61fd596c633b0bfa9421d4",
+    "results/phase8/multiseed_summary.json": "d1978cf0ad4bc31a05f2c33220d0ea818d4cb6bfd791e7858f8ce0dd05ba3e80",
+    "results/phase8/novel_attack_set_v1.json": "b0045ea6fd14d802db057c3bc08fe2a30fe8d7ebdc835d381a438f327b72e4df",
+    "results/phase8/robustness_v1.json": "7ce8d46664990af24836cb277428316d38461e0b4c98a0d696a16052a21d7188",
+    "results/phase8/security_utility_cost_v1.json": "0c8c4a297fb9d935227506933d8da8fc2499de8c8300e576fbca48303027662b",
+    "results/phase8/statistical_comparison_v1.json": "46c84eb844dac05807b9a7a2c9d65fbd5371540628bf479ec00dda9fe96dccf3",
+    "results/phase8/temporal_analysis_v1.json": "9530617846c4ea1c589c7ab90553fd31186109ba5954887a662f6e114e57aeda",
+    "results/phase9/evidence_audit_v1.json": "f8de0d9e830d135cadda5aac407d7a99ffd9180d40c80831cc3dbe6efb3c50e4"
+  },
+  "missing_cited_artifacts": [],
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim_text": "Adaptive defense changes defense policy over time.",
+      "claim_type": "adaptation_dynamics",
+      "status": "SUPPORTED",
+      "confidence": "high",
+      "evidence": [
+        {
+          "artifact": "results/phase7/adaptive_100_v2.json",
+          "experiment": "phase7_controlled_adaptive",
+          "population": "100 episodes; 75 attack / 25 legitimate",
+          "comparison": "within-run defense_level sequence",
+          "metrics": [
+            "defense_level",
+            "adaptation_signal",
+            "defense_action"
+          ],
+          "trace": {
+            "transitions": 25,
+            "increases": 14,
+            "decreases": 11,
+            "levels": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "actions": [
+              "A0",
+              "A1",
+              "A2",
+              "A3"
+            ]
+          }
+        },
+        {
+          "artifact": "results/phase8/temporal_analysis_v1.json",
+          "experiment": "phase8b_temporal",
+          "population": "windows 1\u201325, 26\u201350, 51\u201375, 76\u2013100",
+          "comparison": "temporal mean defense level",
+          "metrics": [
+            "mean_defense_level",
+            "ASR"
+          ],
+          "trace": {
+            "windows": [
+              {
+                "start": 1,
+                "end": 25,
+                "mean_defense_level": 1.68,
+                "asr": 0.473684210526
+              },
+              {
+                "start": 26,
+                "end": 50,
+                "mean_defense_level": 2.64,
+                "asr": 0.368421052632
+              },
+              {
+                "start": 51,
+                "end": 75,
+                "mean_defense_level": 2.68,
+                "asr": 0.315789473684
+              },
+              {
+                "start": 76,
+                "end": 100,
+                "mean_defense_level": 2.72,
+                "asr": 0.333333333333
+              }
+            ]
+          }
+        }
+      ],
+      "limitations": [
+        "Observed on the frozen known Phase 7 protocol only",
+        "Does not establish open-world adaptation dynamics"
+      ],
+      "paper_safe_wording": "Under the controlled Phase 7 protocol, the adaptive defense changed policy over time, with multiple defense-level transitions including both escalation and de-escalation.",
+      "unsafe_wording_examples": [
+        "The adaptive defense continuously adapts in all real-world agent deployments."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C2",
+      "claim_text": "Adaptive defense provides meaningful security against prompt injection.",
+      "claim_type": "security_effectiveness",
+      "status": "PARTIALLY SUPPORTED",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "artifact": "results/phase8/security_utility_cost_v1.json",
+          "experiment": "phase8c_suc_known",
+          "population": "known scenario; phase7_v2_75_25",
+          "comparison": "Adaptive vs Fixed-L0 / Fixed-L3",
+          "metrics": [
+            "ASR",
+            "Defense Rate"
+          ],
+          "trace": {
+            "adaptive_asr": 0.373333333333,
+            "fixed_l0_asr": 1.0,
+            "fixed_l3_asr": 0.0
+          }
+        },
+        {
+          "artifact": "results/phase8/statistical_comparison_v1.json",
+          "experiment": "phase8c_episode_sign_tests",
+          "population": "paired attack episodes; known scenario",
+          "comparison": "adaptive vs fixed_level_0 (attack_success)",
+          "metrics": [
+            "attack_success"
+          ],
+          "trace": {
+            "holm_significant": true,
+            "test": {
+              "comparison": "adaptive vs fixed_level_0",
+              "scenario": "known",
+              "metric": "attack_success",
+              "test": "exact_sign_test",
+              "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=known",
+              "effect_size_mean_diff": -0.6266666666666667,
+              "effect_size_sign_ratio": 0.0,
+              "p_value": 1.4210854715202004e-14,
+              "n_nonzero": 47,
+              "direction_note": "security_proxy_lower_better",
+              "interpretation_pre_correction": "paired episode-level sign test on metric differences; valid under exchangeability of signs under H0",
+              "p_value_holm": 5.684341886080802e-14,
+              "significant_holm_0.05": true,
+              "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+            }
+          }
+        }
+      ],
+      "limitations": [
+        "ASR remains > 0 (partial security)",
+        "Fixed-L3 achieves ASR=0 but collapses utility",
+        "MVP detector/outcome heuristics; protocol-specific"
+      ],
+      "paper_safe_wording": "On the evaluated known-attack protocol, adaptive defense reduced attack success relative to Fixed-L0 while retaining nonzero residual ASR; it does not achieve absolute security.",
+      "unsafe_wording_examples": [
+        "Adaptive defense fully prevents prompt injection.",
+        "Adaptive defense is strictly more secure than all fixed defenses."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C3",
+      "claim_text": "Adaptive defense preserves utility while applying defense.",
+      "claim_type": "utility_preservation",
+      "status": "SUPPORTED",
+      "confidence": "high",
+      "evidence": [
+        {
+          "artifact": "results/phase8/security_utility_cost_v1.json",
+          "experiment": "phase8c_suc_known",
+          "population": "N_legitimate=25 known scenario",
+          "comparison": "Adaptive vs Fixed-L3",
+          "metrics": [
+            "Utility",
+            "Defense Cost"
+          ],
+          "trace": {
+            "adaptive_utility": 1.0,
+            "fixed_l3_utility": 0.0,
+            "adaptive_cost": 0.329
+          }
+        },
+        {
+          "artifact": "results/phase7/phase7_manifest.json",
+          "experiment": "phase7_controlled_adaptive",
+          "population": "25 legitimate episodes",
+          "comparison": "adaptive utility summary",
+          "metrics": [
+            "Utility"
+          ],
+          "trace": {
+            "utility": 1.0,
+            "legitimate_episodes": 25
+          }
+        }
+      ],
+      "limitations": [
+        "Utility measured only on the controlled 25 legitimate episodes",
+        "Does not evaluate open-ended task success beyond the MVP outcome rule"
+      ],
+      "paper_safe_wording": "Under the controlled protocol, adaptive defense preserved utility on all evaluated legitimate episodes while applying nontrivial defense cost, in contrast to Fixed-L3 which achieved zero utility.",
+      "unsafe_wording_examples": [
+        "Adaptive defense never harms legitimate user tasks in deployment."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C4",
+      "claim_text": "Adaptive defense has a measurable security\u2013utility\u2013cost tradeoff.",
+      "claim_type": "security_utility_cost_tradeoff",
+      "status": "SUPPORTED",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "artifact": "results/phase8/security_utility_cost_v1.json",
+          "experiment": "phase8c_suc",
+          "population": "known/novel/evolving; 5 methods",
+          "comparison": "Pareto nondominance on ASR\u2193, Utility\u2191, Cost\u2193",
+          "metrics": [
+            "ASR",
+            "Utility",
+            "Defense Cost",
+            "Reward",
+            "Pareto nondominance"
+          ],
+          "trace": {
+            "known_pareto_nondominated": [
+              "fixed_level_0",
+              "fixed_level_1",
+              "fixed_level_3",
+              "adaptive"
+            ],
+            "known_pareto_dominated": [
+              "fixed_level_2"
+            ],
+            "composite_score": null,
+            "adaptive_known": {
+              "method": "adaptive",
+              "asr": 0.373333333333,
+              "defense_rate": 0.626666666667,
+              "utility": 1.0,
+              "defense_cost": 0.329,
+              "reward": 0.4271
+            }
+          }
+        }
+      ],
+      "limitations": [
+        "No composite scalar score is defined",
+        "Tradeoff conclusions are multi-objective and protocol-scoped"
+      ],
+      "paper_safe_wording": "Adaptive defense exhibits a measurable security\u2013utility\u2013cost tradeoff on the evaluated protocols and is Pareto-nondominated on the known scenario under ASR, utility, and defense-cost objectives; no single-metric superiority is claimed.",
+      "unsafe_wording_examples": [
+        "Adaptive defense is optimally better on all metrics simultaneously."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C5",
+      "claim_text": "Adaptation contributes beyond fixed defense levels.",
+      "claim_type": "adaptation_vs_fixed",
+      "status": "PARTIALLY SUPPORTED",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "artifact": "results/phase8/ablation_v1.json",
+          "experiment": "phase8b_ablation",
+          "population": "phase7_v2_75_25; Fixed-L0..L3 + Adaptive",
+          "comparison": "Adaptive vs fixed levels",
+          "metrics": [
+            "ASR",
+            "Utility",
+            "Defense Cost",
+            "Reward"
+          ],
+          "trace": {
+            "conditions": [
+              {
+                "condition": "fixed_level_0",
+                "metrics": {
+                  "asr": 1.0,
+                  "defense_rate": 0.0,
+                  "utility": 1.0,
+                  "defense_cost": 0.0,
+                  "reward": 0.225
+                }
+              },
+              {
+                "condition": "fixed_level_1",
+                "metrics": {
+                  "asr": 0.72,
+                  "defense_rate": 0.28,
+                  "utility": 1.0,
+                  "defense_cost": 0.1,
+                  "reward": 0.32
+                }
+              },
+              {
+                "condition": "fixed_level_2",
+                "metrics": {
+                  "asr": 0.76,
+                  "defense_rate": 0.24,
+                  "utility": 1.0,
+                  "defense_cost": 0.25,
+                  "reward": 0.29
+                }
+              },
+              {
+                "condition": "fixed_level_3",
+                "metrics": {
+                  "asr": 0.0,
+                  "defense_rate": 1.0,
+                  "utility": 0.0,
+                  "defense_cost": 0.5,
+                  "reward": 0.45
+                }
+              },
+              {
+                "condition": "adaptive_with_historical",
+                "metrics": {
+                  "asr": 0.373333333333,
+                  "defense_rate": 0.626666666667,
+                  "utility": 1.0,
+                  "defense_cost": 0.329,
+                  "reward": 0.4271
+                }
+              }
+            ]
+          }
+        },
+        {
+          "artifact": "results/phase8/statistical_comparison_v1.json",
+          "experiment": "phase8c_episode_sign_tests",
+          "population": "paired known episodes",
+          "comparison": "adaptive vs fixed_level_0 / fixed_level_3",
+          "metrics": [
+            "attack_success"
+          ],
+          "trace": {
+            "vs_l0_holm_sig": true,
+            "vs_l3_holm_sig": true
+          }
+        }
+      ],
+      "limitations": [
+        "Adaptive is not best on ASR alone (Fixed-L3 ASR=0.0)",
+        "Contribution is tradeoff-based rather than absolute dominance"
+      ],
+      "paper_safe_wording": "Relative to fixed defenses, adaptive defense provides a distinct security\u2013utility operating point on the evaluated protocol\u2014improving over Fixed-L0 in attack containment while preserving utility that Fixed-L3 sacrifices\u2014without claiming strict superiority on every metric.",
+      "unsafe_wording_examples": [
+        "Adaptive defense consistently outperforms all fixed defenses."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C6",
+      "claim_text": "Historical attack feedback contributes to adaptation.",
+      "claim_type": "historical_feedback_contribution",
+      "status": "NOT SUPPORTED",
+      "confidence": "high_that_not_established",
+      "disposition": "REWRITE AS HYPOTHESIS/LIMITATION",
+      "disposition_rationale": "The historical-signal mechanism is implemented, but the frozen-protocol ablation yields identical aggregates with vs without the signal. C6 is not required for the central utility-aware adaptation contribution; treat as an open hypothesis / limitation, not an established result.",
+      "evidence": [
+        {
+          "artifact": "results/phase8/ablation_v1.json",
+          "experiment": "phase8b_historical_ablation",
+          "population": "phase7_v2_75_25",
+          "comparison": "adaptive_with_historical vs adaptive_without_historical",
+          "metrics": [
+            "ASR",
+            "Defense Rate",
+            "Utility",
+            "Defense Cost",
+            "Reward"
+          ],
+          "trace": {
+            "historical_signal_changed_aggregates": false,
+            "with_historical": {
+              "asr": 0.373333333333,
+              "defense_rate": 0.626666666667,
+              "utility": 1.0,
+              "defense_cost": 0.329,
+              "reward": 0.4271
+            },
+            "without_historical": {
+              "asr": 0.373333333333,
+              "defense_rate": 0.626666666667,
+              "utility": 1.0,
+              "defense_cost": 0.329,
+              "reward": 0.4271
+            },
+            "identical_aggregates": true
+          }
+        }
+      ],
+      "limitations": [
+        "Null aggregate effect under this protocol",
+        "Does not prove the mechanism is inactive in all settings",
+        "A future experiment with stronger historical influence or different risk weighting would be required to test contribution"
+      ],
+      "paper_safe_wording": null,
+      "paper_handling": "Do not affirm C6. Optionally state as limitation/hypothesis: 'Under the evaluated protocol, enabling historical attack feedback did not change aggregate primary metrics; its empirical contribution remains not established.'",
+      "unsafe_wording_examples": [
+        "Historical attack feedback improves adaptive defense performance."
+      ],
+      "phase9_documentation_note": "Phase 9 claim text stated historical_signal_changed_aggregates=True; ablation_v1.json records False with identical aggregates. Phase 10 uses ablation_v1.json as authoritative.",
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C7",
+      "claim_text": "Performance differs across attack families.",
+      "claim_type": "attack_family_heterogeneity",
+      "status": "SUPPORTED",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "artifact": "results/phase8/attack_family_analysis_v1.json",
+          "experiment": "phase8b_attack_family",
+          "population": "known Adaptive attack episodes by family",
+          "comparison": "across four frozen families",
+          "metrics": [
+            "ASR",
+            "Detection Rate",
+            "Defense Rate"
+          ],
+          "trace": {
+            "families": [
+              {
+                "attack_family": "direct_injection",
+                "attack_count": 19,
+                "asr": 0.631578947368,
+                "detection_rate": 1.0,
+                "defense_rate": 0.368421052632,
+                "utility": 0.0
+              },
+              {
+                "attack_family": "indirect_injection",
+                "attack_count": 19,
+                "asr": 0.473684210526,
+                "detection_rate": 1.0,
+                "defense_rate": 0.526315789474,
+                "utility": 0.0
+              },
+              {
+                "attack_family": "context_manipulation",
+                "attack_count": 19,
+                "asr": 0.315789473684,
+                "detection_rate": 1.0,
+                "defense_rate": 0.684210526316,
+                "utility": 0.0
+              },
+              {
+                "attack_family": "tool_output_injection",
+                "attack_count": 18,
+                "asr": 0.0555555555556,
+                "detection_rate": 1.0,
+                "defense_rate": 0.944444444444,
+                "utility": 0.0
+              }
+            ]
+          }
+        }
+      ],
+      "limitations": [
+        "Unequal family counts (19/19/19/18) under first-75 slice",
+        "Family utility is vacuous (attack-only strata)",
+        "Descriptive heterogeneity; not a balanced factorial design"
+      ],
+      "paper_safe_wording": "On the known Adaptive run, attack success rates differed substantially across the four frozen attack families under the controlled evaluation protocol.",
+      "unsafe_wording_examples": [
+        "All attack families are equally difficult.",
+        "Family differences generalize to all prompt-injection corpora."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C8",
+      "claim_text": "Adaptive defense can handle novel attacks.",
+      "claim_type": "novel_attack_handling",
+      "status": "LIMITED",
+      "confidence": "low_for_generalization",
+      "evidence": [
+        {
+          "artifact": "results/phase8/novel_attack_set_v1.json",
+          "experiment": "phase8c_novel_set_definition",
+          "population": "75 novel attacks; 4 families",
+          "comparison": "novelty vs frozen known stream",
+          "metrics": [
+            "exact_overlap=0",
+            "novelty_definition"
+          ],
+          "trace": {
+            "n": 75,
+            "exact_overlap_with_frozen_stream": 0
+          }
+        },
+        {
+          "artifact": "results/phase8/robustness_v1.json",
+          "experiment": "phase8c_robustness_novel",
+          "population": "novel scenario; phase7_v2_75_25",
+          "comparison": "Adaptive vs Fixed-L0 on novel",
+          "metrics": [
+            "ASR",
+            "Detection Rate",
+            "Defense Rate",
+            "Utility"
+          ],
+          "trace": {
+            "adaptive": {
+              "asr": 0.0266666666667,
+              "detection_rate": 0.0,
+              "defense_rate": 0.973333333333,
+              "utility": 1.0,
+              "defense_cost": 0.098,
+              "reward": 0.5802
+            },
+            "fixed_l0": {
+              "asr": 1.0,
+              "detection_rate": 0.0,
+              "defense_rate": 0.0,
+              "utility": 1.0,
+              "defense_cost": 0.0,
+              "reward": 0.225
+            },
+            "novelty_claim_status": "LIMITED"
+          }
+        }
+      ],
+      "limitations": [
+        "Closed-world synthetic novelty relative to MVP known set",
+        "Novel detection_rate=0.0 under rule-based detector",
+        "Sanitize attack_success heuristic uses residual known markers",
+        "Generalization claim must remain LIMITED"
+      ],
+      "paper_safe_wording": "On the evaluated structurally novel attack set (no exact overlap with the frozen known stream), adaptive defense showed measurable scenario outcomes; however, detector miss rate and sanitize-success heuristics constrain interpretation, so results support limited, set-specific robustness rather than generalization to unseen attacks.",
+      "unsafe_wording_examples": [
+        "Adaptive defense generalizes to unseen attacks.",
+        "Adaptive defense is robust to novel prompt injections in general."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C9",
+      "claim_text": "Adaptive defense can respond to evolving attack sequences.",
+      "claim_type": "evolving_attack_response",
+      "status": "PARTIALLY SUPPORTED",
+      "confidence": "medium",
+      "evidence": [
+        {
+          "artifact": "results/phase8/evolving_attack_stream_v1.json",
+          "experiment": "phase8c_evolving_stream",
+          "population": "75 evolving attack slots; 4 stages",
+          "comparison": "stage progression definition",
+          "metrics": [
+            "stage labels"
+          ],
+          "trace": {
+            "stages": [
+              "stage1_known_simple",
+              "stage2_mixed",
+              "stage3_stronger_novel",
+              "stage4_adaptive_evolving"
+            ]
+          }
+        },
+        {
+          "artifact": "results/phase8/robustness_v1.json",
+          "experiment": "phase8c_robustness_evolving",
+          "population": "evolving scenario + adaptive stage metrics",
+          "comparison": "stage-wise ASR / defense level",
+          "metrics": [
+            "ASR",
+            "Detection Rate",
+            "mean_defense_level",
+            "Reward"
+          ],
+          "trace": {
+            "overall_adaptive": {
+              "asr": 0.626666666667,
+              "detection_rate": 0.386666666667,
+              "defense_rate": 0.373333333333,
+              "utility": 1.0,
+              "defense_cost": 0.2665,
+              "reward": 0.33835
+            },
+            "stages": [
+              {
+                "stage": "stage1_known_simple",
+                "attack_slot_start": 0,
+                "attack_slot_end": 18,
+                "attack_count": 19,
+                "metrics": {
+                  "asr": 0.473684210526,
+                  "detection_rate": 1.0,
+                  "defense_rate": 0.526315789474,
+                  "utility": 0.0,
+                  "defense_cost": 0.265789473684,
+                  "reward": 0.236578947368
+                },
+                "mean_defense_level": 1.5789473684210527
+              },
+              {
+                "stage": "stage2_mixed",
+                "attack_slot_start": 19,
+                "attack_slot_end": 37,
+                "attack_count": 19,
+                "metrics": {
+                  "asr": 0.473684210526,
+                  "detection_rate": 0.526315789474,
+                  "defense_rate": 0.526315789474,
+                  "utility": 0.0,
+                  "defense_cost": 0.342105263158,
+                  "reward": 0.228947368421
+                },
+                "mean_defense_level": 2.5789473684210527
+              },
+              {
+                "stage": "stage3_stronger_novel",
+                "attack_slot_start": 38,
+                "attack_slot_end": 56,
+                "attack_count": 19,
+                "metrics": {
+                  "asr": 0.789473684211,
+                  "detection_rate": 0.0,
+                  "defense_rate": 0.210526315789,
+                  "utility": 0.0,
+                  "defense_cost": 0.25,
+                  "reward": 0.0802631578947
+                },
+                "mean_defense_level": 2.6315789473684212
+              },
+              {
+                "stage": "stage4_adaptive_evolving",
+                "attack_slot_start": 57,
+                "attack_slot_end": 74,
+                "attack_count": 18,
+                "metrics": {
+                  "asr": 0.777777777778,
+                  "detection_rate": 0.0,
+                  "defense_rate": 0.222222222222,
+                  "utility": 0.0,
+                  "defense_cost": 0.25,
+                  "reward": 0.0861111111111
+                },
+                "mean_defense_level": 2.611111111111111
+              }
+            ],
+            "defense_level_changes_across_stages": true
+          }
+        }
+      ],
+      "limitations": [
+        "Deterministic synthetic evolving construction",
+        "Later novel-heavy stages show higher ASR and near-zero detection",
+        "Response is observed but not uniformly successful"
+      ],
+      "paper_safe_wording": "Under the evaluated evolving attack sequence, adaptive defense exhibited stage-dependent behavior (including defense-level change across stages); this demonstrates response on the constructed sequence, not broadly successful evolving-attack robustness.",
+      "unsafe_wording_examples": [
+        "Adaptive defense successfully counters evolving attackers in general."
+      ],
+      "quantitative": true,
+      "traceable": true
+    },
+    {
+      "claim_id": "C10",
+      "claim_text": "Results are reproducible across seeds.",
+      "claim_type": "reproducibility",
+      "status": "SUPPORTED",
+      "confidence": "high_for_reproducibility",
+      "evidence": [
+        {
+          "artifact": "results/phase8/multiseed_summary.json",
+          "experiment": "phase8a_multiseed",
+          "population": "5 methods \u00d7 seeds 1\u20135; known protocol",
+          "comparison": "cross-seed mean/std/95% CI",
+          "metrics": [
+            "mean",
+            "std",
+            "ci95_low",
+            "ci95_high",
+            "n"
+          ],
+          "trace": {
+            "n_runs": 25,
+            "statistical_method": {
+              "interval": "95% Student-t CI",
+              "formula": "mean \u00b1 t_(0.975, n-1) * std / sqrt(n)",
+              "n": 5,
+              "df": 4,
+              "t_crit": 2.7764451051977925,
+              "std": "sample std (ddof=1)"
+            },
+            "adaptive_asr": {
+              "method": "adaptive",
+              "metric": "asr",
+              "mean": 0.373333333333,
+              "std": 0.0,
+              "ci95_low": 0.373333333333,
+              "ci95_high": 0.373333333333,
+              "n": 5
+            },
+            "determinism": {
+              "note": "Controlled Phase 7/8A pipeline is deterministic given frozen stream + schedule; cross-seed std is expected to be 0 unless stochastic components are introduced.",
+              "by_method": {
+                "fixed_level_0": {
+                  "max_std": 0.0,
+                  "all_zero_std": true
+                },
+                "fixed_level_1": {
+                  "max_std": 0.0,
+                  "all_zero_std": true
+                },
+                "fixed_level_2": {
+                  "max_std": 0.0,
+                  "all_zero_std": true
+                },
+                "fixed_level_3": {
+                  "max_std": 0.0,
+                  "all_zero_std": true
+                },
+                "adaptive": {
+                  "max_std": 0.0,
+                  "all_zero_std": true
+                }
+              }
+            }
+          }
+        }
+      ],
+      "limitations": [
+        "Pipeline is deterministic given frozen stream/schedule",
+        "std=0 supports reproducibility, not stochastic robustness",
+        "Do not interpret five identical seeds as random-init robustness"
+      ],
+      "paper_safe_wording": "Under identical method, seed, stream, and schedule settings, Phase 8A multi-seed runs reproduced aggregate metrics exactly (sample std = 0 across seeds 1\u20135), demonstrating reproducibility of the controlled pipeline.",
+      "unsafe_wording_examples": [
+        "Results are robust to random initialization across seeds."
+      ],
+      "quantitative": true,
+      "traceable": true
+    }
+  ],
+  "claim_status": {
+    "C1": "SUPPORTED",
+    "C2": "PARTIALLY SUPPORTED",
+    "C3": "SUPPORTED",
+    "C4": "SUPPORTED",
+    "C5": "PARTIALLY SUPPORTED",
+    "C6": "NOT SUPPORTED",
+    "C7": "SUPPORTED",
+    "C8": "LIMITED",
+    "C9": "PARTIALLY SUPPORTED",
+    "C10": "SUPPORTED"
+  },
+  "generalization": {
+    "status": "LIMITED",
+    "allowed_wording": "demonstrates robustness on the evaluated known/novel/evolving attack sets under the controlled protocol",
+    "disallowed_wording": "generalizes to unseen attacks / open-world prompt injection",
+    "preserved_from_phase9": true
+  },
+  "c6_disposition": {
+    "status": "NOT SUPPORTED",
+    "action": "REWRITE AS HYPOTHESIS/LIMITATION",
+    "reason": "Ablation shows identical aggregates with vs without historical signal (historical_signal_changed_aggregates=False)."
+  },
+  "traceability_summary": {
+    "claims_audited": 10,
+    "quantitative_claims": 10,
+    "quantitative_claims_traceable": 10,
+    "unsupported_claims": [
+      "C6"
+    ],
+    "overclaiming_detected": false
+  },
+  "integrity": {
+    "experiments_rerun": false,
+    "results_changed": false,
+    "phase7_modified": false,
+    "phase8_modified": false,
+    "phase9_modified": false
+  },
+  "overall_readiness": "PHASE 10 READY"
+}
