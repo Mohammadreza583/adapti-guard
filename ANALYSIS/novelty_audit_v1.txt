@@ -1,0 +1,98 @@
+ADAPTI-GUARD — NOVELTY AUDIT v1
+============================================================
+timestamp_utc: 2026-08-29T11:41:25.583237+00:00
+local_corpus_present: False
+unique_papers: 15
+direct_overlap: 1
+partial_overlap: 5
+adjacent: 6
+complementary: 2
+no_material_overlap: 1
+
+CRITICAL PAPERS
+- AgentAntibody: PARTIAL_OVERLAP
+  Persistent evolving antibody memory adapts runtime responses to learned user boundary.
+- COPA: PARTIAL_OVERLAP
+  Training-time continual preference optimization against evolving attack streams.
+- Beyond_Handcrafted_HARD: PARTIAL_OVERLAP
+  Self-evolving harness refinement from failures; improves runtime defenses over evolution cycles.
+- SecOPD: ADJACENT
+  Model-level fine-tuning with token-level feedback against adaptive attacks.
+- Adaptive_Adversaries: COMPLEMENTARY
+  Benchmark showing adaptive multi-turn attackers beat single-turn evaluation.
+- SCOUT: PARTIAL_OVERLAP
+  Adaptive selection among detectors under a safety–utility–latency threshold.
+
+DIRECT OVERLAP DETAIL
+- SafeHarness: Lifecycle-Integrated Security Architecture for LLM-based Agent Deployment
+  paper: Explicit multi-level degradation with escalate on detected attack and de-escalate after consecutive safe actions; privilege ceiling tightens with level.
+  AG:    Explicit multi-level defense intensity with escalate/de-escalate under utility-aware feedback and defense cost.
+
+REMAINING NOVELTY
+1. Within this audited set: a controlled 75/25 mixed attack/legitimate protocol with multi-seed, temporal, family, novel/evolving, SUC/Pareto, and statistical packaging focused on discrete detect/sanitize defense levels L0–L3.
+2. Explicit comparison of an adaptive level controller against fixed level baselines under a unified ASR/utility/defense-cost/reward accounting in that protocol.
+3. These are primarily methodological/systems-evaluation contributions; they are weaker as algorithmic novelty once SafeHarness-level escalate/de-escalate is acknowledged.
+
+NOT NOVEL ANYMORE
+- Runtime adaptive defense against prompt injection in general
+- History/memory-conditioned runtime defense (AgentAntibody, SCOUT fingerprints, SafeHarness windows)
+- Security–utility tradeoff as an evaluation objective (widely studied)
+- Explicit escalate/de-escalate multi-level runtime defense intensity/privilege (SafeHarness degradation levels)
+- Adaptation under evolving attack curricula (COPA training-time; HARD evolution; AgentAntibody cumulative learning)
+- Claim that AG historical feedback contributes (already empirically NOT SUPPORTED)
+
+UNSUPPORTED / DISALLOWED CLAIMS
+- Historical attack feedback contributes to AG adaptation (C6).
+- Open-world generalization to unseen attacks.
+- First / unique runtime multi-level escalate/de-escalate defense.
+- First joint security–utility–cost adaptive defense.
+- Uniformly successful evolving-attack robustness.
+- Stochastic multi-seed robustness (std=0 is reproducibility).
+
+CLAIM REPAIR
+C1 phase10=SUPPORTED paper_status=SUPPORTED
+  SAFE: Under the controlled protocol, ADAPTI-GUARD changed defense levels over time, including escalation and de-escalation.
+  UNSAFE: We introduce the first runtime defense that adapts its protection level over time.
+C2 phase10=PARTIALLY SUPPORTED paper_status=PARTIALLY SUPPORTED
+  SAFE: On the evaluated known-attack protocol, adaptive levels reduced ASR relative to Fixed-L0 while leaving residual ASR.
+  UNSAFE: ADAPTI-GUARD provides strong/general prompt-injection security.
+C3 phase10=SUPPORTED paper_status=SUPPORTED
+  SAFE: Under the controlled protocol, adaptive defense preserved utility on legitimate episodes while Fixed-L3 collapsed utility.
+  UNSAFE: Unlike prior defenses, ADAPTI-GUARD uniquely preserves utility.
+C4 phase10=SUPPORTED paper_status=SUPPORTED
+  SAFE: ADAPTI-GUARD exhibits a measurable security–utility–cost operating point versus fixed levels under the evaluated protocol.
+  UNSAFE: We are the first to jointly optimize security, utility, and defense cost.
+C5 phase10=PARTIALLY SUPPORTED paper_status=PARTIALLY SUPPORTED
+  SAFE: Relative to fixed AG levels, the adaptive controller provides a distinct tradeoff point on this protocol, without claiming absolute metric dominance.
+  UNSAFE: Adaptation uniquely contributes beyond any fixed defense.
+C6 phase10=NOT SUPPORTED paper_status=NOT SUPPORTED
+  HANDLE: NOT ESTABLISHED / limitation: under this protocol, historical signal did not change aggregates.
+  UNSAFE: Historical attack feedback improves adaptive performance.
+C7 phase10=SUPPORTED paper_status=SUPPORTED
+  SAFE: On the known Adaptive run, ASR differed across the four frozen attack families.
+  UNSAFE: ADAPTI-GUARD uniquely characterizes attack-family robustness.
+C8 phase10=LIMITED paper_status=LIMITED
+  SAFE: On the evaluated structurally novel set, outcomes are measurable but do not establish open-world generalization.
+  UNSAFE: ADAPTI-GUARD generalizes to unseen attacks.
+C9 phase10=PARTIALLY SUPPORTED paper_status=PARTIALLY SUPPORTED
+  SAFE: Under the constructed evolving stream, defense-level change across stages was observed; this is response evidence, not uniformly successful evolving-attack defense.
+  UNSAFE: ADAPTI-GUARD robustly defends against evolving adaptive adversaries.
+C10 phase10=SUPPORTED paper_status=SUPPORTED
+  SAFE: Under identical settings, multi-seed aggregates reproduced exactly (std=0), indicating pipeline reproducibility.
+  UNSAFE: Multi-seed results demonstrate stochastic robustness.
+
+OVERALL NOVELTY: WEAK
+VERDICT: CLAIMS REQUIRE REVISION
+
+VALIDATION
+  no_duplicate_paper_ids: PASS
+  no_duplicate_arxiv: PASS
+  all_critical_papers_included: PASS
+  no_phase7_11_or_src_modified: PASS
+  prior_result_hashes_unchanged: PASS
+  c6_remains_not_supported: PASS
+  generalization_not_upgraded: PASS
+  direct_overlap_acknowledged: PASS
+  overall_novelty_not_overclaimed: PASS
+  local_corpus_absence_documented: PASS
+validation_overall: NOVELTY AUDIT VALIDATED

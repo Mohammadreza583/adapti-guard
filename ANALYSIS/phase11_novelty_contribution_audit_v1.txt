@@ -1,0 +1,76 @@
+ADAPTI-GUARD — PHASE 11 NOVELTY & CONTRIBUTION AUDIT v1
+============================================================
+decision: MINOR PIVOT
+local_corpus_found: False
+critical_papers_verified: 8
+
+CORPUS
+Core papers (local) = 0
+Supporting papers (local) = 0
+Relevant critical papers = 8
+
+OVERLAP
+DIRECT = 0
+PARTIAL = 5
+ADJACENT = 1
+COMPLEMENTARY = 2
+NO MATERIAL OVERLAP = 0
+
+NOVELTY
+Algorithmic = LIMITED
+Methodological = MODERATE
+Evaluation = MODERATE
+Engineering = LIMITED
+
+STRONGEST DEFENSIBLE CONTRIBUTION
+A controlled mixed attack/legitimate evaluation of a discrete L0–L3 runtime intervention policy that escalates on attack success and de-escalates on legitimate-task utility/cost feedback, compared against fixed levels under unified ASR/utility/defense-cost/reward metrics—without claiming uniqueness of escalate/de-escalate levels in general (SafeHarness) or open-world robustness.
+
+RESEARCH GAP
+Whether a discrete intervention-level controller with legitimate-task cost-triggered de-escalation improves the security–utility–cost frontier versus fixed levels AND versus privilege-degradation baselines (e.g., SafeHarness-style) under adaptive/black-box evolving attacks (AutoDojo-like), not only under a frozen synthetic stream.
+
+RESEARCH QUESTION
+Under controlled mixed attack/legitimate workloads, does a discrete L0–L3 runtime intervention policy with legitimate-task cost-triggered de-escalation improve the security–utility–cost tradeoff relative to fixed levels, and does that advantage survive adaptive black-box evolving attacks?
+
+HYPOTHESES
+H1 Under an identical mixed attack/legitimate protocol, the AG adaptive L0–L3 controller achieves a Pareto improvement (or distinct nondominated point) vs Fixed-L0..L3 on (ASR, utility, defense_cost).
+H2 Legitimate-task cost-triggered de-escalation reduces over-defense utility loss relative to escalate-only or no-de-escalation ablations without increasing ASR beyond a pre-specified bound.
+H3 Under AutoDojo-style adaptive black-box attacks, AG’s adaptive levels retain a measurable SUC advantage over the best fixed level; if not, evolving-attack claims must remain PARTIAL/LIMITED.
+
+CLAIM STATUS
+C1 SUPPORTED — Runtime policy updates change defense_level over episodes; Phase7 transitions evaluated.
+C2 SUPPORTED — Implemented mapping L0–L3 → NO_INTERVENTION/SANITIZE/TOOL_RESTRICTION/BLOCK; fixed baselines use same levels.
+C3 SUPPORTED — INCREASE_DEFENSE / REDUCE_DEFENSE with counters; both directions observed under 75/25 protocol.
+C4 SUPPORTED — ASR vs utility measured; Adaptive preserves utility while Fixed-L3 collapses it; SUC/Pareto artifacts exist.
+C5 SUPPORTED — defense_cost enters reward and gates REDUCE_DEFENSE; cost reported in Phase7/8 tables. Awareness≠optimality.
+C6 NOT SUPPORTED — Ablation: historical_signal_changed_aggregates=false; identical aggregates with/without history.
+C7 SUPPORTED — Phase7/8A compare Adaptive to Fixed-L0..L3 under identical stream/schedule. Superiority is tradeoff-local, not absolute.
+C8 LIMITED — Novel set evaluated; detector miss + sanitize heuristics; Phase9/10 generalization LIMITED.
+C9 PARTIAL — Response/stage-level change on constructed evolving stream; not AutoDojo-style adaptive optimizer robustness.
+C10 PARTIAL — Controlled multi-analysis package exists for AG; not a general community framework, and not unique vs AgentDojo/AutoDojo/SCOUT eval ecosystems.
+
+REVIEWER STRESS TEST
+Novelty: CRITICAL=1, MAJOR=2, MINOR=1
+  [CRITICAL] Escalate/de-escalate discrete levels are not unique (SafeHarness); claiming unique adaptive defense is indefensible.
+  [MAJOR] Historical-signal contribution claimed in narrative risk without empirical support (C6 null).
+  [MAJOR] Evolving-attack story weaker than COPA/HARD/AutoDojo threat models.
+  [MINOR] Engineering integration of known components may be read as incremental without clear positioning vs SafeHarness/SCOUT.
+Methodology: CRITICAL=0, MAJOR=2, MINOR=1
+  [MAJOR] MVP detector/outcome heuristics limit causal claims about real agent security.
+  [MAJOR] Deterministic pipeline (std=0) cannot support stochastic robustness claims.
+  [MINOR] Unequal attack-family counts (19/19/19/18) under first-75 slice.
+Evaluation: CRITICAL=1, MAJOR=2, MINOR=1
+  [CRITICAL] Novel/evolving evidence insufficient for generalization or strong evolving-robustness claims (Phase9 LIMITED; AutoDojo pressure).
+  [MAJOR] No comparison to SafeHarness-style privilege degradation or SCOUT-style allocation baselines.
+  [MAJOR] Synthetic evolving stream ≠ adaptive attacker evaluation.
+  [MINOR] n=5 multi-seed under determinism is reproducibility check only.
+
+REQUIRED CHANGES
+- [CLAIM REWRITE] Rewrite claims to remove uniqueness/first/SOTA language; position vs SafeHarness/SCOUT/HARD/COPA
+- [CLAIM REWRITE] Keep C6 as NOT ESTABLISHED / limitation; do not affirm historical contribution
+- [CLAIM REWRITE] Keep C8 LIMITED and C9 PARTIAL; align evolving claims with constructed-stream evidence only
+- [EXPERIMENT REQUIRED] Optional: add SafeHarness-like or escalate-only ablation + AutoDojo-style adaptive attack eval if pursuing stronger evolving claims
+- [NO CHANGE] No mandatory architecture redesign if contribution is reframed to controlled SUC level-policy evaluation
+- [CLAIM REWRITE] Do not claim unified community evaluation framework (C10) beyond AG’s internal protocol package
+
+DECISION: MINOR PIVOT
+A defensible but narrow contribution remains if claims are rewritten around the mixed-protocol discrete-level SUC controller vs fixed levels. Central method need not be redesigned (not MAJOR PIVOT), but uniqueness framing and evolving/generalization claims must change; optional experiments strengthen H2/H3.
