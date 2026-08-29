@@ -1,5 +1,19 @@
 # Claim–Evidence Matrix
 
+Generated: 2026-08-29T15:53:02.304705+00:00
+
+## Literature gate
+
+```text
+55-PAPER TXT AUDIT: FAIL (0/55). Literature-derived novelty claims NOT refreshed from TOTAL--.
+```
+
+Experiment-bound claims below remain based on `results/q1_realign/` artifacts only (unchanged). Literature competitor cells: **NOT FOUND IN AUDITED CORPUS** until TXTs are mounted.
+
+---
+
+# Claim–Evidence Matrix
+
 Evidence restricted to `results/q1_realign/` (+ `REPRODUCIBILITY.md`).  
 Strength: **Strong** / **Moderate** / **Weak** / **Unsupported**.
 
