@@ -7,7 +7,7 @@ logs/
 .env
 *.log
 
-# Experiment outputs (keep Phase 7/8/9/10 controlled artifacts)
+# Experiment outputs (keep Phase 7/8/9/10/11 controlled artifacts)
 results/*
 !results/common_attack_stream.json
 !results/phase7/
@@ -18,3 +18,5 @@ results/*
 !results/phase9/**
 !results/phase10/
 !results/phase10/**
+!results/phase11/
+!results/phase11/**

@@ -1,0 +1,4795 @@
+{
+  "phase": "11",
+  "analysis": "manuscript_evidence_package",
+  "version": "v1",
+  "timestamp_utc": "2026-08-29T10:42:34.507089+00:00",
+  "phase7_frozen": true,
+  "phase8_frozen": true,
+  "phase9_frozen": true,
+  "phase10_frozen": true,
+  "phase10_source": "results/phase10/claim_evidence_matrix_v1.json",
+  "source_artifacts": [
+    "results/phase10/claim_evidence_matrix_v1.json",
+    "results/phase7/fixed_baselines_100_v2.json",
+    "results/phase7/adaptive_100_v2.json",
+    "results/phase8/multiseed_raw.json",
+    "results/phase8/multiseed_summary.json",
+    "results/phase8/ablation_v1.json",
+    "results/phase8/temporal_analysis_v1.json",
+    "results/phase8/attack_family_analysis_v1.json",
+    "results/phase8/novel_attack_set_v1.json",
+    "results/phase8/evolving_attack_stream_v1.json",
+    "results/phase8/robustness_v1.json",
+    "results/phase8/statistical_comparison_v1.json",
+    "results/phase8/security_utility_cost_v1.json"
+  ],
+  "source_artifact_hashes": {
+    "results/phase10/claim_evidence_matrix_v1.json": "1e5a1f5f89a18a7c0264f06fdaea615475d06ed5becbac0fc7540edc61d5fcf6",
+    "results/phase7/fixed_baselines_100_v2.json": "f4e3b3b83fb33910336b8be1703f8013324e7c5ff4a237b98f77d385cb5b296a",
+    "results/phase7/adaptive_100_v2.json": "b7335bcae9751b9c57dcb114ff2cae7a91c25af67c7e109188bba91888268f96",
+    "results/phase8/multiseed_raw.json": "72753ee8d9bf9512fdd3fd00cfe8188e63b27aa17cbd500f6f0363386bc1bc61",
+    "results/phase8/multiseed_summary.json": "d1978cf0ad4bc31a05f2c33220d0ea818d4cb6bfd791e7858f8ce0dd05ba3e80",
+    "results/phase8/ablation_v1.json": "fa4a26b55e092c3cd37b4f0084c31724765cb5db5a71686b39084304eb4d3059",
+    "results/phase8/temporal_analysis_v1.json": "9530617846c4ea1c589c7ab90553fd31186109ba5954887a662f6e114e57aeda",
+    "results/phase8/attack_family_analysis_v1.json": "ca3470c9b21d0fb44a4b1ebae91ef239bdeae76a7775d998684bb10b8cf9ebd0",
+    "results/phase8/novel_attack_set_v1.json": "b0045ea6fd14d802db057c3bc08fe2a30fe8d7ebdc835d381a438f327b72e4df",
+    "results/phase8/evolving_attack_stream_v1.json": "0b6e5b03dea2ab09514d74f4e1ffe093e76957063c61fd596c633b0bfa9421d4",
+    "results/phase8/robustness_v1.json": "7ce8d46664990af24836cb277428316d38461e0b4c98a0d696a16052a21d7188",
+    "results/phase8/statistical_comparison_v1.json": "46c84eb844dac05807b9a7a2c9d65fbd5371540628bf479ec00dda9fe96dccf3",
+    "results/phase8/security_utility_cost_v1.json": "0c8c4a297fb9d935227506933d8da8fc2499de8c8300e576fbca48303027662b"
+  },
+  "phase7_reference": {
+    "manifest": "results/phase7/phase7_manifest.json",
+    "adaptive_summary": {
+      "attack_episodes": 75,
+      "legitimate_episodes": 25,
+      "utility": 1.0,
+      "levels": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "actions": [
+        "A0",
+        "A1",
+        "A2",
+        "A3"
+      ],
+      "transitions": 25,
+      "increases": 14,
+      "decreases": 11
+    },
+    "note": "Main manuscript numerical table uses Phase 8A multiseed_summary; Phase 7 v2 artifacts remain frozen reference/protocol truth."
+  },
+  "main_results": {
+    "authoritative_source": "results/phase8/multiseed_summary.json",
+    "population": "phase8a_multiseed_seeds_1_5",
+    "protocol": {
+      "episodes": 100,
+      "attack": 75,
+      "legitimate": 25,
+      "schedule": "phase7_v2_75_25",
+      "attack_stream": "common_attack_stream_v1_first_75",
+      "attack_stream_slice": [
+        0,
+        75
+      ]
+    },
+    "statistical_method": {
+      "interval": "95% Student-t CI",
+      "formula": "mean \u00b1 t_(0.975, n-1) * std / sqrt(n)",
+      "n": 5,
+      "df": 4,
+      "t_crit": 2.7764451051977925,
+      "std": "sample std (ddof=1)"
+    },
+    "determinism_note": "Controlled Phase 7/8A pipeline is deterministic given frozen stream + schedule; cross-seed std is expected to be 0 unless stochastic components are introduced.",
+    "rows": [
+      {
+        "method": "fixed_level_0",
+        "display_label": "Fixed-L0",
+        "metrics": {
+          "asr": {
+            "mean": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,asr].mean",
+              "method": "fixed_level_0",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,asr].std",
+              "method": "fixed_level_0",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,asr].ci95_low",
+              "method": "fixed_level_0",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,asr].ci95_high",
+              "method": "fixed_level_0",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,asr].n",
+              "method": "fixed_level_0",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_rate": {
+            "mean": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_rate].mean",
+              "method": "fixed_level_0",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_rate].std",
+              "method": "fixed_level_0",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_rate].ci95_low",
+              "method": "fixed_level_0",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_rate].ci95_high",
+              "method": "fixed_level_0",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_rate].n",
+              "method": "fixed_level_0",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "utility": {
+            "mean": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,utility].mean",
+              "method": "fixed_level_0",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,utility].std",
+              "method": "fixed_level_0",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,utility].ci95_low",
+              "method": "fixed_level_0",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,utility].ci95_high",
+              "method": "fixed_level_0",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,utility].n",
+              "method": "fixed_level_0",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_cost": {
+            "mean": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_cost].mean",
+              "method": "fixed_level_0",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_cost].std",
+              "method": "fixed_level_0",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_cost].ci95_low",
+              "method": "fixed_level_0",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_cost].ci95_high",
+              "method": "fixed_level_0",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,defense_cost].n",
+              "method": "fixed_level_0",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "reward": {
+            "mean": {
+              "raw_value": 0.225,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,reward].mean",
+              "method": "fixed_level_0",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,reward].std",
+              "method": "fixed_level_0",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.225,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,reward].ci95_low",
+              "method": "fixed_level_0",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.225,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,reward].ci95_high",
+              "method": "fixed_level_0",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_0,reward].n",
+              "method": "fixed_level_0",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          }
+        }
+      },
+      {
+        "method": "fixed_level_1",
+        "display_label": "Fixed-L1",
+        "metrics": {
+          "asr": {
+            "mean": {
+              "raw_value": 0.72,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,asr].mean",
+              "method": "fixed_level_1",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,asr].std",
+              "method": "fixed_level_1",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.72,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,asr].ci95_low",
+              "method": "fixed_level_1",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.72,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,asr].ci95_high",
+              "method": "fixed_level_1",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,asr].n",
+              "method": "fixed_level_1",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_rate": {
+            "mean": {
+              "raw_value": 0.28,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_rate].mean",
+              "method": "fixed_level_1",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_rate].std",
+              "method": "fixed_level_1",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.28,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_rate].ci95_low",
+              "method": "fixed_level_1",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.28,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_rate].ci95_high",
+              "method": "fixed_level_1",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_rate].n",
+              "method": "fixed_level_1",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "utility": {
+            "mean": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,utility].mean",
+              "method": "fixed_level_1",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,utility].std",
+              "method": "fixed_level_1",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,utility].ci95_low",
+              "method": "fixed_level_1",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,utility].ci95_high",
+              "method": "fixed_level_1",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,utility].n",
+              "method": "fixed_level_1",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_cost": {
+            "mean": {
+              "raw_value": 0.1,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_cost].mean",
+              "method": "fixed_level_1",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_cost].std",
+              "method": "fixed_level_1",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.1,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_cost].ci95_low",
+              "method": "fixed_level_1",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.1,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_cost].ci95_high",
+              "method": "fixed_level_1",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,defense_cost].n",
+              "method": "fixed_level_1",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "reward": {
+            "mean": {
+              "raw_value": 0.32,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,reward].mean",
+              "method": "fixed_level_1",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,reward].std",
+              "method": "fixed_level_1",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.32,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,reward].ci95_low",
+              "method": "fixed_level_1",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.32,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,reward].ci95_high",
+              "method": "fixed_level_1",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_1,reward].n",
+              "method": "fixed_level_1",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          }
+        }
+      },
+      {
+        "method": "fixed_level_2",
+        "display_label": "Fixed-L2",
+        "metrics": {
+          "asr": {
+            "mean": {
+              "raw_value": 0.76,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,asr].mean",
+              "method": "fixed_level_2",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,asr].std",
+              "method": "fixed_level_2",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.76,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,asr].ci95_low",
+              "method": "fixed_level_2",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.76,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,asr].ci95_high",
+              "method": "fixed_level_2",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,asr].n",
+              "method": "fixed_level_2",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_rate": {
+            "mean": {
+              "raw_value": 0.24,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_rate].mean",
+              "method": "fixed_level_2",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_rate].std",
+              "method": "fixed_level_2",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.24,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_rate].ci95_low",
+              "method": "fixed_level_2",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.24,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_rate].ci95_high",
+              "method": "fixed_level_2",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_rate].n",
+              "method": "fixed_level_2",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "utility": {
+            "mean": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,utility].mean",
+              "method": "fixed_level_2",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,utility].std",
+              "method": "fixed_level_2",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,utility].ci95_low",
+              "method": "fixed_level_2",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,utility].ci95_high",
+              "method": "fixed_level_2",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,utility].n",
+              "method": "fixed_level_2",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_cost": {
+            "mean": {
+              "raw_value": 0.25,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_cost].mean",
+              "method": "fixed_level_2",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_cost].std",
+              "method": "fixed_level_2",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.25,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_cost].ci95_low",
+              "method": "fixed_level_2",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.25,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_cost].ci95_high",
+              "method": "fixed_level_2",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,defense_cost].n",
+              "method": "fixed_level_2",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "reward": {
+            "mean": {
+              "raw_value": 0.29,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,reward].mean",
+              "method": "fixed_level_2",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,reward].std",
+              "method": "fixed_level_2",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.29,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,reward].ci95_low",
+              "method": "fixed_level_2",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.29,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,reward].ci95_high",
+              "method": "fixed_level_2",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_2,reward].n",
+              "method": "fixed_level_2",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          }
+        }
+      },
+      {
+        "method": "fixed_level_3",
+        "display_label": "Fixed-L3",
+        "metrics": {
+          "asr": {
+            "mean": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,asr].mean",
+              "method": "fixed_level_3",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,asr].std",
+              "method": "fixed_level_3",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,asr].ci95_low",
+              "method": "fixed_level_3",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,asr].ci95_high",
+              "method": "fixed_level_3",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,asr].n",
+              "method": "fixed_level_3",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_rate": {
+            "mean": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_rate].mean",
+              "method": "fixed_level_3",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_rate].std",
+              "method": "fixed_level_3",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_rate].ci95_low",
+              "method": "fixed_level_3",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_rate].ci95_high",
+              "method": "fixed_level_3",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_rate].n",
+              "method": "fixed_level_3",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "utility": {
+            "mean": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,utility].mean",
+              "method": "fixed_level_3",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,utility].std",
+              "method": "fixed_level_3",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,utility].ci95_low",
+              "method": "fixed_level_3",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,utility].ci95_high",
+              "method": "fixed_level_3",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,utility].n",
+              "method": "fixed_level_3",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_cost": {
+            "mean": {
+              "raw_value": 0.5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_cost].mean",
+              "method": "fixed_level_3",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_cost].std",
+              "method": "fixed_level_3",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_cost].ci95_low",
+              "method": "fixed_level_3",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_cost].ci95_high",
+              "method": "fixed_level_3",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,defense_cost].n",
+              "method": "fixed_level_3",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "reward": {
+            "mean": {
+              "raw_value": 0.45,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,reward].mean",
+              "method": "fixed_level_3",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,reward].std",
+              "method": "fixed_level_3",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.45,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,reward].ci95_low",
+              "method": "fixed_level_3",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.45,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,reward].ci95_high",
+              "method": "fixed_level_3",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[fixed_level_3,reward].n",
+              "method": "fixed_level_3",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          }
+        }
+      },
+      {
+        "method": "adaptive",
+        "display_label": "Adaptive",
+        "metrics": {
+          "asr": {
+            "mean": {
+              "raw_value": 0.373333333333,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,asr].mean",
+              "method": "adaptive",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,asr].std",
+              "method": "adaptive",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.373333333333,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,asr].ci95_low",
+              "method": "adaptive",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.373333333333,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,asr].ci95_high",
+              "method": "adaptive",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,asr].n",
+              "method": "adaptive",
+              "metric": "asr",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_rate": {
+            "mean": {
+              "raw_value": 0.626666666667,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_rate].mean",
+              "method": "adaptive",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_rate].std",
+              "method": "adaptive",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.626666666667,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_rate].ci95_low",
+              "method": "adaptive",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.626666666667,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_rate].ci95_high",
+              "method": "adaptive",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_rate].n",
+              "method": "adaptive",
+              "metric": "defense_rate",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "utility": {
+            "mean": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,utility].mean",
+              "method": "adaptive",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,utility].std",
+              "method": "adaptive",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,utility].ci95_low",
+              "method": "adaptive",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 1.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,utility].ci95_high",
+              "method": "adaptive",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,utility].n",
+              "method": "adaptive",
+              "metric": "utility",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "defense_cost": {
+            "mean": {
+              "raw_value": 0.329,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_cost].mean",
+              "method": "adaptive",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_cost].std",
+              "method": "adaptive",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.329,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_cost].ci95_low",
+              "method": "adaptive",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.329,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_cost].ci95_high",
+              "method": "adaptive",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,defense_cost].n",
+              "method": "adaptive",
+              "metric": "defense_cost",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          },
+          "reward": {
+            "mean": {
+              "raw_value": 0.4271,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,reward].mean",
+              "method": "adaptive",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "std": {
+              "raw_value": 0.0,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,reward].std",
+              "method": "adaptive",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_low": {
+              "raw_value": 0.4271,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,reward].ci95_low",
+              "method": "adaptive",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "ci95_high": {
+              "raw_value": 0.4271,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,reward].ci95_high",
+              "method": "adaptive",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            },
+            "n": {
+              "raw_value": 5,
+              "source_artifact": "results/phase8/multiseed_summary.json",
+              "source_field": "summary[adaptive,reward].n",
+              "method": "adaptive",
+              "metric": "reward",
+              "population": "phase8a_multiseed_seeds_1_5"
+            }
+          }
+        }
+      }
+    ],
+    "missing_fields": []
+  },
+  "ablation": {
+    "authoritative_source": "results/phase8/ablation_v1.json",
+    "historical_signal_changed_aggregates": false,
+    "paper_constraint": "Do NOT claim historical signal improves performance (historical_signal_changed_aggregates=false).",
+    "scientific_note": "use_historical_signal toggles RiskAssessmentEngine historical_attack input. Under the frozen Phase 7 protocol, aggregate primary metrics may remain identical if the historical term does not change discrete defense decisions.",
+    "rows": [
+      {
+        "condition": "fixed_level_0",
+        "display_label": "Fixed-L0",
+        "metrics": {
+          "asr": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_0].metrics.asr",
+            "method": "fixed_level_0",
+            "metric": "asr",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_0].metrics.defense_rate",
+            "method": "fixed_level_0",
+            "metric": "defense_rate",
+            "population": "phase7_v2_75_25"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_0].metrics.utility",
+            "method": "fixed_level_0",
+            "metric": "utility",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_cost": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_0].metrics.defense_cost",
+            "method": "fixed_level_0",
+            "metric": "defense_cost",
+            "population": "phase7_v2_75_25"
+          },
+          "reward": {
+            "raw_value": 0.225,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_0].metrics.reward",
+            "method": "fixed_level_0",
+            "metric": "reward",
+            "population": "phase7_v2_75_25"
+          }
+        }
+      },
+      {
+        "condition": "fixed_level_1",
+        "display_label": "Fixed-L1",
+        "metrics": {
+          "asr": {
+            "raw_value": 0.72,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_1].metrics.asr",
+            "method": "fixed_level_1",
+            "metric": "asr",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_rate": {
+            "raw_value": 0.28,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_1].metrics.defense_rate",
+            "method": "fixed_level_1",
+            "metric": "defense_rate",
+            "population": "phase7_v2_75_25"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_1].metrics.utility",
+            "method": "fixed_level_1",
+            "metric": "utility",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_cost": {
+            "raw_value": 0.1,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_1].metrics.defense_cost",
+            "method": "fixed_level_1",
+            "metric": "defense_cost",
+            "population": "phase7_v2_75_25"
+          },
+          "reward": {
+            "raw_value": 0.32,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_1].metrics.reward",
+            "method": "fixed_level_1",
+            "metric": "reward",
+            "population": "phase7_v2_75_25"
+          }
+        }
+      },
+      {
+        "condition": "fixed_level_2",
+        "display_label": "Fixed-L2",
+        "metrics": {
+          "asr": {
+            "raw_value": 0.76,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_2].metrics.asr",
+            "method": "fixed_level_2",
+            "metric": "asr",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_rate": {
+            "raw_value": 0.24,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_2].metrics.defense_rate",
+            "method": "fixed_level_2",
+            "metric": "defense_rate",
+            "population": "phase7_v2_75_25"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_2].metrics.utility",
+            "method": "fixed_level_2",
+            "metric": "utility",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_cost": {
+            "raw_value": 0.25,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_2].metrics.defense_cost",
+            "method": "fixed_level_2",
+            "metric": "defense_cost",
+            "population": "phase7_v2_75_25"
+          },
+          "reward": {
+            "raw_value": 0.29,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_2].metrics.reward",
+            "method": "fixed_level_2",
+            "metric": "reward",
+            "population": "phase7_v2_75_25"
+          }
+        }
+      },
+      {
+        "condition": "fixed_level_3",
+        "display_label": "Fixed-L3",
+        "metrics": {
+          "asr": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_3].metrics.asr",
+            "method": "fixed_level_3",
+            "metric": "asr",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_3].metrics.defense_rate",
+            "method": "fixed_level_3",
+            "metric": "defense_rate",
+            "population": "phase7_v2_75_25"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_3].metrics.utility",
+            "method": "fixed_level_3",
+            "metric": "utility",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_cost": {
+            "raw_value": 0.5,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_3].metrics.defense_cost",
+            "method": "fixed_level_3",
+            "metric": "defense_cost",
+            "population": "phase7_v2_75_25"
+          },
+          "reward": {
+            "raw_value": 0.45,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[fixed_level_3].metrics.reward",
+            "method": "fixed_level_3",
+            "metric": "reward",
+            "population": "phase7_v2_75_25"
+          }
+        }
+      },
+      {
+        "condition": "adaptive_without_historical",
+        "display_label": "Adaptive without historical signal",
+        "metrics": {
+          "asr": {
+            "raw_value": 0.373333333333,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_without_historical].metrics.asr",
+            "method": "adaptive_without_historical",
+            "metric": "asr",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_rate": {
+            "raw_value": 0.626666666667,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_without_historical].metrics.defense_rate",
+            "method": "adaptive_without_historical",
+            "metric": "defense_rate",
+            "population": "phase7_v2_75_25"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_without_historical].metrics.utility",
+            "method": "adaptive_without_historical",
+            "metric": "utility",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_cost": {
+            "raw_value": 0.329,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_without_historical].metrics.defense_cost",
+            "method": "adaptive_without_historical",
+            "metric": "defense_cost",
+            "population": "phase7_v2_75_25"
+          },
+          "reward": {
+            "raw_value": 0.4271,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_without_historical].metrics.reward",
+            "method": "adaptive_without_historical",
+            "metric": "reward",
+            "population": "phase7_v2_75_25"
+          }
+        }
+      },
+      {
+        "condition": "adaptive_with_historical",
+        "display_label": "Adaptive with historical signal",
+        "metrics": {
+          "asr": {
+            "raw_value": 0.373333333333,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_with_historical].metrics.asr",
+            "method": "adaptive_with_historical",
+            "metric": "asr",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_rate": {
+            "raw_value": 0.626666666667,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_with_historical].metrics.defense_rate",
+            "method": "adaptive_with_historical",
+            "metric": "defense_rate",
+            "population": "phase7_v2_75_25"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_with_historical].metrics.utility",
+            "method": "adaptive_with_historical",
+            "metric": "utility",
+            "population": "phase7_v2_75_25"
+          },
+          "defense_cost": {
+            "raw_value": 0.329,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_with_historical].metrics.defense_cost",
+            "method": "adaptive_with_historical",
+            "metric": "defense_cost",
+            "population": "phase7_v2_75_25"
+          },
+          "reward": {
+            "raw_value": 0.4271,
+            "source_artifact": "results/phase8/ablation_v1.json",
+            "source_field": "conditions[adaptive_with_historical].metrics.reward",
+            "method": "adaptive_with_historical",
+            "metric": "reward",
+            "population": "phase7_v2_75_25"
+          }
+        }
+      }
+    ],
+    "missing_fields": []
+  },
+  "temporal": {
+    "authoritative_source": "results/phase8/temporal_analysis_v1.json",
+    "population": "adaptive_phase7_v2_100_episodes",
+    "window_validation": {
+      "n_windows": 4,
+      "expected_n_windows": 4,
+      "unique_coverage": true,
+      "no_overlap": true,
+      "covered_episode_count": 100,
+      "expected_episode_count": 100,
+      "episodes_per_window": [
+        25,
+        25,
+        25,
+        25
+      ],
+      "expected_episodes_per_window": 25,
+      "coverage_ok": true
+    },
+    "rows": [
+      {
+        "window_label": "1\u201325",
+        "episode_start": 1,
+        "episode_end": 25,
+        "episode_count": 25,
+        "fields": {
+          "attack_count": {
+            "raw_value": 19,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "legitimate_count": {
+            "raw_value": 6,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].legitimate_count",
+            "method": "adaptive",
+            "metric": "legitimate_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "asr": {
+            "raw_value": 0.473684210526,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_rate": {
+            "raw_value": 0.526315789474,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_cost": {
+            "raw_value": 0.246,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "reward": {
+            "raw_value": 0.3914,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "mean_defense_level": {
+            "raw_value": 1.68,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[1\u201325].mean_defense_level",
+            "method": "adaptive",
+            "metric": "mean_defense_level",
+            "population": "adaptive_phase7_v2_100_episodes"
+          }
+        }
+      },
+      {
+        "window_label": "26\u201350",
+        "episode_start": 26,
+        "episode_end": 50,
+        "episode_count": 25,
+        "fields": {
+          "attack_count": {
+            "raw_value": 19,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "legitimate_count": {
+            "raw_value": 6,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].legitimate_count",
+            "method": "adaptive",
+            "metric": "legitimate_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "asr": {
+            "raw_value": 0.368421052632,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_rate": {
+            "raw_value": 0.631578947368,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_cost": {
+            "raw_value": 0.35,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "reward": {
+            "raw_value": 0.421,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "mean_defense_level": {
+            "raw_value": 2.64,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[26\u201350].mean_defense_level",
+            "method": "adaptive",
+            "metric": "mean_defense_level",
+            "population": "adaptive_phase7_v2_100_episodes"
+          }
+        }
+      },
+      {
+        "window_label": "51\u201375",
+        "episode_start": 51,
+        "episode_end": 75,
+        "episode_count": 25,
+        "fields": {
+          "attack_count": {
+            "raw_value": 19,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "legitimate_count": {
+            "raw_value": 6,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].legitimate_count",
+            "method": "adaptive",
+            "metric": "legitimate_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "asr": {
+            "raw_value": 0.315789473684,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_rate": {
+            "raw_value": 0.684210526316,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_cost": {
+            "raw_value": 0.36,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "reward": {
+            "raw_value": 0.44,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "mean_defense_level": {
+            "raw_value": 2.68,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[51\u201375].mean_defense_level",
+            "method": "adaptive",
+            "metric": "mean_defense_level",
+            "population": "adaptive_phase7_v2_100_episodes"
+          }
+        }
+      },
+      {
+        "window_label": "76\u2013100",
+        "episode_start": 76,
+        "episode_end": 100,
+        "episode_count": 25,
+        "fields": {
+          "attack_count": {
+            "raw_value": 18,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "legitimate_count": {
+            "raw_value": 7,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].legitimate_count",
+            "method": "adaptive",
+            "metric": "legitimate_count",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "asr": {
+            "raw_value": 0.333333333333,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_rate": {
+            "raw_value": 0.666666666667,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "defense_cost": {
+            "raw_value": 0.36,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "reward": {
+            "raw_value": 0.456,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "adaptive_phase7_v2_100_episodes"
+          },
+          "mean_defense_level": {
+            "raw_value": 2.72,
+            "source_artifact": "results/phase8/temporal_analysis_v1.json",
+            "source_field": "windows[76\u2013100].mean_defense_level",
+            "method": "adaptive",
+            "metric": "mean_defense_level",
+            "population": "adaptive_phase7_v2_100_episodes"
+          }
+        }
+      }
+    ],
+    "missing_fields": []
+  },
+  "attack_family": {
+    "authoritative_source": "results/phase8/attack_family_analysis_v1.json",
+    "population": "adaptive_known_attack_episodes_first75",
+    "family_validation": {
+      "n_families": 4,
+      "total_attack_episodes": 75,
+      "assigned": 75,
+      "unique_assigned": 75,
+      "missing_episode_ids": [],
+      "note": "Family counts reflect first-75 stream slice under the 75/25 schedule; equal-25-per-family is not required for the 75 attack slots."
+    },
+    "rows": [
+      {
+        "attack_family": "direct_injection",
+        "fields": {
+          "attack_count": {
+            "raw_value": 19,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[direct_injection].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "asr": {
+            "raw_value": 0.631578947368,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[direct_injection].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[direct_injection].detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "defense_rate": {
+            "raw_value": 0.368421052632,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[direct_injection].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[direct_injection].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_known_attack_episodes_first75"
+          }
+        }
+      },
+      {
+        "attack_family": "indirect_injection",
+        "fields": {
+          "attack_count": {
+            "raw_value": 19,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[indirect_injection].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "asr": {
+            "raw_value": 0.473684210526,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[indirect_injection].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[indirect_injection].detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "defense_rate": {
+            "raw_value": 0.526315789474,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[indirect_injection].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[indirect_injection].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_known_attack_episodes_first75"
+          }
+        }
+      },
+      {
+        "attack_family": "context_manipulation",
+        "fields": {
+          "attack_count": {
+            "raw_value": 19,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[context_manipulation].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "asr": {
+            "raw_value": 0.315789473684,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[context_manipulation].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[context_manipulation].detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "defense_rate": {
+            "raw_value": 0.684210526316,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[context_manipulation].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[context_manipulation].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_known_attack_episodes_first75"
+          }
+        }
+      },
+      {
+        "attack_family": "tool_output_injection",
+        "fields": {
+          "attack_count": {
+            "raw_value": 18,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[tool_output_injection].attack_count",
+            "method": "adaptive",
+            "metric": "attack_count",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "asr": {
+            "raw_value": 0.0555555555556,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[tool_output_injection].asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[tool_output_injection].detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "defense_rate": {
+            "raw_value": 0.944444444444,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[tool_output_injection].defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "adaptive_known_attack_episodes_first75"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/attack_family_analysis_v1.json",
+            "source_field": "families[tool_output_injection].utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "adaptive_known_attack_episodes_first75"
+          }
+        }
+      }
+    ],
+    "missing_fields": []
+  },
+  "robustness": {
+    "authoritative_source": "results/phase8/robustness_v1.json",
+    "scenarios": [
+      "known",
+      "novel",
+      "evolving"
+    ],
+    "evaluated_robustness_vs_generalization": {
+      "evaluated_robustness": "Robustness metrics are reported for the evaluated known/novel/evolving attack sets under the controlled protocol.",
+      "generalization_status": "LIMITED",
+      "allowed_wording": "demonstrates robustness on the evaluated known/novel/evolving attack sets under the controlled protocol",
+      "disallowed_wording": "generalizes to unseen attacks / open-world prompt injection",
+      "constraint": "Do not upgrade GENERALIZATION beyond LIMITED."
+    },
+    "novelty_claim": {
+      "status": "LIMITED",
+      "reason": "Novel set is structurally/lexically separated from the frozen MVP known set, but remains closed-world synthetic prompt-injection templates in the same four families.",
+      "attack_success_heuristic_limitation": "MVP attack_success for SANITIZE is defined via residual known malicious markers. Novel marker-free payloads can therefore be labeled unsuccessful after SANITIZE even when detection_score=0. Fixed-L0 (no sanitize) still shows ASR=1.0 on novel, confirming population fairness while limiting claims about sanitize generalization."
+    },
+    "evolving_defense_level_changes_across_stages": true,
+    "evolving_stages_adaptive": [
+      {
+        "stage": "stage1_known_simple",
+        "attack_slot_start": 0,
+        "attack_slot_end": 18,
+        "attack_count": 19,
+        "metrics": {
+          "asr": 0.473684210526,
+          "detection_rate": 1.0,
+          "defense_rate": 0.526315789474,
+          "utility": 0.0,
+          "defense_cost": 0.265789473684,
+          "reward": 0.236578947368
+        },
+        "mean_defense_level": 1.5789473684210527
+      },
+      {
+        "stage": "stage2_mixed",
+        "attack_slot_start": 19,
+        "attack_slot_end": 37,
+        "attack_count": 19,
+        "metrics": {
+          "asr": 0.473684210526,
+          "detection_rate": 0.526315789474,
+          "defense_rate": 0.526315789474,
+          "utility": 0.0,
+          "defense_cost": 0.342105263158,
+          "reward": 0.228947368421
+        },
+        "mean_defense_level": 2.5789473684210527
+      },
+      {
+        "stage": "stage3_stronger_novel",
+        "attack_slot_start": 38,
+        "attack_slot_end": 56,
+        "attack_count": 19,
+        "metrics": {
+          "asr": 0.789473684211,
+          "detection_rate": 0.0,
+          "defense_rate": 0.210526315789,
+          "utility": 0.0,
+          "defense_cost": 0.25,
+          "reward": 0.0802631578947
+        },
+        "mean_defense_level": 2.6315789473684212
+      },
+      {
+        "stage": "stage4_adaptive_evolving",
+        "attack_slot_start": 57,
+        "attack_slot_end": 74,
+        "attack_count": 18,
+        "metrics": {
+          "asr": 0.777777777778,
+          "detection_rate": 0.0,
+          "defense_rate": 0.222222222222,
+          "utility": 0.0,
+          "defense_cost": 0.25,
+          "reward": 0.0861111111111
+        },
+        "mean_defense_level": 2.611111111111111
+      }
+    ],
+    "rows": [
+      {
+        "scenario": "known",
+        "method": "fixed_level_0",
+        "display_label": "Fixed-L0",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_0].metrics.asr",
+            "method": "fixed_level_0",
+            "metric": "asr",
+            "population": "known"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_0].metrics.detection_rate",
+            "method": "fixed_level_0",
+            "metric": "detection_rate",
+            "population": "known"
+          },
+          "defense_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_0].metrics.defense_rate",
+            "method": "fixed_level_0",
+            "metric": "defense_rate",
+            "population": "known"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_0].metrics.utility",
+            "method": "fixed_level_0",
+            "metric": "utility",
+            "population": "known"
+          },
+          "defense_cost": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_0].metrics.defense_cost",
+            "method": "fixed_level_0",
+            "metric": "defense_cost",
+            "population": "known"
+          },
+          "reward": {
+            "raw_value": 0.225,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_0].metrics.reward",
+            "method": "fixed_level_0",
+            "metric": "reward",
+            "population": "known"
+          }
+        }
+      },
+      {
+        "scenario": "known",
+        "method": "fixed_level_1",
+        "display_label": "Fixed-L1",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.72,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_1].metrics.asr",
+            "method": "fixed_level_1",
+            "metric": "asr",
+            "population": "known"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_1].metrics.detection_rate",
+            "method": "fixed_level_1",
+            "metric": "detection_rate",
+            "population": "known"
+          },
+          "defense_rate": {
+            "raw_value": 0.28,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_1].metrics.defense_rate",
+            "method": "fixed_level_1",
+            "metric": "defense_rate",
+            "population": "known"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_1].metrics.utility",
+            "method": "fixed_level_1",
+            "metric": "utility",
+            "population": "known"
+          },
+          "defense_cost": {
+            "raw_value": 0.1,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_1].metrics.defense_cost",
+            "method": "fixed_level_1",
+            "metric": "defense_cost",
+            "population": "known"
+          },
+          "reward": {
+            "raw_value": 0.32,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_1].metrics.reward",
+            "method": "fixed_level_1",
+            "metric": "reward",
+            "population": "known"
+          }
+        }
+      },
+      {
+        "scenario": "known",
+        "method": "fixed_level_2",
+        "display_label": "Fixed-L2",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.76,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_2].metrics.asr",
+            "method": "fixed_level_2",
+            "metric": "asr",
+            "population": "known"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_2].metrics.detection_rate",
+            "method": "fixed_level_2",
+            "metric": "detection_rate",
+            "population": "known"
+          },
+          "defense_rate": {
+            "raw_value": 0.24,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_2].metrics.defense_rate",
+            "method": "fixed_level_2",
+            "metric": "defense_rate",
+            "population": "known"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_2].metrics.utility",
+            "method": "fixed_level_2",
+            "metric": "utility",
+            "population": "known"
+          },
+          "defense_cost": {
+            "raw_value": 0.25,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_2].metrics.defense_cost",
+            "method": "fixed_level_2",
+            "metric": "defense_cost",
+            "population": "known"
+          },
+          "reward": {
+            "raw_value": 0.29,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_2].metrics.reward",
+            "method": "fixed_level_2",
+            "metric": "reward",
+            "population": "known"
+          }
+        }
+      },
+      {
+        "scenario": "known",
+        "method": "fixed_level_3",
+        "display_label": "Fixed-L3",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_3].metrics.asr",
+            "method": "fixed_level_3",
+            "metric": "asr",
+            "population": "known"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_3].metrics.detection_rate",
+            "method": "fixed_level_3",
+            "metric": "detection_rate",
+            "population": "known"
+          },
+          "defense_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_3].metrics.defense_rate",
+            "method": "fixed_level_3",
+            "metric": "defense_rate",
+            "population": "known"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_3].metrics.utility",
+            "method": "fixed_level_3",
+            "metric": "utility",
+            "population": "known"
+          },
+          "defense_cost": {
+            "raw_value": 0.5,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_3].metrics.defense_cost",
+            "method": "fixed_level_3",
+            "metric": "defense_cost",
+            "population": "known"
+          },
+          "reward": {
+            "raw_value": 0.45,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,fixed_level_3].metrics.reward",
+            "method": "fixed_level_3",
+            "metric": "reward",
+            "population": "known"
+          }
+        }
+      },
+      {
+        "scenario": "known",
+        "method": "adaptive",
+        "display_label": "Adaptive",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.373333333333,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,adaptive].metrics.asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "known"
+          },
+          "detection_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,adaptive].metrics.detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "known"
+          },
+          "defense_rate": {
+            "raw_value": 0.626666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,adaptive].metrics.defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "known"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,adaptive].metrics.utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "known"
+          },
+          "defense_cost": {
+            "raw_value": 0.329,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,adaptive].metrics.defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "known"
+          },
+          "reward": {
+            "raw_value": 0.4271,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[known,adaptive].metrics.reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "known"
+          }
+        }
+      },
+      {
+        "scenario": "novel",
+        "method": "fixed_level_0",
+        "display_label": "Fixed-L0",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_0].metrics.asr",
+            "method": "fixed_level_0",
+            "metric": "asr",
+            "population": "novel"
+          },
+          "detection_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_0].metrics.detection_rate",
+            "method": "fixed_level_0",
+            "metric": "detection_rate",
+            "population": "novel"
+          },
+          "defense_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_0].metrics.defense_rate",
+            "method": "fixed_level_0",
+            "metric": "defense_rate",
+            "population": "novel"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_0].metrics.utility",
+            "method": "fixed_level_0",
+            "metric": "utility",
+            "population": "novel"
+          },
+          "defense_cost": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_0].metrics.defense_cost",
+            "method": "fixed_level_0",
+            "metric": "defense_cost",
+            "population": "novel"
+          },
+          "reward": {
+            "raw_value": 0.225,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_0].metrics.reward",
+            "method": "fixed_level_0",
+            "metric": "reward",
+            "population": "novel"
+          }
+        }
+      },
+      {
+        "scenario": "novel",
+        "method": "fixed_level_1",
+        "display_label": "Fixed-L1",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_1].metrics.asr",
+            "method": "fixed_level_1",
+            "metric": "asr",
+            "population": "novel"
+          },
+          "detection_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_1].metrics.detection_rate",
+            "method": "fixed_level_1",
+            "metric": "detection_rate",
+            "population": "novel"
+          },
+          "defense_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_1].metrics.defense_rate",
+            "method": "fixed_level_1",
+            "metric": "defense_rate",
+            "population": "novel"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_1].metrics.utility",
+            "method": "fixed_level_1",
+            "metric": "utility",
+            "population": "novel"
+          },
+          "defense_cost": {
+            "raw_value": 0.1,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_1].metrics.defense_cost",
+            "method": "fixed_level_1",
+            "metric": "defense_cost",
+            "population": "novel"
+          },
+          "reward": {
+            "raw_value": 0.59,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_1].metrics.reward",
+            "method": "fixed_level_1",
+            "metric": "reward",
+            "population": "novel"
+          }
+        }
+      },
+      {
+        "scenario": "novel",
+        "method": "fixed_level_2",
+        "display_label": "Fixed-L2",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.8,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_2].metrics.asr",
+            "method": "fixed_level_2",
+            "metric": "asr",
+            "population": "novel"
+          },
+          "detection_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_2].metrics.detection_rate",
+            "method": "fixed_level_2",
+            "metric": "detection_rate",
+            "population": "novel"
+          },
+          "defense_rate": {
+            "raw_value": 0.2,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_2].metrics.defense_rate",
+            "method": "fixed_level_2",
+            "metric": "defense_rate",
+            "population": "novel"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_2].metrics.utility",
+            "method": "fixed_level_2",
+            "metric": "utility",
+            "population": "novel"
+          },
+          "defense_cost": {
+            "raw_value": 0.25,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_2].metrics.defense_cost",
+            "method": "fixed_level_2",
+            "metric": "defense_cost",
+            "population": "novel"
+          },
+          "reward": {
+            "raw_value": 0.275,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_2].metrics.reward",
+            "method": "fixed_level_2",
+            "metric": "reward",
+            "population": "novel"
+          }
+        }
+      },
+      {
+        "scenario": "novel",
+        "method": "fixed_level_3",
+        "display_label": "Fixed-L3",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_3].metrics.asr",
+            "method": "fixed_level_3",
+            "metric": "asr",
+            "population": "novel"
+          },
+          "detection_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_3].metrics.detection_rate",
+            "method": "fixed_level_3",
+            "metric": "detection_rate",
+            "population": "novel"
+          },
+          "defense_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_3].metrics.defense_rate",
+            "method": "fixed_level_3",
+            "metric": "defense_rate",
+            "population": "novel"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_3].metrics.utility",
+            "method": "fixed_level_3",
+            "metric": "utility",
+            "population": "novel"
+          },
+          "defense_cost": {
+            "raw_value": 0.5,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_3].metrics.defense_cost",
+            "method": "fixed_level_3",
+            "metric": "defense_cost",
+            "population": "novel"
+          },
+          "reward": {
+            "raw_value": 0.45,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,fixed_level_3].metrics.reward",
+            "method": "fixed_level_3",
+            "metric": "reward",
+            "population": "novel"
+          }
+        }
+      },
+      {
+        "scenario": "novel",
+        "method": "adaptive",
+        "display_label": "Adaptive",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.0266666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,adaptive].metrics.asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "novel"
+          },
+          "detection_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,adaptive].metrics.detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "novel"
+          },
+          "defense_rate": {
+            "raw_value": 0.973333333333,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,adaptive].metrics.defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "novel"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,adaptive].metrics.utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "novel"
+          },
+          "defense_cost": {
+            "raw_value": 0.098,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,adaptive].metrics.defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "novel"
+          },
+          "reward": {
+            "raw_value": 0.5802,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[novel,adaptive].metrics.reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "novel"
+          }
+        }
+      },
+      {
+        "scenario": "evolving",
+        "method": "fixed_level_0",
+        "display_label": "Fixed-L0",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_0].metrics.asr",
+            "method": "fixed_level_0",
+            "metric": "asr",
+            "population": "evolving"
+          },
+          "detection_rate": {
+            "raw_value": 0.386666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_0].metrics.detection_rate",
+            "method": "fixed_level_0",
+            "metric": "detection_rate",
+            "population": "evolving"
+          },
+          "defense_rate": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_0].metrics.defense_rate",
+            "method": "fixed_level_0",
+            "metric": "defense_rate",
+            "population": "evolving"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_0].metrics.utility",
+            "method": "fixed_level_0",
+            "metric": "utility",
+            "population": "evolving"
+          },
+          "defense_cost": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_0].metrics.defense_cost",
+            "method": "fixed_level_0",
+            "metric": "defense_cost",
+            "population": "evolving"
+          },
+          "reward": {
+            "raw_value": 0.225,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_0].metrics.reward",
+            "method": "fixed_level_0",
+            "metric": "reward",
+            "population": "evolving"
+          }
+        }
+      },
+      {
+        "scenario": "evolving",
+        "method": "fixed_level_1",
+        "display_label": "Fixed-L1",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.293333333333,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_1].metrics.asr",
+            "method": "fixed_level_1",
+            "metric": "asr",
+            "population": "evolving"
+          },
+          "detection_rate": {
+            "raw_value": 0.386666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_1].metrics.detection_rate",
+            "method": "fixed_level_1",
+            "metric": "detection_rate",
+            "population": "evolving"
+          },
+          "defense_rate": {
+            "raw_value": 0.706666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_1].metrics.defense_rate",
+            "method": "fixed_level_1",
+            "metric": "defense_rate",
+            "population": "evolving"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_1].metrics.utility",
+            "method": "fixed_level_1",
+            "metric": "utility",
+            "population": "evolving"
+          },
+          "defense_cost": {
+            "raw_value": 0.1,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_1].metrics.defense_cost",
+            "method": "fixed_level_1",
+            "metric": "defense_cost",
+            "population": "evolving"
+          },
+          "reward": {
+            "raw_value": 0.48,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_1].metrics.reward",
+            "method": "fixed_level_1",
+            "metric": "reward",
+            "population": "evolving"
+          }
+        }
+      },
+      {
+        "scenario": "evolving",
+        "method": "fixed_level_2",
+        "display_label": "Fixed-L2",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.76,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_2].metrics.asr",
+            "method": "fixed_level_2",
+            "metric": "asr",
+            "population": "evolving"
+          },
+          "detection_rate": {
+            "raw_value": 0.386666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_2].metrics.detection_rate",
+            "method": "fixed_level_2",
+            "metric": "detection_rate",
+            "population": "evolving"
+          },
+          "defense_rate": {
+            "raw_value": 0.24,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_2].metrics.defense_rate",
+            "method": "fixed_level_2",
+            "metric": "defense_rate",
+            "population": "evolving"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_2].metrics.utility",
+            "method": "fixed_level_2",
+            "metric": "utility",
+            "population": "evolving"
+          },
+          "defense_cost": {
+            "raw_value": 0.25,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_2].metrics.defense_cost",
+            "method": "fixed_level_2",
+            "metric": "defense_cost",
+            "population": "evolving"
+          },
+          "reward": {
+            "raw_value": 0.29,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_2].metrics.reward",
+            "method": "fixed_level_2",
+            "metric": "reward",
+            "population": "evolving"
+          }
+        }
+      },
+      {
+        "scenario": "evolving",
+        "method": "fixed_level_3",
+        "display_label": "Fixed-L3",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_3].metrics.asr",
+            "method": "fixed_level_3",
+            "metric": "asr",
+            "population": "evolving"
+          },
+          "detection_rate": {
+            "raw_value": 0.386666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_3].metrics.detection_rate",
+            "method": "fixed_level_3",
+            "metric": "detection_rate",
+            "population": "evolving"
+          },
+          "defense_rate": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_3].metrics.defense_rate",
+            "method": "fixed_level_3",
+            "metric": "defense_rate",
+            "population": "evolving"
+          },
+          "utility": {
+            "raw_value": 0.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_3].metrics.utility",
+            "method": "fixed_level_3",
+            "metric": "utility",
+            "population": "evolving"
+          },
+          "defense_cost": {
+            "raw_value": 0.5,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_3].metrics.defense_cost",
+            "method": "fixed_level_3",
+            "metric": "defense_cost",
+            "population": "evolving"
+          },
+          "reward": {
+            "raw_value": 0.45,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,fixed_level_3].metrics.reward",
+            "method": "fixed_level_3",
+            "metric": "reward",
+            "population": "evolving"
+          }
+        }
+      },
+      {
+        "scenario": "evolving",
+        "method": "adaptive",
+        "display_label": "Adaptive",
+        "attack_count": 75,
+        "legitimate_count": 25,
+        "metrics": {
+          "asr": {
+            "raw_value": 0.626666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,adaptive].metrics.asr",
+            "method": "adaptive",
+            "metric": "asr",
+            "population": "evolving"
+          },
+          "detection_rate": {
+            "raw_value": 0.386666666667,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,adaptive].metrics.detection_rate",
+            "method": "adaptive",
+            "metric": "detection_rate",
+            "population": "evolving"
+          },
+          "defense_rate": {
+            "raw_value": 0.373333333333,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,adaptive].metrics.defense_rate",
+            "method": "adaptive",
+            "metric": "defense_rate",
+            "population": "evolving"
+          },
+          "utility": {
+            "raw_value": 1.0,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,adaptive].metrics.utility",
+            "method": "adaptive",
+            "metric": "utility",
+            "population": "evolving"
+          },
+          "defense_cost": {
+            "raw_value": 0.2665,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,adaptive].metrics.defense_cost",
+            "method": "adaptive",
+            "metric": "defense_cost",
+            "population": "evolving"
+          },
+          "reward": {
+            "raw_value": 0.33835,
+            "source_artifact": "results/phase8/robustness_v1.json",
+            "source_field": "results[evolving,adaptive].metrics.reward",
+            "method": "adaptive",
+            "metric": "reward",
+            "population": "evolving"
+          }
+        }
+      }
+    ],
+    "missing_fields": []
+  },
+  "security_utility_cost": {
+    "authoritative_source": "results/phase8/security_utility_cost_v1.json",
+    "objectives": {
+      "security": "lower ASR / higher Defense Rate",
+      "utility": "higher Utility",
+      "cost": "lower Defense Cost",
+      "composite_score": null
+    },
+    "observations": {
+      "security_improvements": "Relative to Fixed-L0 (ASR=1.0), higher fixed levels and Adaptive reduce ASR on the known protocol.",
+      "utility_preservation": "Fixed-L0/L1/L2 and Adaptive preserve utility=1.0 on known; Fixed-L3 collapses utility to 0 via blanket BLOCK.",
+      "cost_increases": "Mean defense_cost rises with fixed level; Adaptive sits between L2 and L3 on known.",
+      "cost_efficient_note": "Pareto nondominated methods are those not worse on all of ASR\u2193, Utility\u2191, Cost\u2193. No single-metric superiority claim."
+    },
+    "known_reference_from_phase8a": {
+      "note": "Phase 8A known-protocol aggregates (deterministic).",
+      "rows": [
+        {
+          "method": "fixed_level_0",
+          "metric": "asr",
+          "mean": 1.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "defense_cost",
+          "mean": 0.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "reward",
+          "mean": 0.225,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "asr",
+          "mean": 0.72,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "defense_cost",
+          "mean": 0.1,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "reward",
+          "mean": 0.32,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "asr",
+          "mean": 0.76,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "defense_cost",
+          "mean": 0.25,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "reward",
+          "mean": 0.29,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "asr",
+          "mean": 0.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "utility",
+          "mean": 0.0,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "defense_cost",
+          "mean": 0.5,
+          "std": 0.0
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "reward",
+          "mean": 0.45,
+          "std": 0.0
+        },
+        {
+          "method": "adaptive",
+          "metric": "asr",
+          "mean": 0.373333333333,
+          "std": 0.0
+        },
+        {
+          "method": "adaptive",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0
+        },
+        {
+          "method": "adaptive",
+          "metric": "defense_cost",
+          "mean": 0.329,
+          "std": 0.0
+        },
+        {
+          "method": "adaptive",
+          "metric": "reward",
+          "mean": 0.4271,
+          "std": 0.0
+        }
+      ]
+    },
+    "by_scenario": {
+      "known": {
+        "rows": [
+          {
+            "method": "fixed_level_0",
+            "display_label": "Fixed-L0",
+            "metrics": {
+              "asr": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_0].asr",
+                "method": "fixed_level_0",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "known"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_0].utility",
+                "method": "fixed_level_0",
+                "metric": "utility",
+                "population": "known"
+              },
+              "defense_cost": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_0].defense_cost",
+                "method": "fixed_level_0",
+                "metric": "defense_cost",
+                "population": "known"
+              },
+              "reward": {
+                "raw_value": 0.225,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_0].reward",
+                "method": "fixed_level_0",
+                "metric": "reward",
+                "population": "known"
+              },
+              "defense_rate": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_0].defense_rate",
+                "method": "fixed_level_0",
+                "metric": "defense_rate",
+                "population": "known"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_1",
+            "display_label": "Fixed-L1",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.72,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_1].asr",
+                "method": "fixed_level_1",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "known"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_1].utility",
+                "method": "fixed_level_1",
+                "metric": "utility",
+                "population": "known"
+              },
+              "defense_cost": {
+                "raw_value": 0.1,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_1].defense_cost",
+                "method": "fixed_level_1",
+                "metric": "defense_cost",
+                "population": "known"
+              },
+              "reward": {
+                "raw_value": 0.32,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_1].reward",
+                "method": "fixed_level_1",
+                "metric": "reward",
+                "population": "known"
+              },
+              "defense_rate": {
+                "raw_value": 0.28,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_1].defense_rate",
+                "method": "fixed_level_1",
+                "metric": "defense_rate",
+                "population": "known"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_2",
+            "display_label": "Fixed-L2",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.76,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_2].asr",
+                "method": "fixed_level_2",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "known"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_2].utility",
+                "method": "fixed_level_2",
+                "metric": "utility",
+                "population": "known"
+              },
+              "defense_cost": {
+                "raw_value": 0.25,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_2].defense_cost",
+                "method": "fixed_level_2",
+                "metric": "defense_cost",
+                "population": "known"
+              },
+              "reward": {
+                "raw_value": 0.29,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_2].reward",
+                "method": "fixed_level_2",
+                "metric": "reward",
+                "population": "known"
+              },
+              "defense_rate": {
+                "raw_value": 0.24,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_2].defense_rate",
+                "method": "fixed_level_2",
+                "metric": "defense_rate",
+                "population": "known"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_3",
+            "display_label": "Fixed-L3",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_3].asr",
+                "method": "fixed_level_3",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "known"
+              },
+              "utility": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_3].utility",
+                "method": "fixed_level_3",
+                "metric": "utility",
+                "population": "known"
+              },
+              "defense_cost": {
+                "raw_value": 0.5,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_3].defense_cost",
+                "method": "fixed_level_3",
+                "metric": "defense_cost",
+                "population": "known"
+              },
+              "reward": {
+                "raw_value": 0.45,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_3].reward",
+                "method": "fixed_level_3",
+                "metric": "reward",
+                "population": "known"
+              },
+              "defense_rate": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[fixed_level_3].defense_rate",
+                "method": "fixed_level_3",
+                "metric": "defense_rate",
+                "population": "known"
+              }
+            }
+          },
+          {
+            "method": "adaptive",
+            "display_label": "Adaptive",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.373333333333,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[adaptive].asr",
+                "method": "adaptive",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "known"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[adaptive].utility",
+                "method": "adaptive",
+                "metric": "utility",
+                "population": "known"
+              },
+              "defense_cost": {
+                "raw_value": 0.329,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[adaptive].defense_cost",
+                "method": "adaptive",
+                "metric": "defense_cost",
+                "population": "known"
+              },
+              "reward": {
+                "raw_value": 0.4271,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[adaptive].reward",
+                "method": "adaptive",
+                "metric": "reward",
+                "population": "known"
+              },
+              "defense_rate": {
+                "raw_value": 0.626666666667,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[known].methods[adaptive].defense_rate",
+                "method": "adaptive",
+                "metric": "defense_rate",
+                "population": "known"
+              }
+            }
+          }
+        ],
+        "pareto_nondominated": [
+          "fixed_level_0",
+          "fixed_level_1",
+          "fixed_level_3",
+          "adaptive"
+        ],
+        "pareto_dominated": [
+          "fixed_level_2"
+        ]
+      },
+      "novel": {
+        "rows": [
+          {
+            "method": "fixed_level_0",
+            "display_label": "Fixed-L0",
+            "metrics": {
+              "asr": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_0].asr",
+                "method": "fixed_level_0",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "novel"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_0].utility",
+                "method": "fixed_level_0",
+                "metric": "utility",
+                "population": "novel"
+              },
+              "defense_cost": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_0].defense_cost",
+                "method": "fixed_level_0",
+                "metric": "defense_cost",
+                "population": "novel"
+              },
+              "reward": {
+                "raw_value": 0.225,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_0].reward",
+                "method": "fixed_level_0",
+                "metric": "reward",
+                "population": "novel"
+              },
+              "defense_rate": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_0].defense_rate",
+                "method": "fixed_level_0",
+                "metric": "defense_rate",
+                "population": "novel"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_1",
+            "display_label": "Fixed-L1",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_1].asr",
+                "method": "fixed_level_1",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "novel"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_1].utility",
+                "method": "fixed_level_1",
+                "metric": "utility",
+                "population": "novel"
+              },
+              "defense_cost": {
+                "raw_value": 0.1,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_1].defense_cost",
+                "method": "fixed_level_1",
+                "metric": "defense_cost",
+                "population": "novel"
+              },
+              "reward": {
+                "raw_value": 0.59,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_1].reward",
+                "method": "fixed_level_1",
+                "metric": "reward",
+                "population": "novel"
+              },
+              "defense_rate": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_1].defense_rate",
+                "method": "fixed_level_1",
+                "metric": "defense_rate",
+                "population": "novel"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_2",
+            "display_label": "Fixed-L2",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.8,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_2].asr",
+                "method": "fixed_level_2",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "novel"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_2].utility",
+                "method": "fixed_level_2",
+                "metric": "utility",
+                "population": "novel"
+              },
+              "defense_cost": {
+                "raw_value": 0.25,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_2].defense_cost",
+                "method": "fixed_level_2",
+                "metric": "defense_cost",
+                "population": "novel"
+              },
+              "reward": {
+                "raw_value": 0.275,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_2].reward",
+                "method": "fixed_level_2",
+                "metric": "reward",
+                "population": "novel"
+              },
+              "defense_rate": {
+                "raw_value": 0.2,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_2].defense_rate",
+                "method": "fixed_level_2",
+                "metric": "defense_rate",
+                "population": "novel"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_3",
+            "display_label": "Fixed-L3",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_3].asr",
+                "method": "fixed_level_3",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "novel"
+              },
+              "utility": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_3].utility",
+                "method": "fixed_level_3",
+                "metric": "utility",
+                "population": "novel"
+              },
+              "defense_cost": {
+                "raw_value": 0.5,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_3].defense_cost",
+                "method": "fixed_level_3",
+                "metric": "defense_cost",
+                "population": "novel"
+              },
+              "reward": {
+                "raw_value": 0.45,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_3].reward",
+                "method": "fixed_level_3",
+                "metric": "reward",
+                "population": "novel"
+              },
+              "defense_rate": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[fixed_level_3].defense_rate",
+                "method": "fixed_level_3",
+                "metric": "defense_rate",
+                "population": "novel"
+              }
+            }
+          },
+          {
+            "method": "adaptive",
+            "display_label": "Adaptive",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.0266666666667,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[adaptive].asr",
+                "method": "adaptive",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "novel"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[adaptive].utility",
+                "method": "adaptive",
+                "metric": "utility",
+                "population": "novel"
+              },
+              "defense_cost": {
+                "raw_value": 0.098,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[adaptive].defense_cost",
+                "method": "adaptive",
+                "metric": "defense_cost",
+                "population": "novel"
+              },
+              "reward": {
+                "raw_value": 0.5802,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[adaptive].reward",
+                "method": "adaptive",
+                "metric": "reward",
+                "population": "novel"
+              },
+              "defense_rate": {
+                "raw_value": 0.973333333333,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[novel].methods[adaptive].defense_rate",
+                "method": "adaptive",
+                "metric": "defense_rate",
+                "population": "novel"
+              }
+            }
+          }
+        ],
+        "pareto_nondominated": [
+          "fixed_level_0",
+          "fixed_level_1",
+          "adaptive"
+        ],
+        "pareto_dominated": [
+          "fixed_level_2",
+          "fixed_level_3"
+        ]
+      },
+      "evolving": {
+        "rows": [
+          {
+            "method": "fixed_level_0",
+            "display_label": "Fixed-L0",
+            "metrics": {
+              "asr": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_0].asr",
+                "method": "fixed_level_0",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "evolving"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_0].utility",
+                "method": "fixed_level_0",
+                "metric": "utility",
+                "population": "evolving"
+              },
+              "defense_cost": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_0].defense_cost",
+                "method": "fixed_level_0",
+                "metric": "defense_cost",
+                "population": "evolving"
+              },
+              "reward": {
+                "raw_value": 0.225,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_0].reward",
+                "method": "fixed_level_0",
+                "metric": "reward",
+                "population": "evolving"
+              },
+              "defense_rate": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_0].defense_rate",
+                "method": "fixed_level_0",
+                "metric": "defense_rate",
+                "population": "evolving"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_1",
+            "display_label": "Fixed-L1",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.293333333333,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_1].asr",
+                "method": "fixed_level_1",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "evolving"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_1].utility",
+                "method": "fixed_level_1",
+                "metric": "utility",
+                "population": "evolving"
+              },
+              "defense_cost": {
+                "raw_value": 0.1,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_1].defense_cost",
+                "method": "fixed_level_1",
+                "metric": "defense_cost",
+                "population": "evolving"
+              },
+              "reward": {
+                "raw_value": 0.48,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_1].reward",
+                "method": "fixed_level_1",
+                "metric": "reward",
+                "population": "evolving"
+              },
+              "defense_rate": {
+                "raw_value": 0.706666666667,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_1].defense_rate",
+                "method": "fixed_level_1",
+                "metric": "defense_rate",
+                "population": "evolving"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_2",
+            "display_label": "Fixed-L2",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.76,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_2].asr",
+                "method": "fixed_level_2",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "evolving"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_2].utility",
+                "method": "fixed_level_2",
+                "metric": "utility",
+                "population": "evolving"
+              },
+              "defense_cost": {
+                "raw_value": 0.25,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_2].defense_cost",
+                "method": "fixed_level_2",
+                "metric": "defense_cost",
+                "population": "evolving"
+              },
+              "reward": {
+                "raw_value": 0.29,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_2].reward",
+                "method": "fixed_level_2",
+                "metric": "reward",
+                "population": "evolving"
+              },
+              "defense_rate": {
+                "raw_value": 0.24,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_2].defense_rate",
+                "method": "fixed_level_2",
+                "metric": "defense_rate",
+                "population": "evolving"
+              }
+            }
+          },
+          {
+            "method": "fixed_level_3",
+            "display_label": "Fixed-L3",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_3].asr",
+                "method": "fixed_level_3",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "evolving"
+              },
+              "utility": {
+                "raw_value": 0.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_3].utility",
+                "method": "fixed_level_3",
+                "metric": "utility",
+                "population": "evolving"
+              },
+              "defense_cost": {
+                "raw_value": 0.5,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_3].defense_cost",
+                "method": "fixed_level_3",
+                "metric": "defense_cost",
+                "population": "evolving"
+              },
+              "reward": {
+                "raw_value": 0.45,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_3].reward",
+                "method": "fixed_level_3",
+                "metric": "reward",
+                "population": "evolving"
+              },
+              "defense_rate": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[fixed_level_3].defense_rate",
+                "method": "fixed_level_3",
+                "metric": "defense_rate",
+                "population": "evolving"
+              }
+            }
+          },
+          {
+            "method": "adaptive",
+            "display_label": "Adaptive",
+            "metrics": {
+              "asr": {
+                "raw_value": 0.626666666667,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[adaptive].asr",
+                "method": "adaptive",
+                "metric": "security_proxy_asr_lower_better",
+                "population": "evolving"
+              },
+              "utility": {
+                "raw_value": 1.0,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[adaptive].utility",
+                "method": "adaptive",
+                "metric": "utility",
+                "population": "evolving"
+              },
+              "defense_cost": {
+                "raw_value": 0.2665,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[adaptive].defense_cost",
+                "method": "adaptive",
+                "metric": "defense_cost",
+                "population": "evolving"
+              },
+              "reward": {
+                "raw_value": 0.33835,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[adaptive].reward",
+                "method": "adaptive",
+                "metric": "reward",
+                "population": "evolving"
+              },
+              "defense_rate": {
+                "raw_value": 0.373333333333,
+                "source_artifact": "results/phase8/security_utility_cost_v1.json",
+                "source_field": "by_scenario[evolving].methods[adaptive].defense_rate",
+                "method": "adaptive",
+                "metric": "defense_rate",
+                "population": "evolving"
+              }
+            }
+          }
+        ],
+        "pareto_nondominated": [
+          "fixed_level_0",
+          "fixed_level_1",
+          "fixed_level_3"
+        ],
+        "pareto_dominated": [
+          "fixed_level_2",
+          "adaptive"
+        ]
+      }
+    },
+    "missing_fields": [],
+    "note": "Pareto sets are preserved from the existing artifact; no new optimization metric introduced."
+  },
+  "statistical_comparison": {
+    "authoritative_source": "results/phase8/statistical_comparison_v1.json",
+    "multiple_comparison_correction": "Holm-Bonferroni",
+    "statistical_method_note": "Only already-computed episode-level exact sign tests with Holm-Bonferroni correction are extracted; no new hypothesis tests performed.",
+    "seed_variance": {
+      "definition": "Cross-seed variance of aggregate run metrics under the frozen known protocol (Phase 8A).",
+      "observation": {
+        "note": "Controlled Phase 7/8A pipeline is deterministic given frozen stream + schedule; cross-seed std is expected to be 0 unless stochastic components are introduced.",
+        "by_method": {
+          "fixed_level_0": {
+            "max_std": 0.0,
+            "all_zero_std": true
+          },
+          "fixed_level_1": {
+            "max_std": 0.0,
+            "all_zero_std": true
+          },
+          "fixed_level_2": {
+            "max_std": 0.0,
+            "all_zero_std": true
+          },
+          "fixed_level_3": {
+            "max_std": 0.0,
+            "all_zero_std": true
+          },
+          "adaptive": {
+            "max_std": 0.0,
+            "all_zero_std": true
+          }
+        }
+      },
+      "implication": "All methods have std\u22480 across seeds 1\u20135; inferential tests on seed means are not informative (no seed-level variance).",
+      "by_method_metric": [
+        {
+          "method": "fixed_level_0",
+          "metric": "asr",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "defense_rate",
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "defense_cost",
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "reward",
+          "mean": 0.225,
+          "std": 0.0,
+          "ci95_low": 0.225,
+          "ci95_high": 0.225,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_0",
+          "metric": "security_score",
+          "mean": 0.25,
+          "std": 0.0,
+          "ci95_low": 0.25,
+          "ci95_high": 0.25,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "asr",
+          "mean": 0.72,
+          "std": 0.0,
+          "ci95_low": 0.72,
+          "ci95_high": 0.72,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "defense_rate",
+          "mean": 0.28,
+          "std": 0.0,
+          "ci95_low": 0.28,
+          "ci95_high": 0.28,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "defense_cost",
+          "mean": 0.1,
+          "std": 0.0,
+          "ci95_low": 0.1,
+          "ci95_high": 0.1,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "reward",
+          "mean": 0.32,
+          "std": 0.0,
+          "ci95_low": 0.32,
+          "ci95_high": 0.32,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_1",
+          "metric": "security_score",
+          "mean": 0.4600000000000001,
+          "std": 0.0,
+          "ci95_low": 0.4600000000000001,
+          "ci95_high": 0.4600000000000001,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "asr",
+          "mean": 0.76,
+          "std": 0.0,
+          "ci95_low": 0.76,
+          "ci95_high": 0.76,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "defense_rate",
+          "mean": 0.24,
+          "std": 0.0,
+          "ci95_low": 0.24,
+          "ci95_high": 0.24,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "defense_cost",
+          "mean": 0.25,
+          "std": 0.0,
+          "ci95_low": 0.25,
+          "ci95_high": 0.25,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "reward",
+          "mean": 0.29,
+          "std": 0.0,
+          "ci95_low": 0.29,
+          "ci95_high": 0.29,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_2",
+          "metric": "security_score",
+          "mean": 0.43,
+          "std": 0.0,
+          "ci95_low": 0.43,
+          "ci95_high": 0.43,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "asr",
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "defense_rate",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "utility",
+          "mean": 0.0,
+          "std": 0.0,
+          "ci95_low": 0.0,
+          "ci95_high": 0.0,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "defense_cost",
+          "mean": 0.5,
+          "std": 0.0,
+          "ci95_low": 0.5,
+          "ci95_high": 0.5,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "reward",
+          "mean": 0.45,
+          "std": 0.0,
+          "ci95_low": 0.45,
+          "ci95_high": 0.45,
+          "n": 5
+        },
+        {
+          "method": "fixed_level_3",
+          "metric": "security_score",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "adaptive",
+          "metric": "asr",
+          "mean": 0.373333333333,
+          "std": 0.0,
+          "ci95_low": 0.373333333333,
+          "ci95_high": 0.373333333333,
+          "n": 5
+        },
+        {
+          "method": "adaptive",
+          "metric": "defense_rate",
+          "mean": 0.626666666667,
+          "std": 0.0,
+          "ci95_low": 0.626666666667,
+          "ci95_high": 0.626666666667,
+          "n": 5
+        },
+        {
+          "method": "adaptive",
+          "metric": "utility",
+          "mean": 1.0,
+          "std": 0.0,
+          "ci95_low": 1.0,
+          "ci95_high": 1.0,
+          "n": 5
+        },
+        {
+          "method": "adaptive",
+          "metric": "defense_cost",
+          "mean": 0.329,
+          "std": 0.0,
+          "ci95_low": 0.329,
+          "ci95_high": 0.329,
+          "n": 5
+        },
+        {
+          "method": "adaptive",
+          "metric": "reward",
+          "mean": 0.4271,
+          "std": 0.0,
+          "ci95_low": 0.4271,
+          "ci95_high": 0.4271,
+          "n": 5
+        },
+        {
+          "method": "adaptive",
+          "metric": "security_score",
+          "mean": 0.72,
+          "std": 0.0,
+          "ci95_low": 0.72,
+          "ci95_high": 0.72,
+          "n": 5
+        }
+      ]
+    },
+    "episode_level_tests": [
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "known",
+        "metric": "attack_success",
+        "test": "exact_sign_test",
+        "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=known",
+        "effect_size_mean_diff": {
+          "raw_value": -0.6266666666666667,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_mean_diff",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "effect_size_sign_ratio": {
+          "raw_value": 0.0,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_sign_ratio",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "p_value": {
+          "raw_value": 1.4210854715202004e-14,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "p_value_holm": {
+          "raw_value": 5.684341886080802e-14,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value_holm",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "significant_holm_0.05": true,
+        "n_nonzero": 47,
+        "direction_note": "security_proxy_lower_better",
+        "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+      },
+      {
+        "comparison": "adaptive vs fixed_level_3",
+        "scenario": "known",
+        "metric": "attack_success",
+        "test": "exact_sign_test",
+        "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=known",
+        "effect_size_mean_diff": {
+          "raw_value": 0.37333333333333335,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_mean_diff",
+          "method": "adaptive vs fixed_level_3",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "effect_size_sign_ratio": {
+          "raw_value": 1.0,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_sign_ratio",
+          "method": "adaptive vs fixed_level_3",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "p_value": {
+          "raw_value": 7.450580596923828e-09,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value",
+          "method": "adaptive vs fixed_level_3",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "p_value_holm": {
+          "raw_value": 2.2351741790771484e-08,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value_holm",
+          "method": "adaptive vs fixed_level_3",
+          "metric": "attack_success",
+          "population": "known"
+        },
+        "significant_holm_0.05": true,
+        "n_nonzero": 28,
+        "direction_note": "security_proxy_lower_better",
+        "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+      },
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "known",
+        "metric": "reward",
+        "test": "exact_sign_test",
+        "sample_definition": "paired episode-level differences on all episodes; n_pairs=100; same schedule/stream within scenario=known",
+        "effect_size_mean_diff": {
+          "raw_value": 0.2021,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_mean_diff",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "reward",
+          "population": "known"
+        },
+        "effect_size_sign_ratio": {
+          "raw_value": 0.47474747474747475,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_sign_ratio",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "reward",
+          "population": "known"
+        },
+        "p_value": {
+          "raw_value": 0.6878853435796911,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "reward",
+          "population": "known"
+        },
+        "p_value_holm": {
+          "raw_value": 0.6878853435796911,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value_holm",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "reward",
+          "population": "known"
+        },
+        "significant_holm_0.05": false,
+        "n_nonzero": 99,
+        "direction_note": "reward_higher_better",
+        "interpretation": "Not significant after Holm correction (or weak evidence)."
+      },
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "novel",
+        "metric": "attack_success",
+        "test": "exact_sign_test",
+        "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=novel",
+        "effect_size_mean_diff": {
+          "raw_value": -0.9733333333333334,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_mean_diff",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "novel"
+        },
+        "effect_size_sign_ratio": {
+          "raw_value": 0.0,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_sign_ratio",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "novel"
+        },
+        "p_value": {
+          "raw_value": 2.117582368135751e-22,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "novel"
+        },
+        "p_value_holm": {
+          "raw_value": 1.0587911840678754e-21,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value_holm",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "novel"
+        },
+        "significant_holm_0.05": true,
+        "n_nonzero": 73,
+        "direction_note": "security_proxy_lower_better",
+        "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+      },
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "evolving",
+        "metric": "attack_success",
+        "test": "exact_sign_test",
+        "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=evolving",
+        "effect_size_mean_diff": {
+          "raw_value": -0.37333333333333335,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_mean_diff",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "evolving"
+        },
+        "effect_size_sign_ratio": {
+          "raw_value": 0.0,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.effect_size_sign_ratio",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "evolving"
+        },
+        "p_value": {
+          "raw_value": 7.450580596923828e-09,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "evolving"
+        },
+        "p_value_holm": {
+          "raw_value": 2.2351741790771484e-08,
+          "source_artifact": "results/phase8/statistical_comparison_v1.json",
+          "source_field": "episode_level_tests.p_value_holm",
+          "method": "adaptive vs fixed_level_0",
+          "metric": "attack_success",
+          "population": "evolving"
+        },
+        "significant_holm_0.05": true,
+        "n_nonzero": 28,
+        "direction_note": "security_proxy_lower_better",
+        "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+      }
+    ],
+    "scenario_level_variance": [
+      {
+        "method": "fixed_level_0",
+        "metric": "asr",
+        "values_by_scenario": {
+          "known": 1.0,
+          "novel": 1.0,
+          "evolving": 1.0
+        },
+        "std_across_scenarios": 0.0,
+        "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "asr",
+        "values_by_scenario": {
+          "known": 0.72,
+          "novel": 0.0,
+          "evolving": 0.293333333333
+        },
+        "std_across_scenarios": 0.3620517663007547,
+        "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "asr",
+        "values_by_scenario": {
+          "known": 0.76,
+          "novel": 0.8,
+          "evolving": 0.76
+        },
+        "std_across_scenarios": 0.02309401076758505,
+        "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "asr",
+        "values_by_scenario": {
+          "known": 0.0,
+          "novel": 0.0,
+          "evolving": 0.0
+        },
+        "std_across_scenarios": 0.0,
+        "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+      },
+      {
+        "method": "adaptive",
+        "metric": "asr",
+        "values_by_scenario": {
+          "known": 0.373333333333,
+          "novel": 0.0266666666667,
+          "evolving": 0.626666666667
+        },
+        "std_across_scenarios": 0.30120744666425475,
+        "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+      }
+    ],
+    "limitations": [
+      "Seed-level t-tests between methods are not used because Phase 8A seed variance is zero under the deterministic controlled stack.",
+      "Episode-level sign tests require paired shared episode IDs within a scenario; they are not applied across incompatible populations.",
+      "Boolean attack_success differences yield discrete paired signs; effect sizes are reported as mean diff and sign ratio."
+    ]
+  },
+  "claim_evidence_map": {
+    "C1": {
+      "claim_id": "C1",
+      "claim_text": "Adaptive defense changes defense policy over time.",
+      "status": "SUPPORTED",
+      "paper_safe_wording": "Under the controlled Phase 7 protocol, the adaptive defense changed policy over time, with multiple defense-level transitions including both escalation and de-escalation.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "temporal",
+          "main_results"
+        ],
+        "figures": [
+          "defense_level_over_episodes (to be generated from Phase 7 adaptive episodes in a later phase)"
+        ],
+        "primary_artifacts": [
+          "results/phase7/adaptive_100_v2.json",
+          "results/phase8/temporal_analysis_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Observed on the frozen known Phase 7 protocol only",
+        "Does not establish open-world adaptation dynamics"
+      ],
+      "manuscript_use": "SUPPORTED \u2014 use Phase 10 paper_safe_wording"
+    },
+    "C2": {
+      "claim_id": "C2",
+      "claim_text": "Adaptive defense provides meaningful security against prompt injection.",
+      "status": "PARTIALLY SUPPORTED",
+      "paper_safe_wording": "On the evaluated known-attack protocol, adaptive defense reduced attack success relative to Fixed-L0 while retaining nonzero residual ASR; it does not achieve absolute security.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "main_results",
+          "robustness",
+          "statistical_comparison"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/multiseed_summary.json",
+          "results/phase8/robustness_v1.json",
+          "results/phase8/statistical_comparison_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "ASR remains > 0 (partial security)",
+        "Fixed-L3 achieves ASR=0 but collapses utility",
+        "MVP detector/outcome heuristics; protocol-specific"
+      ],
+      "manuscript_use": "PARTIAL \u2014 use qualified wording only"
+    },
+    "C3": {
+      "claim_id": "C3",
+      "claim_text": "Adaptive defense preserves utility while applying defense.",
+      "status": "SUPPORTED",
+      "paper_safe_wording": "Under the controlled protocol, adaptive defense preserved utility on all evaluated legitimate episodes while applying nontrivial defense cost, in contrast to Fixed-L3 which achieved zero utility.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "main_results",
+          "ablation"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/multiseed_summary.json",
+          "results/phase8/ablation_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Utility measured only on the controlled 25 legitimate episodes",
+        "Does not evaluate open-ended task success beyond the MVP outcome rule"
+      ],
+      "manuscript_use": "SUPPORTED \u2014 use Phase 10 paper_safe_wording"
+    },
+    "C4": {
+      "claim_id": "C4",
+      "claim_text": "Adaptive defense has a measurable security\u2013utility\u2013cost tradeoff.",
+      "status": "SUPPORTED",
+      "paper_safe_wording": "Adaptive defense exhibits a measurable security\u2013utility\u2013cost tradeoff on the evaluated protocols and is Pareto-nondominated on the known scenario under ASR, utility, and defense-cost objectives; no single-metric superiority is claimed.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "security_utility_cost",
+          "main_results"
+        ],
+        "figures": [
+          "pareto_frontier_known (optional later phase)"
+        ],
+        "primary_artifacts": [
+          "results/phase8/security_utility_cost_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "No composite scalar score is defined",
+        "Tradeoff conclusions are multi-objective and protocol-scoped"
+      ],
+      "manuscript_use": "SUPPORTED \u2014 use Phase 10 paper_safe_wording"
+    },
+    "C5": {
+      "claim_id": "C5",
+      "claim_text": "Adaptation contributes beyond fixed defense levels.",
+      "status": "PARTIALLY SUPPORTED",
+      "paper_safe_wording": "Relative to fixed defenses, adaptive defense provides a distinct security\u2013utility operating point on the evaluated protocol\u2014improving over Fixed-L0 in attack containment while preserving utility that Fixed-L3 sacrifices\u2014without claiming strict superiority on every metric.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "main_results",
+          "security_utility_cost",
+          "statistical_comparison"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/multiseed_summary.json",
+          "results/phase8/security_utility_cost_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Adaptive is not best on ASR alone (Fixed-L3 ASR=0.0)",
+        "Contribution is tradeoff-based rather than absolute dominance"
+      ],
+      "manuscript_use": "PARTIAL \u2014 use qualified wording only"
+    },
+    "C6": {
+      "claim_id": "C6",
+      "claim_text": "Historical attack feedback contributes to adaptation.",
+      "status": "NOT SUPPORTED",
+      "paper_safe_wording": null,
+      "paper_handling": "Do not affirm C6. Optionally state as limitation/hypothesis: 'Under the evaluated protocol, enabling historical attack feedback did not change aggregate primary metrics; its empirical contribution remains not established.'",
+      "evidence_locations": {
+        "tables": [
+          "ablation"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/ablation_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Null aggregate effect under this protocol",
+        "Does not prove the mechanism is inactive in all settings",
+        "A future experiment with stronger historical influence or different risk weighting would be required to test contribution"
+      ],
+      "manuscript_use": "NOT ESTABLISHED",
+      "supporting_evidence_for_affirmation": null,
+      "note": "Do not create affirmative supporting evidence. Ablation null result may be cited only as non-establishment.",
+      "disposition": "REWRITE AS HYPOTHESIS/LIMITATION"
+    },
+    "C7": {
+      "claim_id": "C7",
+      "claim_text": "Performance differs across attack families.",
+      "status": "SUPPORTED",
+      "paper_safe_wording": "On the known Adaptive run, attack success rates differed substantially across the four frozen attack families under the controlled evaluation protocol.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "attack_family"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/attack_family_analysis_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Unequal family counts (19/19/19/18) under first-75 slice",
+        "Family utility is vacuous (attack-only strata)",
+        "Descriptive heterogeneity; not a balanced factorial design"
+      ],
+      "manuscript_use": "SUPPORTED \u2014 use Phase 10 paper_safe_wording"
+    },
+    "C8": {
+      "claim_id": "C8",
+      "claim_text": "Adaptive defense can handle novel attacks.",
+      "status": "LIMITED",
+      "paper_safe_wording": "On the evaluated structurally novel attack set (no exact overlap with the frozen known stream), adaptive defense showed measurable scenario outcomes; however, detector miss rate and sanitize-success heuristics constrain interpretation, so results support limited, set-specific robustness rather than generalization to unseen attacks.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "robustness"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/robustness_v1.json",
+          "results/phase8/novel_attack_set_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Closed-world synthetic novelty relative to MVP known set",
+        "Novel detection_rate=0.0 under rule-based detector",
+        "Sanitize attack_success heuristic uses residual known markers",
+        "Generalization claim must remain LIMITED"
+      ],
+      "manuscript_use": "LIMITED \u2014 preserve scope qualifications"
+    },
+    "C9": {
+      "claim_id": "C9",
+      "claim_text": "Adaptive defense can respond to evolving attack sequences.",
+      "status": "PARTIALLY SUPPORTED",
+      "paper_safe_wording": "Under the evaluated evolving attack sequence, adaptive defense exhibited stage-dependent behavior (including defense-level change across stages); this demonstrates response on the constructed sequence, not broadly successful evolving-attack robustness.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "robustness"
+        ],
+        "figures": [
+          "evolving_stages_adaptive (optional later phase)"
+        ],
+        "primary_artifacts": [
+          "results/phase8/robustness_v1.json",
+          "results/phase8/evolving_attack_stream_v1.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Deterministic synthetic evolving construction",
+        "Later novel-heavy stages show higher ASR and near-zero detection",
+        "Response is observed but not uniformly successful"
+      ],
+      "manuscript_use": "PARTIAL \u2014 use qualified wording only"
+    },
+    "C10": {
+      "claim_id": "C10",
+      "claim_text": "Results are reproducible across seeds.",
+      "status": "SUPPORTED",
+      "paper_safe_wording": "Under identical method, seed, stream, and schedule settings, Phase 8A multi-seed runs reproduced aggregate metrics exactly (sample std = 0 across seeds 1\u20135), demonstrating reproducibility of the controlled pipeline.",
+      "paper_handling": null,
+      "evidence_locations": {
+        "tables": [
+          "main_results"
+        ],
+        "figures": [],
+        "primary_artifacts": [
+          "results/phase8/multiseed_summary.json",
+          "results/phase8/multiseed_raw.json"
+        ]
+      },
+      "phase10_limitations": [
+        "Pipeline is deterministic given frozen stream/schedule",
+        "std=0 supports reproducibility, not stochastic robustness",
+        "Do not interpret five identical seeds as random-init robustness"
+      ],
+      "manuscript_use": "SUPPORTED \u2014 use Phase 10 paper_safe_wording"
+    }
+  },
+  "generalization": {
+    "status": "LIMITED",
+    "allowed_wording": "demonstrates robustness on the evaluated known/novel/evolving attack sets under the controlled protocol",
+    "disallowed_wording": "generalizes to unseen attacks / open-world prompt injection",
+    "preserved_from_phase10": true,
+    "source_artifact": "results/phase10/claim_evidence_matrix_v1.json"
+  },
+  "limitations": [
+    {
+      "text": "Generalization status is LIMITED: demonstrates robustness on the evaluated known/novel/evolving attack sets under the controlled protocol. Do not claim: generalizes to unseen attacks / open-world prompt injection.",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#generalization"
+    },
+    {
+      "text": "Controlled pipeline is deterministic given frozen stream/schedule (multi-seed std=0 demonstrates reproducibility, not stochastic robustness).",
+      "source": "results/phase8/multiseed_summary.json#determinism"
+    },
+    {
+      "text": "Finite seed count n=5 under deterministic protocol.",
+      "source": "results/phase8/multiseed_summary.json#statistical_method"
+    },
+    {
+      "text": "Evaluated attack families are limited to the four frozen families in the first-75 known stream slice (counts 19/19/19/18).",
+      "source": "results/phase8/attack_family_analysis_v1.json"
+    },
+    {
+      "text": "Model/environment scope is the MVP agent/detector/outcome protocol; results do not establish open-world LLM-agent security.",
+      "source": "results/phase10/claim_evidence_matrix_v1.json"
+    },
+    {
+      "text": "Historical-signal contribution is not established (historical_signal_changed_aggregates=False).",
+      "source": "results/phase8/ablation_v1.json"
+    },
+    {
+      "text": "Seed-level t-tests between methods are not used because Phase 8A seed variance is zero under the deterministic controlled stack.",
+      "source": "results/phase8/statistical_comparison_v1.json#limitations"
+    },
+    {
+      "text": "Episode-level sign tests require paired shared episode IDs within a scenario; they are not applied across incompatible populations.",
+      "source": "results/phase8/statistical_comparison_v1.json#limitations"
+    },
+    {
+      "text": "Boolean attack_success differences yield discrete paired signs; effect sizes are reported as mean diff and sign ratio.",
+      "source": "results/phase8/statistical_comparison_v1.json#limitations"
+    },
+    {
+      "text": "Novel set is structurally/lexically separated from the frozen MVP known set, but remains closed-world synthetic prompt-injection templates in the same four families.",
+      "source": "results/phase8/robustness_v1.json#novelty_claim"
+    },
+    {
+      "text": "MVP attack_success for SANITIZE is defined via residual known malicious markers. Novel marker-free payloads can therefore be labeled unsuccessful after SANITIZE even when detection_score=0. Fixed-L0 (no sanitize) still shows ASR=1.0 on novel, confirming population fairness while limiting claims about sanitize generalization.",
+      "source": "results/phase8/robustness_v1.json#novelty_claim"
+    },
+    {
+      "text": "Observed on the frozen known Phase 7 protocol only",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C1"
+    },
+    {
+      "text": "Does not establish open-world adaptation dynamics",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C1"
+    },
+    {
+      "text": "ASR remains > 0 (partial security)",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C2"
+    },
+    {
+      "text": "Fixed-L3 achieves ASR=0 but collapses utility",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C2"
+    },
+    {
+      "text": "MVP detector/outcome heuristics; protocol-specific",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C2"
+    },
+    {
+      "text": "Utility measured only on the controlled 25 legitimate episodes",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C3"
+    },
+    {
+      "text": "Does not evaluate open-ended task success beyond the MVP outcome rule",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C3"
+    },
+    {
+      "text": "No composite scalar score is defined",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C4"
+    },
+    {
+      "text": "Tradeoff conclusions are multi-objective and protocol-scoped",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C4"
+    },
+    {
+      "text": "Adaptive is not best on ASR alone (Fixed-L3 ASR=0.0)",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C5"
+    },
+    {
+      "text": "Contribution is tradeoff-based rather than absolute dominance",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C5"
+    },
+    {
+      "text": "Does not prove the mechanism is inactive in all settings",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C6"
+    },
+    {
+      "text": "Unequal family counts (19/19/19/18) under first-75 slice",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C7"
+    },
+    {
+      "text": "Family utility is vacuous (attack-only strata)",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C7"
+    },
+    {
+      "text": "Descriptive heterogeneity; not a balanced factorial design",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C7"
+    },
+    {
+      "text": "Closed-world synthetic novelty relative to MVP known set",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C8"
+    },
+    {
+      "text": "Novel detection_rate=0.0 under rule-based detector",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C8"
+    },
+    {
+      "text": "Sanitize attack_success heuristic uses residual known markers",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C8"
+    },
+    {
+      "text": "Later novel-heavy stages show higher ASR and near-zero detection",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C9"
+    },
+    {
+      "text": "Response is observed but not uniformly successful",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C9"
+    },
+    {
+      "text": "Do not interpret five identical seeds as random-init robustness",
+      "source": "results/phase10/claim_evidence_matrix_v1.json#C10"
+    }
+  ],
+  "precision_policy": {
+    "raw_values_preserved": true,
+    "no_percent_conversion_during_extraction": true,
+    "no_rounding_during_extraction": true
+  },
+  "integrity": {
+    "phase7_modified": false,
+    "phase8_modified": false,
+    "phase9_modified": false,
+    "phase10_modified": false,
+    "experiments_rerun": false,
+    "results_changed": false,
+    "values_fabricated": false,
+    "new_statistical_tests": false
+  },
+  "validation": {
+    "checks": {
+      "all_required_source_artifacts_exist": true,
+      "json_valid": true,
+      "main_results": true,
+      "ablation": true,
+      "temporal": true,
+      "attack_family": true,
+      "robustness": true,
+      "security_utility_cost": true,
+      "statistical_comparison": true,
+      "claim_evidence_map": true,
+      "limitations": true,
+      "traceability": true,
+      "artifact_safety": true,
+      "c6_not_supported": true,
+      "generalization_limited": true
+    },
+    "report_map": {
+      "MAIN RESULTS": "PASS",
+      "ABLATION": "PASS",
+      "TEMPORAL": "PASS",
+      "ATTACK-FAMILY": "PASS",
+      "ROBUSTNESS": "PASS",
+      "SECURITY-UTILITY-COST": "PASS",
+      "STATISTICAL COMPARISON": "PASS",
+      "CLAIM-EVIDENCE MAP": "PASS",
+      "LIMITATIONS": "PASS",
+      "TRACEABILITY": "PASS",
+      "ARTIFACT SAFETY": "PASS"
+    },
+    "pass": 11,
+    "fail": 0,
+    "warn": 0,
+    "root_causes": [],
+    "overall": "PHASE 11 READY"
+  },
+  "overall_readiness": "PHASE 11 READY"
+}
