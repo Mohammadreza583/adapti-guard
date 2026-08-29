@@ -1,0 +1,482 @@
+{
+  "version": "phase8c_v1",
+  "experiment": "phase8c",
+  "protocol": "phase7_v2_75_25",
+  "episode_count": 100,
+  "schedule": "phase7_v2_75_25",
+  "metric_version": "phase8_primary_v1",
+  "configuration": {
+    "methods": [
+      "fixed_level_0",
+      "fixed_level_1",
+      "fixed_level_2",
+      "fixed_level_3",
+      "adaptive"
+    ],
+    "scenarios": [
+      "known",
+      "novel",
+      "evolving"
+    ],
+    "detection_threshold": 0.25
+  },
+  "timestamp_utc": "2026-08-29T09:31:11.942964+00:00",
+  "source_artifacts": [
+    "results/phase8/multiseed_raw.json",
+    "results/phase8/multiseed_summary.json",
+    "results/phase8/robustness_v1.json"
+  ],
+  "seed": "phase8a_seeds_1to5 + phase8c_seed_1_episode_pairs",
+  "attack_protocol": "mixed: known from 8A; novel/evolving from 8C",
+  "attack_set_version": {
+    "known": "common_attack_stream_v1_first_75",
+    "novel": "novel_attack_set_v1",
+    "evolving": "evolving_attack_stream_v1"
+  },
+  "multiple_comparison_correction": "Holm-Bonferroni",
+  "seed_variance": {
+    "definition": "Cross-seed variance of aggregate run metrics under the frozen known protocol (Phase 8A).",
+    "observation": {
+      "note": "Controlled Phase 7/8A pipeline is deterministic given frozen stream + schedule; cross-seed std is expected to be 0 unless stochastic components are introduced.",
+      "by_method": {
+        "fixed_level_0": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "fixed_level_1": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "fixed_level_2": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "fixed_level_3": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "adaptive": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        }
+      }
+    },
+    "implication": "All methods have std\u22480 across seeds 1\u20135; inferential tests on seed means are not informative (no seed-level variance).",
+    "by_method_metric": [
+      {
+        "method": "fixed_level_0",
+        "metric": "asr",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "defense_rate",
+        "mean": 0.0,
+        "std": 0.0,
+        "ci95_low": 0.0,
+        "ci95_high": 0.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "defense_cost",
+        "mean": 0.0,
+        "std": 0.0,
+        "ci95_low": 0.0,
+        "ci95_high": 0.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "reward",
+        "mean": 0.225,
+        "std": 0.0,
+        "ci95_low": 0.225,
+        "ci95_high": 0.225,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "security_score",
+        "mean": 0.25,
+        "std": 0.0,
+        "ci95_low": 0.25,
+        "ci95_high": 0.25,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "asr",
+        "mean": 0.72,
+        "std": 0.0,
+        "ci95_low": 0.72,
+        "ci95_high": 0.72,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "defense_rate",
+        "mean": 0.28,
+        "std": 0.0,
+        "ci95_low": 0.28,
+        "ci95_high": 0.28,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "defense_cost",
+        "mean": 0.1,
+        "std": 0.0,
+        "ci95_low": 0.1,
+        "ci95_high": 0.1,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "reward",
+        "mean": 0.32,
+        "std": 0.0,
+        "ci95_low": 0.32,
+        "ci95_high": 0.32,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "security_score",
+        "mean": 0.4600000000000001,
+        "std": 0.0,
+        "ci95_low": 0.4600000000000001,
+        "ci95_high": 0.4600000000000001,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "asr",
+        "mean": 0.76,
+        "std": 0.0,
+        "ci95_low": 0.76,
+        "ci95_high": 0.76,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "defense_rate",
+        "mean": 0.24,
+        "std": 0.0,
+        "ci95_low": 0.24,
+        "ci95_high": 0.24,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "defense_cost",
+        "mean": 0.25,
+        "std": 0.0,
+        "ci95_low": 0.25,
+        "ci95_high": 0.25,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "reward",
+        "mean": 0.29,
+        "std": 0.0,
+        "ci95_low": 0.29,
+        "ci95_high": 0.29,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "security_score",
+        "mean": 0.43,
+        "std": 0.0,
+        "ci95_low": 0.43,
+        "ci95_high": 0.43,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "asr",
+        "mean": 0.0,
+        "std": 0.0,
+        "ci95_low": 0.0,
+        "ci95_high": 0.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "defense_rate",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "utility",
+        "mean": 0.0,
+        "std": 0.0,
+        "ci95_low": 0.0,
+        "ci95_high": 0.0,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "defense_cost",
+        "mean": 0.5,
+        "std": 0.0,
+        "ci95_low": 0.5,
+        "ci95_high": 0.5,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "reward",
+        "mean": 0.45,
+        "std": 0.0,
+        "ci95_low": 0.45,
+        "ci95_high": 0.45,
+        "n": 5
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "security_score",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "adaptive",
+        "metric": "asr",
+        "mean": 0.373333333333,
+        "std": 0.0,
+        "ci95_low": 0.373333333333,
+        "ci95_high": 0.373333333333,
+        "n": 5
+      },
+      {
+        "method": "adaptive",
+        "metric": "defense_rate",
+        "mean": 0.626666666667,
+        "std": 0.0,
+        "ci95_low": 0.626666666667,
+        "ci95_high": 0.626666666667,
+        "n": 5
+      },
+      {
+        "method": "adaptive",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0,
+        "ci95_low": 1.0,
+        "ci95_high": 1.0,
+        "n": 5
+      },
+      {
+        "method": "adaptive",
+        "metric": "defense_cost",
+        "mean": 0.329,
+        "std": 0.0,
+        "ci95_low": 0.329,
+        "ci95_high": 0.329,
+        "n": 5
+      },
+      {
+        "method": "adaptive",
+        "metric": "reward",
+        "mean": 0.4271,
+        "std": 0.0,
+        "ci95_low": 0.4271,
+        "ci95_high": 0.4271,
+        "n": 5
+      },
+      {
+        "method": "adaptive",
+        "metric": "security_score",
+        "mean": 0.72,
+        "std": 0.0,
+        "ci95_low": 0.72,
+        "ci95_high": 0.72,
+        "n": 5
+      }
+    ]
+  },
+  "episode_level_tests": [
+    {
+      "comparison": "adaptive vs fixed_level_0",
+      "scenario": "known",
+      "metric": "attack_success",
+      "test": "exact_sign_test",
+      "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=known",
+      "effect_size_mean_diff": -0.6266666666666667,
+      "effect_size_sign_ratio": 0.0,
+      "p_value": 1.4210854715202004e-14,
+      "n_nonzero": 47,
+      "direction_note": "security_proxy_lower_better",
+      "interpretation_pre_correction": "paired episode-level sign test on metric differences; valid under exchangeability of signs under H0",
+      "p_value_holm": 5.684341886080802e-14,
+      "significant_holm_0.05": true,
+      "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+    },
+    {
+      "comparison": "adaptive vs fixed_level_3",
+      "scenario": "known",
+      "metric": "attack_success",
+      "test": "exact_sign_test",
+      "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=known",
+      "effect_size_mean_diff": 0.37333333333333335,
+      "effect_size_sign_ratio": 1.0,
+      "p_value": 7.450580596923828e-09,
+      "n_nonzero": 28,
+      "direction_note": "security_proxy_lower_better",
+      "interpretation_pre_correction": "paired episode-level sign test on metric differences; valid under exchangeability of signs under H0",
+      "p_value_holm": 2.2351741790771484e-08,
+      "significant_holm_0.05": true,
+      "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+    },
+    {
+      "comparison": "adaptive vs fixed_level_0",
+      "scenario": "known",
+      "metric": "reward",
+      "test": "exact_sign_test",
+      "sample_definition": "paired episode-level differences on all episodes; n_pairs=100; same schedule/stream within scenario=known",
+      "effect_size_mean_diff": 0.2021,
+      "effect_size_sign_ratio": 0.47474747474747475,
+      "p_value": 0.6878853435796911,
+      "n_nonzero": 99,
+      "direction_note": "reward_higher_better",
+      "interpretation_pre_correction": "paired episode-level sign test on metric differences; valid under exchangeability of signs under H0",
+      "p_value_holm": 0.6878853435796911,
+      "significant_holm_0.05": false,
+      "interpretation": "Not significant after Holm correction (or weak evidence)."
+    },
+    {
+      "comparison": "adaptive vs fixed_level_0",
+      "scenario": "novel",
+      "metric": "attack_success",
+      "test": "exact_sign_test",
+      "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=novel",
+      "effect_size_mean_diff": -0.9733333333333334,
+      "effect_size_sign_ratio": 0.0,
+      "p_value": 2.117582368135751e-22,
+      "n_nonzero": 73,
+      "direction_note": "security_proxy_lower_better",
+      "interpretation_pre_correction": "paired episode-level sign test on metric differences; valid under exchangeability of signs under H0",
+      "p_value_holm": 1.0587911840678754e-21,
+      "significant_holm_0.05": true,
+      "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+    },
+    {
+      "comparison": "adaptive vs fixed_level_0",
+      "scenario": "evolving",
+      "metric": "attack_success",
+      "test": "exact_sign_test",
+      "sample_definition": "paired episode-level differences on attack episodes; n_pairs=75; same schedule/stream within scenario=evolving",
+      "effect_size_mean_diff": -0.37333333333333335,
+      "effect_size_sign_ratio": 0.0,
+      "p_value": 7.450580596923828e-09,
+      "n_nonzero": 28,
+      "direction_note": "security_proxy_lower_better",
+      "interpretation_pre_correction": "paired episode-level sign test on metric differences; valid under exchangeability of signs under H0",
+      "p_value_holm": 2.2351741790771484e-08,
+      "significant_holm_0.05": true,
+      "interpretation": "Holm-adjusted p < 0.05: paired episode-level difference survives multiple-comparison correction."
+    }
+  ],
+  "scenario_level_variance": [
+    {
+      "method": "fixed_level_0",
+      "metric": "asr",
+      "values_by_scenario": {
+        "known": 1.0,
+        "novel": 1.0,
+        "evolving": 1.0
+      },
+      "std_across_scenarios": 0.0,
+      "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+    },
+    {
+      "method": "fixed_level_1",
+      "metric": "asr",
+      "values_by_scenario": {
+        "known": 0.72,
+        "novel": 0.0,
+        "evolving": 0.293333333333
+      },
+      "std_across_scenarios": 0.3620517663007547,
+      "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+    },
+    {
+      "method": "fixed_level_2",
+      "metric": "asr",
+      "values_by_scenario": {
+        "known": 0.76,
+        "novel": 0.8,
+        "evolving": 0.76
+      },
+      "std_across_scenarios": 0.02309401076758505,
+      "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+    },
+    {
+      "method": "fixed_level_3",
+      "metric": "asr",
+      "values_by_scenario": {
+        "known": 0.0,
+        "novel": 0.0,
+        "evolving": 0.0
+      },
+      "std_across_scenarios": 0.0,
+      "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+    },
+    {
+      "method": "adaptive",
+      "metric": "asr",
+      "values_by_scenario": {
+        "known": 0.373333333333,
+        "novel": 0.0266666666667,
+        "evolving": 0.626666666667
+      },
+      "std_across_scenarios": 0.30120744666425475,
+      "definition": "Scenario-level dispersion of aggregate ASR across known/novel/evolving under identical schedule."
+    }
+  ],
+  "limitations": [
+    "Seed-level t-tests between methods are not used because Phase 8A seed variance is zero under the deterministic controlled stack.",
+    "Episode-level sign tests require paired shared episode IDs within a scenario; they are not applied across incompatible populations.",
+    "Boolean attack_success differences yield discrete paired signs; effect sizes are reported as mean diff and sign ratio."
+  ]
+}
