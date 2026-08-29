@@ -1,0 +1,277 @@
+{
+  "title": "Q1 realignment experiment manifest",
+  "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+  "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+  "old_results_preserved": true,
+  "immutable_phase_dirs": [
+    "results/phase7",
+    "results/phase8",
+    "results/phase9",
+    "results/phase10",
+    "results/phase11"
+  ],
+  "provenance_model": "experiment \u2192 configuration \u2192 seed \u2192 raw output \u2192 aggregation \u2192 final metric",
+  "entries": [
+    {
+      "experiment_id": "Q1-FX-L0",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=0, schedule=75atk/25leg, frozen_stream",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/fixed_L0.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-FX-L1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=1, schedule=75atk/25leg, frozen_stream",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/fixed_L1.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-FX-L2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=2, schedule=75atk/25leg, frozen_stream",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/fixed_L2.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-FX-L3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=3, schedule=75atk/25leg, frozen_stream",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/fixed_L3.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-FX-ADAPT-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "adaptive_full, frozen_stream, 75/25",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/adaptive_full_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-FX-ADAPT-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "adaptive_full, frozen_stream, 75/25",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/adaptive_full_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-FX-ADAPT-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "adaptive_full, frozen_stream, 75/25",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/adaptive_full_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/fixed_vs_adaptive/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-full-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=full, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': True}",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_full_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-full-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=full, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': True}",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_full_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-full-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=full, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': True}",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_full_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_escalation-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_escalation, frozen_stream, 75/25, {'enable_escalation': False, 'enable_deescalation': True, 'use_cost_gate': True}",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_escalation_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_escalation-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_escalation, frozen_stream, 75/25, {'enable_escalation': False, 'enable_deescalation': True, 'use_cost_gate': True}",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_escalation_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_escalation-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_escalation, frozen_stream, 75/25, {'enable_escalation': False, 'enable_deescalation': True, 'use_cost_gate': True}",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_escalation_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_deescalation-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_deescalation, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': False, 'use_cost_gate': True}",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_deescalation_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_deescalation-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_deescalation, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': False, 'use_cost_gate': True}",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_deescalation_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_deescalation-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_deescalation, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': False, 'use_cost_gate': True}",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_deescalation_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_cost_gate-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_cost_gate, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': False}",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_cost_gate_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_cost_gate-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_cost_gate, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': False}",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_cost_gate_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_cost_gate-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_cost_gate, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': False}",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_cost_gate_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_historical-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_historical, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': True, 'use_historical_signal': False}",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_historical_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_historical-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_historical, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': True, 'use_historical_signal': False}",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_historical_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ABL-no_historical-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "ablation=no_historical, frozen_stream, 75/25, {'enable_escalation': True, 'enable_deescalation': True, 'use_cost_gate': True, 'use_historical_signal': False}",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/ablation_no_historical_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/ablation/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-LIVE-S1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "adaptive_full, live AdaptiveAttacker, 75/25 schedule",
+      "seed": 1,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/live_adaptive_attacker_seed1_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-LIVE-S2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "adaptive_full, live AdaptiveAttacker, 75/25 schedule",
+      "seed": 2,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/live_adaptive_attacker_seed2_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-LIVE-S3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "adaptive_full, live AdaptiveAttacker, 75/25 schedule",
+      "seed": 3,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/live_adaptive_attacker_seed3_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-FIX-L0",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=0, live AdaptiveAttacker, 75/25",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/fixed_L0_live_attacker_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-FIX-L1",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=1, live AdaptiveAttacker, 75/25",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/fixed_L1_live_attacker_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-FIX-L2",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=2, live AdaptiveAttacker, 75/25",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/fixed_L2_live_attacker_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    },
+    {
+      "experiment_id": "Q1-ADP-FIX-L3",
+      "date": "2026-08-29T15:45:07.977543+00:00",
+      "config": "fixed_level=3, live AdaptiveAttacker, 75/25",
+      "seed": null,
+      "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f",
+      "raw_result_path": "/workspace/results/q1_realign/raw/fixed_L3_live_attacker_episodes.json",
+      "aggregated_result_path": "/workspace/results/q1_realign/adaptive_attacker/summary.json"
+    }
+  ]
+}

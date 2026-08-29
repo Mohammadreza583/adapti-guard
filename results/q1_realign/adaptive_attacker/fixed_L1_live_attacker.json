@@ -1,0 +1,19 @@
+{
+  "episodes": 100,
+  "attack_episodes": 75,
+  "legitimate_episodes": 25,
+  "asr": 0.9866666666666667,
+  "legitimate_task_success": 1.0,
+  "intervention_rate": 1.0,
+  "false_intervention_rate": 1.0,
+  "defense_cost_mean": 0.1,
+  "reward_mean": 0.22,
+  "escalation_count": 0,
+  "deescalation_count": 0,
+  "transition_count": 0,
+  "final_defense_level": 1,
+  "mean_defense_level": 1.0,
+  "method": "fixed_level_1_live_attacker",
+  "timestamp_utc": "2026-08-29T15:45:07.977543+00:00",
+  "code_version": "c4eaf51179562ce97055f694bf9b2702ac4fda7f"
+}

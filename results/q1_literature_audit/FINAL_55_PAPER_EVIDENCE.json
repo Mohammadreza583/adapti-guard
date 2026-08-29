@@ -1,0 +1,36 @@
+{
+  "timestamp_utc": "2026-08-29T16:04:51.651910+00:00",
+  "corpus": "0/55",
+  "verification": "FAIL",
+  "novelty_analysis_performed": false,
+  "requested_root": "/mnt/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--",
+  "environment": {
+    "hostname": "cursor",
+    "uname": {
+      "system": "Linux",
+      "node": "cursor",
+      "release": "6.12.94+",
+      "version": "#1 SMP PREEMPT_DYNAMIC Fri Aug 28 16:08:20 UTC 2026",
+      "machine": "x86_64",
+      "processor": "x86_64"
+    },
+    "cwd": "/workspace",
+    "mnt_c_exists": false
+  },
+  "papers": [],
+  "direct_overlap": null,
+  "partial_overlap": null,
+  "claims": {
+    "C1": "NOT ADJUDICABLE",
+    "C2": "NOT ADJUDICABLE",
+    "C3": "NOT ADJUDICABLE",
+    "C4": "NOT ADJUDICABLE",
+    "C5": "NOT ADJUDICABLE",
+    "C6": "NOT ADJUDICABLE",
+    "C7": "NOT ADJUDICABLE",
+    "C8": "NOT ADJUDICABLE",
+    "C9": "NOT ADJUDICABLE"
+  },
+  "stop_reason": "/mnt/c does not exist in this Cursor Cloud VM; WSL corpus not mounted",
+  "next_action": "Mount/copy TOTAL-- 55 TXT files into this VM, then re-run audit"
+}

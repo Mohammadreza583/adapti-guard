@@ -1,0 +1,88 @@
+{
+  "timestamp_utc": "2026-08-29T16:00:30.537398+00:00",
+  "verification": "FAIL",
+  "novelty_analysis_performed": false,
+  "stop": true,
+  "expected_total": 55,
+  "observed_total": 0,
+  "expected_by_folder": {
+    "01_BASE_Q1": 15,
+    "02_AGENT_SECURITY": 6,
+    "03_DEFENSE": 5,
+    "04_BACKGROUND": 9,
+    "05_2025_2026": 9,
+    "07_VERIFIED_AGENT_PAPERS": 5,
+    "08_supporting": 6
+  },
+  "observed_by_folder": {
+    "01_BASE_Q1": {
+      "expected": 15,
+      "found": 0,
+      "files": []
+    },
+    "02_AGENT_SECURITY": {
+      "expected": 6,
+      "found": 0,
+      "files": []
+    },
+    "03_DEFENSE": {
+      "expected": 5,
+      "found": 0,
+      "files": []
+    },
+    "04_BACKGROUND": {
+      "expected": 9,
+      "found": 0,
+      "files": []
+    },
+    "05_2025_2026": {
+      "expected": 9,
+      "found": 0,
+      "files": []
+    },
+    "07_VERIFIED_AGENT_PAPERS": {
+      "expected": 5,
+      "found": 0,
+      "files": []
+    },
+    "08_supporting": {
+      "expected": 6,
+      "found": 0,
+      "files": []
+    }
+  },
+  "canonical_root_requested_windows": "C:\\Users\\MohammadReza\\Desktop\\adapti-guard\\paper\\references\\TOTAL--",
+  "canonical_root_requested_wsl": "/mnt/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--",
+  "environment": {
+    "uname": {
+      "system": "Linux",
+      "node": "cursor",
+      "release": "6.12.94+",
+      "version": "#1 SMP PREEMPT_DYNAMIC Fri Aug 28 16:08:20 UTC 2026",
+      "machine": "x86_64",
+      "processor": "x86_64"
+    },
+    "hostname": "cursor",
+    "cwd": "/workspace",
+    "uid": 1000,
+    "runtime_type": "Cursor Cloud Linux VM (not user WSL)",
+    "/mnt_listing": [],
+    "/mnt/c_exists": false
+  },
+  "path_probes": {
+    "/mnt/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--": false,
+    "/mnt/wsl/localhost/C/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--": false,
+    "/run/desktop/mnt/host/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--": false,
+    "/host_mnt/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--": false,
+    "/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--": false,
+    "/workspace/paper/references/TOTAL--": false,
+    "/workspace/TOTAL--": false
+  },
+  "mismatch": {
+    "user_assumption": "Corpus accessible at /mnt/c/... from WSL",
+    "agent_reality": "This agent runs in an isolated Cursor Cloud Linux environment where /mnt is empty and /mnt/c does not exist. The Windows/WSL filesystem is not mounted into this VM.",
+    "consequence": "Cannot read the 55 canonical TXT files; STEP 1 fails; Steps 2\u20137 not executed."
+  },
+  "files": [],
+  "rule_applied": "If /mnt/c unavailable \u2192 STOP and report exact environment/path mismatch. Do not analyze filenames or prior audits."
+}

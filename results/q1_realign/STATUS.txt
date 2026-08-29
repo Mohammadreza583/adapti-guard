@@ -1,0 +1,40 @@
+Q1 REALIGNMENT STATUS
+
+P0:
+- Claim repair doc: REMOVE historical contribution, first/SOTA/unique, AutoDojo-robust wording
+- Protocol stated as 75% attack / 25% legitimate
+- Disclose adaptive-level vs fixed-level action non-isomorphism
+
+P1:
+- Escalate / de-escalate / cost-gate ablations executed (new dir)
+- AdaptiveAttacker separate experiment executed
+- REPRODUCIBILITY.md added
+- Experiment manifest + reviewer attack updated
+
+NEW EXPERIMENTS:
+- results/q1_realign/fixed_vs_adaptive/
+- results/q1_realign/ablation/
+- results/q1_realign/adaptive_attacker/
+
+CLAIMS REMOVED:
+- historical attack feedback contribution
+- first / SOTA / uniquely adaptive defense
+- solves / guarantees
+
+CLAIMS WEAKENED:
+- absolute security superiority vs all fixed levels
+- open-world novel-attack generalization
+- robust against adaptive attackers → evaluated under AdaptiveAttacker conditions (MVP family-switch)
+- multi-seed variance as stochastic robustness (std=0 determinism)
+
+CODE CHANGES:
+- Restored controlled-eval harness from phase10 (workspace runner was markdown-corrupted / missing stream mode)
+- FeedbackEngine + ExperimentRunner ablation flags (defaults preserve Phase7 behavior)
+- scripts/run_q1_realign_experiments.py
+- REPRODUCIBILITY.md
+
+OLD RESULTS PRESERVED:
+YES
+
+NEXT SINGLE ACTION:
+Update paper Methods/Claims text to match STEP2_CLAIMS.md and cite results/q1_realign/* tables (no further core code changes).
