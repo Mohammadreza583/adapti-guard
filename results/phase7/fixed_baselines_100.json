@@ -1,0 +1,54 @@
+[
+  {
+    "method": "fixed_level_0",
+    "defense_level": 0,
+    "episodes": 100,
+    "attack_episodes": 75,
+    "legitimate_episodes": 25,
+    "attack_successes": 75,
+    "legitimate_successes": 25,
+    "asr": 1.0,
+    "defense_rate": 0.0,
+    "utility": 1.0,
+    "average_cost": 0.0
+  },
+  {
+    "method": "fixed_level_1",
+    "defense_level": 1,
+    "episodes": 100,
+    "attack_episodes": 75,
+    "legitimate_episodes": 25,
+    "attack_successes": 54,
+    "legitimate_successes": 25,
+    "asr": 0.72,
+    "defense_rate": 0.28,
+    "utility": 1.0,
+    "average_cost": 0.1
+  },
+  {
+    "method": "fixed_level_2",
+    "defense_level": 2,
+    "episodes": 100,
+    "attack_episodes": 75,
+    "legitimate_episodes": 25,
+    "attack_successes": 57,
+    "legitimate_successes": 25,
+    "asr": 0.76,
+    "defense_rate": 0.24,
+    "utility": 1.0,
+    "average_cost": 0.25
+  },
+  {
+    "method": "fixed_level_3",
+    "defense_level": 3,
+    "episodes": 100,
+    "attack_episodes": 75,
+    "legitimate_episodes": 25,
+    "attack_successes": 0,
+    "legitimate_successes": 0,
+    "asr": 0.0,
+    "defense_rate": 1.0,
+    "utility": 0.0,
+    "average_cost": 0.5
+  }
+]
