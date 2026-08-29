@@ -1,0 +1,2 @@
+status,corpus,observed,expected,note
+STOP,inaccessible,0,55,/mnt/c not mounted in Cursor Cloud VM; no paper rows extracted
