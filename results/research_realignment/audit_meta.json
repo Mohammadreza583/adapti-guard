@@ -1,0 +1,32 @@
+{
+  "timestamp_utc": "2026-08-29T15:36:31.416191+00:00",
+  "code_changes": false,
+  "results_changed": false,
+  "local_total_corpus_present": false,
+  "phase7_10_11_hashes": {
+    "results/phase7/adaptive_100_v2.json": "b7335bcae9751b9c57dcb114ff2cae7a91c25af67c7e109188bba91888268f96",
+    "results/phase7/fixed_baselines_100_v2.json": "f4e3b3b83fb33910336b8be1703f8013324e7c5ff4a237b98f77d385cb5b296a",
+    "results/phase7/phase7_schedule.json": "f8e228f3dd5fbaf111a0f95679f9d10c7f270041c5a835614b534a0e79962529",
+    "results/phase8/ablation_v1.json": "fa4a26b55e092c3cd37b4f0084c31724765cb5db5a71686b39084304eb4d3059",
+    "results/phase8/multiseed_summary.json": "d1978cf0ad4bc31a05f2c33220d0ea818d4cb6bfd791e7858f8ce0dd05ba3e80",
+    "results/phase10/claim_evidence_matrix_v1.json": "1e5a1f5f89a18a7c0264f06fdaea615475d06ed5becbac0fc7540edc61d5fcf6",
+    "results/phase11/final_novelty_audit_v1.json": "b010418b68d2d34caaef6b9e69efadce05b6098a4fc4991a1dfb10c801e63739"
+  },
+  "outputs": [
+    "results/research_realignment/Q1_REALIGNMENT_REPORT.md",
+    "results/research_realignment/claim_audit.md",
+    "results/research_realignment/experimental_design_audit.md",
+    "results/research_realignment/final_research_position.md",
+    "results/research_realignment/novelty_claims_v2.md",
+    "results/research_realignment/overlap_matrix.md",
+    "results/research_realignment/paper_matrix.csv",
+    "results/research_realignment/project_inventory.md",
+    "results/research_realignment/required_changes.md",
+    "results/research_realignment/reviewer_attack.md"
+  ],
+  "mixed_workload_truth": {
+    "attack": 75,
+    "legitimate": 25
+  },
+  "adaptive_attacker_primary_protocol": false
+}
