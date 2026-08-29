@@ -1,0 +1,40 @@
+{
+  "experiment": "phase7",
+  "version": "v2_75_25",
+  "seed": 42,
+  "episodes": 100,
+  "attack_stream": "common_attack_stream_v1_first_75",
+  "attack_stream_slice": [
+    0,
+    75
+  ],
+  "defense_levels": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "adaptive": true,
+  "schedule": "phase7_v2_75_25",
+  "adaptive_summary": {
+    "attack_episodes": 75,
+    "legitimate_episodes": 25,
+    "utility": 1.0,
+    "levels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "actions": [
+      "A0",
+      "A1",
+      "A2",
+      "A3"
+    ],
+    "transitions": 25,
+    "increases": 14,
+    "decreases": 11
+  },
+  "timestamp_utc": "2026-08-29T08:22:47.518036+00:00"
+}
