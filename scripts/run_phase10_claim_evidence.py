@@ -730,12 +730,16 @@ def main():
     out_dir = Path("results/phase10")
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / "claim_evidence_matrix_v1.json"
+    # Hard rule: do not overwrite an existing Phase 10 artifact.
     if path.exists():
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-        path.replace(path.with_name(f"{path.stem}_prev_{stamp}{path.suffix}"))
+        matrix = json.loads(path.read_text(encoding="utf-8"))
+        print("exists (not overwritten)", path)
+        print("overall", matrix.get("overall_readiness"))
+        print("statuses", matrix.get("claim_status"))
+        return
 
     matrix = build_matrix()
-    path.write_text(json.dumps(matrix, indent=2), encoding="utf-8")
+    path.write_text(json.dumps(matrix, indent=2) + "\n", encoding="utf-8")
     print("wrote", path)
     print("overall", matrix["overall_readiness"])
     print("statuses", matrix["claim_status"])
