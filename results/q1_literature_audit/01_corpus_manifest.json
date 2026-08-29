@@ -1,0 +1,89 @@
+{
+  "audit": "q1_literature_novelty_audit",
+  "timestamp_utc": "2026-08-29T15:58:56.626064+00:00",
+  "corpus_root_requested": "C:\\Users\\MohammadReza\\Desktop\\adapti-guard\\paper\\references\\TOTAL--",
+  "valid_folders_only": [
+    "01_BASE_Q1",
+    "02_AGENT_SECURITY",
+    "03_DEFENSE",
+    "04_BACKGROUND",
+    "05_2025_2026",
+    "07_VERIFIED_AGENT_PAPERS",
+    "08_supporting"
+  ],
+  "exclude": [
+    "TOTAL--/ANALYSIS/TXT/**",
+    "duplicate TXT outside canonical 55"
+  ],
+  "expected_total": 55,
+  "expected_by_folder": {
+    "01_BASE_Q1": 15,
+    "02_AGENT_SECURITY": 6,
+    "03_DEFENSE": 5,
+    "04_BACKGROUND": 9,
+    "05_2025_2026": 9,
+    "07_VERIFIED_AGENT_PAPERS": 5,
+    "08_supporting": 6
+  },
+  "observed_total": 0,
+  "observed_by_folder": {
+    "01_BASE_Q1": {
+      "expected": 15,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    },
+    "02_AGENT_SECURITY": {
+      "expected": 6,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    },
+    "03_DEFENSE": {
+      "expected": 5,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    },
+    "04_BACKGROUND": {
+      "expected": 9,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    },
+    "05_2025_2026": {
+      "expected": 9,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    },
+    "07_VERIFIED_AGENT_PAPERS": {
+      "expected": 5,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    },
+    "08_supporting": {
+      "expected": 6,
+      "found_txt_count": 0,
+      "files": [],
+      "status": "MISSING_DIRECTORY"
+    }
+  },
+  "paths_searched": [
+    "C:\\Users\\MohammadReza\\Desktop\\adapti-guard\\paper\\references\\TOTAL--",
+    "/mnt/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--",
+    "/workspace/paper/references/TOTAL--",
+    "/workspace/TOTAL--",
+    "/home/ubuntu/adapti-guard/paper/references/TOTAL--"
+  ],
+  "mount_status": {
+    "/mnt/c": false,
+    "TOTAL--_dirs_found": 0,
+    "ANALYSIS_TXT_dirs_found": 0
+  },
+  "verification": "FAIL",
+  "stop_reason": "observed_total != 55 (0 found; corpus not accessible in this environment)",
+  "novelty_analysis_performed": false,
+  "rule": "STOP \u2014 do not perform novelty analysis on incomplete corpus; do not infer from filenames/prior audits/memory"
+}
