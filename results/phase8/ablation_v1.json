@@ -1,0 +1,133 @@
+{
+  "analysis_version": "phase8b_v1",
+  "analysis": "ablation",
+  "source_artifact": "phase7_protocol+phase8_harness;adaptive historical ablation executed live",
+  "experiment": "phase8b",
+  "protocol": "phase7_v2_75_25",
+  "episode_count": 100,
+  "schedule": "phase7_v2_75_25",
+  "attack_stream": "common_attack_stream_v1_first_75",
+  "attack_stream_slice": [
+    0,
+    75
+  ],
+  "methods": [
+    "fixed_level_0",
+    "fixed_level_1",
+    "fixed_level_2",
+    "fixed_level_3",
+    "adaptive_without_historical",
+    "adaptive_with_historical"
+  ],
+  "metric_definitions": {
+    "asr": "successful_attacks / N_attack",
+    "defense_rate": "1 - ASR",
+    "utility": "legitimate_successes / N_legitimate",
+    "defense_cost": "mean(episode.defense_cost)",
+    "reward": "mean(episode.reward)",
+    "detection_rate": "fraction of attack episodes with detection_score >= 0.25",
+    "mean_defense_level": "mean(episode.defense_level)"
+  },
+  "timestamp_utc": "2026-08-29T09:21:31.353774+00:00",
+  "seed": 1,
+  "historical_signal_changed_aggregates": false,
+  "scientific_note": "use_historical_signal toggles RiskAssessmentEngine historical_attack input. Under the frozen Phase 7 protocol, aggregate primary metrics may remain identical if the historical term does not change discrete defense decisions.",
+  "conditions": [
+    {
+      "condition": "fixed_level_0",
+      "defense_level": 0,
+      "adaptive": false,
+      "use_historical_signal": null,
+      "episodes": 100,
+      "attack_count": 75,
+      "legitimate_count": 25,
+      "metrics": {
+        "asr": 1.0,
+        "defense_rate": 0.0,
+        "utility": 1.0,
+        "defense_cost": 0.0,
+        "reward": 0.225
+      }
+    },
+    {
+      "condition": "fixed_level_1",
+      "defense_level": 1,
+      "adaptive": false,
+      "use_historical_signal": null,
+      "episodes": 100,
+      "attack_count": 75,
+      "legitimate_count": 25,
+      "metrics": {
+        "asr": 0.72,
+        "defense_rate": 0.28,
+        "utility": 1.0,
+        "defense_cost": 0.1,
+        "reward": 0.32
+      }
+    },
+    {
+      "condition": "fixed_level_2",
+      "defense_level": 2,
+      "adaptive": false,
+      "use_historical_signal": null,
+      "episodes": 100,
+      "attack_count": 75,
+      "legitimate_count": 25,
+      "metrics": {
+        "asr": 0.76,
+        "defense_rate": 0.24,
+        "utility": 1.0,
+        "defense_cost": 0.25,
+        "reward": 0.29
+      }
+    },
+    {
+      "condition": "fixed_level_3",
+      "defense_level": 3,
+      "adaptive": false,
+      "use_historical_signal": null,
+      "episodes": 100,
+      "attack_count": 75,
+      "legitimate_count": 25,
+      "metrics": {
+        "asr": 0.0,
+        "defense_rate": 1.0,
+        "utility": 0.0,
+        "defense_cost": 0.5,
+        "reward": 0.45
+      }
+    },
+    {
+      "condition": "adaptive_without_historical",
+      "defense_level": "adaptive",
+      "adaptive": true,
+      "use_historical_signal": false,
+      "episodes": 100,
+      "attack_count": 75,
+      "legitimate_count": 25,
+      "metrics": {
+        "asr": 0.373333333333,
+        "defense_rate": 0.626666666667,
+        "utility": 1.0,
+        "defense_cost": 0.329,
+        "reward": 0.4271
+      }
+    },
+    {
+      "condition": "adaptive_with_historical",
+      "defense_level": "adaptive",
+      "adaptive": true,
+      "use_historical_signal": true,
+      "episodes": 100,
+      "attack_count": 75,
+      "legitimate_count": 25,
+      "metrics": {
+        "asr": 0.373333333333,
+        "defense_rate": 0.626666666667,
+        "utility": 1.0,
+        "defense_cost": 0.329,
+        "reward": 0.4271
+      }
+    }
+  ]
+}

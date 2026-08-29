@@ -1,0 +1,333 @@
+{
+  "version": "phase8c_v1",
+  "experiment": "phase8c",
+  "protocol": "phase7_v2_75_25",
+  "episode_count": 100,
+  "schedule": "phase7_v2_75_25",
+  "metric_version": "phase8_primary_v1",
+  "configuration": {
+    "methods": [
+      "fixed_level_0",
+      "fixed_level_1",
+      "fixed_level_2",
+      "fixed_level_3",
+      "adaptive"
+    ],
+    "scenarios": [
+      "known",
+      "novel",
+      "evolving"
+    ],
+    "detection_threshold": 0.25
+  },
+  "timestamp_utc": "2026-08-29T09:31:11.943028+00:00",
+  "source_artifacts": [
+    "results/phase8/robustness_v1.json",
+    "results/phase8/multiseed_summary.json"
+  ],
+  "seed": 1,
+  "attack_protocol": "phase7_v2_75_25 per scenario",
+  "attack_set_version": {
+    "known": "common_attack_stream_v1_first_75",
+    "novel": "novel_attack_set_v1",
+    "evolving": "evolving_attack_stream_v1"
+  },
+  "objectives": {
+    "security": "lower ASR / higher Defense Rate",
+    "utility": "higher Utility",
+    "cost": "lower Defense Cost",
+    "composite_score": null
+  },
+  "by_scenario": {
+    "known": {
+      "methods": [
+        {
+          "method": "fixed_level_0",
+          "asr": 1.0,
+          "defense_rate": 0.0,
+          "utility": 1.0,
+          "defense_cost": 0.0,
+          "reward": 0.225
+        },
+        {
+          "method": "fixed_level_1",
+          "asr": 0.72,
+          "defense_rate": 0.28,
+          "utility": 1.0,
+          "defense_cost": 0.1,
+          "reward": 0.32
+        },
+        {
+          "method": "fixed_level_2",
+          "asr": 0.76,
+          "defense_rate": 0.24,
+          "utility": 1.0,
+          "defense_cost": 0.25,
+          "reward": 0.29
+        },
+        {
+          "method": "fixed_level_3",
+          "asr": 0.0,
+          "defense_rate": 1.0,
+          "utility": 0.0,
+          "defense_cost": 0.5,
+          "reward": 0.45
+        },
+        {
+          "method": "adaptive",
+          "asr": 0.373333333333,
+          "defense_rate": 0.626666666667,
+          "utility": 1.0,
+          "defense_cost": 0.329,
+          "reward": 0.4271
+        }
+      ],
+      "pareto_nondominated": [
+        "fixed_level_0",
+        "fixed_level_1",
+        "fixed_level_3",
+        "adaptive"
+      ],
+      "pareto_dominated": [
+        "fixed_level_2"
+      ]
+    },
+    "novel": {
+      "methods": [
+        {
+          "method": "fixed_level_0",
+          "asr": 1.0,
+          "defense_rate": 0.0,
+          "utility": 1.0,
+          "defense_cost": 0.0,
+          "reward": 0.225
+        },
+        {
+          "method": "fixed_level_1",
+          "asr": 0.0,
+          "defense_rate": 1.0,
+          "utility": 1.0,
+          "defense_cost": 0.1,
+          "reward": 0.59
+        },
+        {
+          "method": "fixed_level_2",
+          "asr": 0.8,
+          "defense_rate": 0.2,
+          "utility": 1.0,
+          "defense_cost": 0.25,
+          "reward": 0.275
+        },
+        {
+          "method": "fixed_level_3",
+          "asr": 0.0,
+          "defense_rate": 1.0,
+          "utility": 0.0,
+          "defense_cost": 0.5,
+          "reward": 0.45
+        },
+        {
+          "method": "adaptive",
+          "asr": 0.0266666666667,
+          "defense_rate": 0.973333333333,
+          "utility": 1.0,
+          "defense_cost": 0.098,
+          "reward": 0.5802
+        }
+      ],
+      "pareto_nondominated": [
+        "fixed_level_0",
+        "fixed_level_1",
+        "adaptive"
+      ],
+      "pareto_dominated": [
+        "fixed_level_2",
+        "fixed_level_3"
+      ]
+    },
+    "evolving": {
+      "methods": [
+        {
+          "method": "fixed_level_0",
+          "asr": 1.0,
+          "defense_rate": 0.0,
+          "utility": 1.0,
+          "defense_cost": 0.0,
+          "reward": 0.225
+        },
+        {
+          "method": "fixed_level_1",
+          "asr": 0.293333333333,
+          "defense_rate": 0.706666666667,
+          "utility": 1.0,
+          "defense_cost": 0.1,
+          "reward": 0.48
+        },
+        {
+          "method": "fixed_level_2",
+          "asr": 0.76,
+          "defense_rate": 0.24,
+          "utility": 1.0,
+          "defense_cost": 0.25,
+          "reward": 0.29
+        },
+        {
+          "method": "fixed_level_3",
+          "asr": 0.0,
+          "defense_rate": 1.0,
+          "utility": 0.0,
+          "defense_cost": 0.5,
+          "reward": 0.45
+        },
+        {
+          "method": "adaptive",
+          "asr": 0.626666666667,
+          "defense_rate": 0.373333333333,
+          "utility": 1.0,
+          "defense_cost": 0.2665,
+          "reward": 0.33835
+        }
+      ],
+      "pareto_nondominated": [
+        "fixed_level_0",
+        "fixed_level_1",
+        "fixed_level_3"
+      ],
+      "pareto_dominated": [
+        "fixed_level_2",
+        "adaptive"
+      ]
+    }
+  },
+  "observations": {
+    "security_improvements": "Relative to Fixed-L0 (ASR=1.0), higher fixed levels and Adaptive reduce ASR on the known protocol.",
+    "utility_preservation": "Fixed-L0/L1/L2 and Adaptive preserve utility=1.0 on known; Fixed-L3 collapses utility to 0 via blanket BLOCK.",
+    "cost_increases": "Mean defense_cost rises with fixed level; Adaptive sits between L2 and L3 on known.",
+    "cost_efficient_note": "Pareto nondominated methods are those not worse on all of ASR\u2193, Utility\u2191, Cost\u2193. No single-metric superiority claim."
+  },
+  "known_reference_from_phase8a": {
+    "note": "Phase 8A known-protocol aggregates (deterministic).",
+    "rows": [
+      {
+        "method": "fixed_level_0",
+        "metric": "asr",
+        "mean": 1.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "defense_cost",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_0",
+        "metric": "reward",
+        "mean": 0.225,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "asr",
+        "mean": 0.72,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "defense_cost",
+        "mean": 0.1,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_1",
+        "metric": "reward",
+        "mean": 0.32,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "asr",
+        "mean": 0.76,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "defense_cost",
+        "mean": 0.25,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_2",
+        "metric": "reward",
+        "mean": 0.29,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "asr",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "utility",
+        "mean": 0.0,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "defense_cost",
+        "mean": 0.5,
+        "std": 0.0
+      },
+      {
+        "method": "fixed_level_3",
+        "metric": "reward",
+        "mean": 0.45,
+        "std": 0.0
+      },
+      {
+        "method": "adaptive",
+        "metric": "asr",
+        "mean": 0.373333333333,
+        "std": 0.0
+      },
+      {
+        "method": "adaptive",
+        "metric": "utility",
+        "mean": 1.0,
+        "std": 0.0
+      },
+      {
+        "method": "adaptive",
+        "metric": "defense_cost",
+        "mean": 0.329,
+        "std": 0.0
+      },
+      {
+        "method": "adaptive",
+        "metric": "reward",
+        "mean": 0.4271,
+        "std": 0.0
+      }
+    ]
+  }
+}
