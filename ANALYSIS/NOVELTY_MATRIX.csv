@@ -1,0 +1,21 @@
+Paper,Overlap,Mechanism vs AG,Adaptation target,Operating regime,Research objective,Why not DIRECT
+AgentAntibody,PARTIAL,antibody library responses,user boundary memory,cross-encounter runtime,PI + utility,target/regime ≠ L0-L3 SUC episodes
+COPA,PARTIAL,continual preference opt,model weights,lifelong training stream,evolving PI defense,training-time ≠ runtime levels
+HARD,PARTIAL,harness evolver,harness artifacts,evolution iterations,self-evolving runtime defense,offline evolution ≠ episode levels
+SCOUT,PARTIAL,detector allocation,detector pool + τ,per-request routing,safety-utility-latency,detectors ≠ intervention levels
+SecOPD,ADJACENT,token distillation,model tokens,training,adaptive-attack robustness,no runtime adaptation
+Adaptive Adversaries,COMPLEMENTARY,benchmark,n/a,multi-turn attack eval,eval adaptive attackers,not a defense
+AutoDojo,COMPLEMENTARY,adaptive attack optimizer,defenses under test,AgentDojo adaptive,eval realism,not a defense; stresses AG eval
+SafeHarness,PARTIAL,privilege degradation 0-4,tool-tier ceilings,harness lifecycle steps,lifecycle security architecture,target/regime/objective differ; escalate/de-escalate shared only
+CaMeL,ADJACENT,control/data isolation,program flows,static runtime,provable-ish PI defense,static ≠ adaptive levels
+Progent,ADJACENT,privilege policies,tools,static runtime,privilege control,static policies
+Meta SecAlign,ADJACENT,SecAlign FT,model,training,model security-utility,static model
+AttriGuard,ADJACENT,causal attribution,tool calls,runtime tests,IPI defense,no discrete SUC levels
+AgentVisor,ADJACENT,semantic visor,tool mediation,runtime,PI + utility,no L0-L3 controller
+SHE,PARTIAL,harness evolution,safety harness,trajectory iterations,evolvable safety,not mixed SUC level policy
+HarnessX,ADJACENT,harness foundry,harness primitives,evolution,performance harnesses,not PI SUC focus
+Runtime Harness Adaptation,ADJACENT,interface adaptation,harness layers,runtime loops,deterministic agents,not PI intervention levels
+ProbGuard,ADJACENT,probabilistic monitor,future unsafe risk,runtime,proactive safety,different domain
+AgentSentinel,ADJACENT,system monitor stack,computer-use ops,runtime,CUA security,different stack
+Adaptive Eval Out-of-Band,COMPLEMENTARY,eval protocol,OOB defenses,adaptive eval,methodology,eval only
+From Craft to Kernel,NO_OVERLAP,governance ISA,agent OS,architecture,governance,background only
