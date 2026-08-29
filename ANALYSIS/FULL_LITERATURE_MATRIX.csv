@@ -1,0 +1,21 @@
+Paper,Year,Problem,Threat Model,Defense Type,Adaptive?,Runtime?,Training-time?,Discrete Levels?,Escalation?,De-escalation?,Utility Objective?,Cost Objective?,Adaptive/Evolving Attacker?,Evaluation Protocol,Main Limitation,Relation to Adapti-Guard
+AgentAntibody,2026,PI under underspecified user boundary,agent PI,antibody memory responses,YES,YES,NO,NO,PARTIAL,PARTIAL,YES,NO,PARTIAL,multi-bench multi-LLM,not discrete intervention levels,PARTIAL: runtime adaptive memory ≠ L0-L3 SUC controller
+COPA,2026,evolving PI distributions,LLM PI,continual LoRA/GRPO,YES,NO,YES,NO,NO,NO,YES,NO,YES,lifelong CyberSecEval stream,training-time only,PARTIAL: evolving adaptation different regime
+HARD (Beyond Handcrafted),2026,static runtime defenses,agent threats DPI/IPI/memory/skill,harness evolver,YES,PARTIAL,NO,NO,NOT_EVIDENCED,NOT_EVIDENCED,YES,NO,YES,AgentCanary static+adaptive,offline evolution cycles,PARTIAL: self-evolving harness ≠ episode levels
+SCOUT,2026,heterogeneous detectors,PI detection,detector allocation,YES,YES,PARTIAL,PARTIAL,YES,PARTIAL,YES,YES (latency),NO,SCOUT-450 + transfers,detector not intervention levels,PARTIAL: SUC-latency allocation closest on cost axis
+SecOPD,2026,adaptive PI vs model defenses,model-level PI,token OPD fine-tune,NO,NO,YES,NO,NO,NO,YES,NO,PARTIAL (eval),SEP/AgentDojo adaptive ASR,static after train,ADJACENT
+Adaptive Adversaries,2026,adaptive multi-turn attackers,memoryless defenders,benchmark,n/a,n/a,n/a,NO,NO,NO,NO,NO,YES,21-scenario multi-LLM,not a defense,COMPLEMENTARY
+AutoDojo,2026,static IPI benches overstate robustness,IPI vs defenses,adaptive attack eval,n/a,n/a,n/a,NO,NO,NO,NO,NO,YES,AgentDojo + LLM optimizer,attack framework,COMPLEMENTARY: exposes AG evolving-eval weakness
+SafeHarness,2026,harness lifecycle security,multi-phase harness attacks,Inform/Verify/Constrain/Correct,YES,YES,NO,YES (0-4 privilege),YES,YES,YES,PARTIAL,PARTIAL,multi-harness baselines,privilege levels ≠ detect/sanitize levels; no AG 75/25 SUC vs fixed,PARTIAL (closest on escalate/de-escalate levels)
+CaMeL,2025,PI in tool agents,untrusted data control/data flow,system isolation + capabilities,NO,YES,NO,NO,NO,NO,YES,NO,NO,AgentDojo,static architecture,ADJACENT
+Progent,2025,tool misuse via PI,agent tools,programmable privileges,NO,YES,NO,NO,NO,NO,YES,NO,PARTIAL,AgentDojo,static policies,ADJACENT
+Meta SecAlign,2025,model PI robustness,instruction vs data,SecAlign fine-tune,NO,NO,YES,NO,NO,NO,YES,NO,NO,SEP/AgentDojo etc,static model,ADJACENT
+AttriGuard,2026,IPI via tool observations,causal tool attribution,counterfactual runtime tests,NO,YES,NO,NO,NO,NO,YES,YES (tokens),YES (adaptive eval),AgentDojo/ASB,no level policy,ADJACENT
+AgentVisor,2026,direct/indirect PI,semantic privileges,semantic virtualization + self-correct,PARTIAL,YES,NO,NO,NO,NO,YES,NO,NO,agent tool-use,no L0-L3 SUC,ADJACENT
+SHE,2026,static safety harnesses,trajectory failures,trajectory-driven harness evolution,YES,PARTIAL,NO,NO,NO,NO,YES,NO,PARTIAL,harness evolution eval,not episode SUC levels,PARTIAL
+HarnessX,2026,static harness engineering,general agent performance,evolvable harness foundry,YES,PARTIAL,PARTIAL,NO,NO,NO,YES,NO,NO,multi-bench performance,not PI-SUC focus,ADJACENT
+Runtime Harness Adaptation,2026,adapt interface not model,deterministic agents,runtime harness updates,YES,YES,NO,NO,NO,NO,YES,NO,NO,deterministic env loops,not PI level policy,ADJACENT
+ProbGuard,2025,proactive agent safety,long-horizon unsafe traj,DTMC risk monitor,PARTIAL,YES,PARTIAL,NO,PARTIAL,NO,YES,NO,NO,driving/household,different domain/objective,ADJACENT
+AgentSentinel,2025,computer-use agent security,system-level threats,monitor/tracer/auditor,PARTIAL,YES,NO,NO,NO,NO,YES,NO,YES (adaptive attacks),computer-use agents,different stack,ADJACENT
+Adaptive Eval Out-of-Band,2026,static eval of OOB defenses,IPI vs system defenses,evaluation methodology,n/a,n/a,n/a,NO,NO,NO,YES,NO,YES,AgentDojo adaptive protocol,eval paper,COMPLEMENTARY
+From Craft to Kernel,2026,prompt-centric agent fragility,governance of agentic computers,kernel/ISA governance,NO,YES,NO,NO,NO,NO,YES,NO,NO,architectural proposal,background,NO_OVERLAP / background

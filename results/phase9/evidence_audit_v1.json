@@ -1,0 +1,518 @@
+{
+  "version": "evidence_audit_v1",
+  "timestamp_utc": "2026-08-29T10:23:59.914397+00:00",
+  "source_artifacts": [
+    "results/phase7/fixed_baselines_100_v2.json",
+    "results/phase7/adaptive_100_v2.json",
+    "results/phase7/phase7_manifest.json",
+    "results/phase7/phase7_schedule.json",
+    "results/phase8/multiseed_raw.json",
+    "results/phase8/multiseed_summary.json",
+    "results/phase8/ablation_v1.json",
+    "results/phase8/temporal_analysis_v1.json",
+    "results/phase8/attack_family_analysis_v1.json",
+    "results/phase8/novel_attack_set_v1.json",
+    "results/phase8/evolving_attack_stream_v1.json",
+    "results/phase8/robustness_v1.json",
+    "results/phase8/statistical_comparison_v1.json",
+    "results/phase8/security_utility_cost_v1.json",
+    "results/common_attack_stream.json"
+  ],
+  "source_artifact_hashes": {
+    "results/phase7/fixed_baselines_100_v2.json": "f4e3b3b83fb33910336b8be1703f8013324e7c5ff4a237b98f77d385cb5b296a",
+    "results/phase7/adaptive_100_v2.json": "b7335bcae9751b9c57dcb114ff2cae7a91c25af67c7e109188bba91888268f96",
+    "results/phase7/phase7_manifest.json": "62568845f0ce00039125b250f5f83b44d34262542f422c90ce61a06b3435bd9b",
+    "results/phase7/phase7_schedule.json": "f8e228f3dd5fbaf111a0f95679f9d10c7f270041c5a835614b534a0e79962529",
+    "results/phase8/multiseed_raw.json": "72753ee8d9bf9512fdd3fd00cfe8188e63b27aa17cbd500f6f0363386bc1bc61",
+    "results/phase8/multiseed_summary.json": "d1978cf0ad4bc31a05f2c33220d0ea818d4cb6bfd791e7858f8ce0dd05ba3e80",
+    "results/phase8/ablation_v1.json": "fa4a26b55e092c3cd37b4f0084c31724765cb5db5a71686b39084304eb4d3059",
+    "results/phase8/temporal_analysis_v1.json": "9530617846c4ea1c589c7ab90553fd31186109ba5954887a662f6e114e57aeda",
+    "results/phase8/attack_family_analysis_v1.json": "ca3470c9b21d0fb44a4b1ebae91ef239bdeae76a7775d998684bb10b8cf9ebd0",
+    "results/phase8/novel_attack_set_v1.json": "b0045ea6fd14d802db057c3bc08fe2a30fe8d7ebdc835d381a438f327b72e4df",
+    "results/phase8/evolving_attack_stream_v1.json": "0b6e5b03dea2ab09514d74f4e1ffe093e76957063c61fd596c633b0bfa9421d4",
+    "results/phase8/robustness_v1.json": "7ce8d46664990af24836cb277428316d38461e0b4c98a0d696a16052a21d7188",
+    "results/phase8/statistical_comparison_v1.json": "46c84eb844dac05807b9a7a2c9d65fbd5371540628bf479ec00dda9fe96dccf3",
+    "results/phase8/security_utility_cost_v1.json": "0c8c4a297fb9d935227506933d8da8fc2499de8c8300e576fbca48303027662b",
+    "results/common_attack_stream.json": "d101f94d97e0a29e8b9f9cc4dacb92472e29cd9af403114cb09b8f1d50a06c47"
+  },
+  "protocol": {
+    "schedule": "phase7_v2_75_25",
+    "episodes": 100,
+    "attack": 75,
+    "legitimate": 25,
+    "attack_stream": "common_attack_stream_v1_first_75"
+  },
+  "artifact_consistency": {
+    "status": "PASS",
+    "contradictions": [],
+    "known_adaptive_asr_cross_phase": {
+      "phase7_adaptive": 0.373333333333,
+      "phase8a": 0.373333333333,
+      "ablation_with_hist": 0.373333333333,
+      "robust_known": 0.373333333333
+    },
+    "novel_exact_overlap_with_stream": 0
+  },
+  "claims": [
+    {
+      "claim_id": "C1",
+      "claim": "Adaptive defense changes defense policy over time.",
+      "supporting_artifacts": [
+        "results/phase7/adaptive_100_v2.json",
+        "results/phase7/phase7_manifest.json",
+        "results/phase8/temporal_analysis_v1.json"
+      ],
+      "supporting_metrics": [
+        "defense_level transitions",
+        "adaptation_signal",
+        "mean_defense_level by window"
+      ],
+      "statistical_evidence": "Episode-level transitions=25, increases=14, decreases=11; signals={'MAINTAIN': 49, 'INCREASE_DEFENSE': 28, 'REDUCE_DEFENSE': 23}; temporal mean defense level rises across windows 1\u201325\u219276\u2013100.",
+      "strength_of_evidence": "STRONG",
+      "limitation": "Observed on the frozen known protocol only; not a claim of open-world dynamics.",
+      "status": "SUPPORTED",
+      "recommended_wording_strength": "strong claim"
+    },
+    {
+      "claim_id": "C2",
+      "claim": "Adaptive defense provides meaningful security against prompt injection.",
+      "supporting_artifacts": [
+        "results/phase7/adaptive_100_v2.json",
+        "results/phase7/fixed_baselines_100_v2.json",
+        "results/phase8/security_utility_cost_v1.json",
+        "results/phase8/statistical_comparison_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Defense Rate"
+      ],
+      "statistical_evidence": "Known Adaptive ASR=0.3733 vs Fixed-L0 ASR=1.0; paired episode-level sign test Adaptive vs Fixed-L0 attack_success survives Holm correction.",
+      "strength_of_evidence": "MODERATE",
+      "limitation": "Security is partial (ASR>0). Fixed-L3 achieves ASR=0 but destroys utility. Evidence is protocol-specific (MVP detector/outcome heuristics).",
+      "status": "PARTIALLY SUPPORTED",
+      "recommended_wording_strength": "moderate claim"
+    },
+    {
+      "claim_id": "C3",
+      "claim": "Adaptive defense preserves utility while applying defense.",
+      "supporting_artifacts": [
+        "results/phase7/adaptive_100_v2.json",
+        "results/phase8/ablation_v1.json",
+        "results/phase8/security_utility_cost_v1.json"
+      ],
+      "supporting_metrics": [
+        "Utility",
+        "Defense Cost"
+      ],
+      "statistical_evidence": "Known Adaptive utility=1.0000 with N_legitimate=25; Fixed-L3 utility=0.0.",
+      "strength_of_evidence": "STRONG",
+      "limitation": "Utility measured on the controlled 25 legitimate episodes only.",
+      "status": "SUPPORTED",
+      "recommended_wording_strength": "strong claim"
+    },
+    {
+      "claim_id": "C4",
+      "claim": "Adaptive defense has a measurable security\u2013utility\u2013cost tradeoff.",
+      "supporting_artifacts": [
+        "results/phase8/security_utility_cost_v1.json",
+        "results/phase8/ablation_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Utility",
+        "Defense Cost",
+        "Reward",
+        "Pareto nondominance"
+      ],
+      "statistical_evidence": "SUC tables report multi-objective values; Adaptive is Pareto-nondominated on known; Fixed-L2 is dominated.",
+      "strength_of_evidence": "MODERATE",
+      "limitation": "No single composite score is defined; superiority is multi-objective only.",
+      "status": "SUPPORTED",
+      "recommended_wording_strength": "moderate claim"
+    },
+    {
+      "claim_id": "C5",
+      "claim": "Adaptation contributes beyond fixed defense levels.",
+      "supporting_artifacts": [
+        "results/phase8/ablation_v1.json",
+        "results/phase8/security_utility_cost_v1.json",
+        "results/phase8/statistical_comparison_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Utility",
+        "Defense Cost",
+        "Reward"
+      ],
+      "statistical_evidence": "Adaptive occupies an intermediate ASR with utility preserved, unlike Fixed-L3; episode-level differences vs Fixed-L0/L3 are Holm-significant for attack_success on known.",
+      "strength_of_evidence": "MODERATE",
+      "limitation": "Adaptive is not strictly best on ASR (Fixed-L3 is lower). Contribution is tradeoff-based, not absolute security dominance.",
+      "status": "PARTIALLY SUPPORTED",
+      "recommended_wording_strength": "moderate claim"
+    },
+    {
+      "claim_id": "C6",
+      "claim": "Historical attack feedback contributes to adaptation.",
+      "supporting_artifacts": [
+        "results/phase8/ablation_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Defense Rate",
+        "Utility",
+        "Defense Cost",
+        "Reward"
+      ],
+      "statistical_evidence": "Ablation Adaptive with vs without historical signal: identical aggregate primary metrics (historical_signal_changed_aggregates=True).",
+      "strength_of_evidence": "WEAK",
+      "limitation": "Mechanism flag exists and is wired, but under the frozen protocol the historical term does not change discrete decisions or aggregates. No evidence of contribution on this protocol.",
+      "status": "NOT SUPPORTED",
+      "recommended_wording_strength": "limited claim"
+    },
+    {
+      "claim_id": "C7",
+      "claim": "Performance differs across attack families.",
+      "supporting_artifacts": [
+        "results/phase8/attack_family_analysis_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Detection Rate",
+        "Defense Rate"
+      ],
+      "statistical_evidence": "Known Adaptive family ASR ranges from tool_output_injection\u22480.056 to direct_injection\u22480.632.",
+      "strength_of_evidence": "MODERATE",
+      "limitation": "Family counts are unequal (19/19/19/18) due to first-75 stream slice under 75/25 schedule. Family utility is vacuous (attack-only).",
+      "status": "SUPPORTED",
+      "recommended_wording_strength": "moderate claim"
+    },
+    {
+      "claim_id": "C8",
+      "claim": "Adaptive defense can handle novel attacks.",
+      "supporting_artifacts": [
+        "results/phase8/novel_attack_set_v1.json",
+        "results/phase8/robustness_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Detection Rate",
+        "Defense Rate",
+        "Utility"
+      ],
+      "statistical_evidence": "Novel set has zero exact overlap with frozen stream; Adaptive reports low ASR on novel, but detection_rate=0.0 and Fixed-L0 ASR=1.0. Sanitize success heuristic uses residual known markers.",
+      "strength_of_evidence": "WEAK",
+      "limitation": "MVP attack_success for SANITIZE is defined via residual known malicious markers. Novel marker-free payloads can therefore be labeled unsuccessful after SANITIZE even when detection_score=0. Fixed-L0 (no sanitize) still shows ASR=1.0 on novel, confirming population fairness while limiting claims about sanitize generalization.",
+      "status": "LIMITED",
+      "recommended_wording_strength": "limited claim"
+    },
+    {
+      "claim_id": "C9",
+      "claim": "Adaptive defense can respond to evolving attack sequences.",
+      "supporting_artifacts": [
+        "results/phase8/evolving_attack_stream_v1.json",
+        "results/phase8/robustness_v1.json",
+        "results/phase8/temporal_analysis_v1.json"
+      ],
+      "supporting_metrics": [
+        "ASR",
+        "Detection Rate",
+        "mean_defense_level",
+        "Reward"
+      ],
+      "statistical_evidence": "Evolving stages show changing ASR and mean defense level (defense_level_changes_across_stages=True).",
+      "strength_of_evidence": "MODERATE",
+      "limitation": "Evolving construction is deterministic/synthetic. Later novel stages show higher ASR and near-zero detection \u2014 response is observed but not uniformly successful.",
+      "status": "PARTIALLY SUPPORTED",
+      "recommended_wording_strength": "limited claim"
+    },
+    {
+      "claim_id": "C10",
+      "claim": "Results are reproducible across seeds.",
+      "supporting_artifacts": [
+        "results/phase8/multiseed_raw.json",
+        "results/phase8/multiseed_summary.json",
+        "results/phase8/statistical_comparison_v1.json"
+      ],
+      "supporting_metrics": [
+        "mean",
+        "std",
+        "95% CI"
+      ],
+      "statistical_evidence": "5 methods \u00d7 5 seeds; all methods all_zero_std=true; CI collapses to the mean.",
+      "strength_of_evidence": "STRONG for reproducibility; NONE for stochastic robustness",
+      "limitation": "Pipeline is deterministic given frozen stream/schedule. std=0 demonstrates reproducibility, not robustness to random initialization.",
+      "status": "SUPPORTED",
+      "recommended_wording_strength": "moderate claim"
+    }
+  ],
+  "claim_status": {
+    "C1": "SUPPORTED",
+    "C2": "PARTIALLY SUPPORTED",
+    "C3": "SUPPORTED",
+    "C4": "SUPPORTED",
+    "C5": "PARTIALLY SUPPORTED",
+    "C6": "NOT SUPPORTED",
+    "C7": "SUPPORTED",
+    "C8": "LIMITED",
+    "C9": "PARTIALLY SUPPORTED",
+    "C10": "SUPPORTED"
+  },
+  "supporting_metrics": {
+    "implemented_and_reported": [
+      "ASR",
+      "Defense Rate",
+      "Detection Rate",
+      "Utility",
+      "Defense Cost",
+      "Reward",
+      "Security Score",
+      "Mean Defense Level"
+    ],
+    "definitions": {
+      "asr": "successful_attacks / N_attack",
+      "defense_rate": "1 - ASR",
+      "utility": "legitimate_successes / N_legitimate",
+      "defense_cost": "mean(episode.defense_cost)",
+      "reward": "mean(episode.reward)",
+      "detection_rate": "fraction of attack episodes with detection_score >= 0.25",
+      "mean_defense_level": "mean(episode.defense_level)"
+    },
+    "not_present_in_phase7_8_artifacts": [
+      "Precision",
+      "Recall",
+      "F1",
+      "FPR",
+      "Balanced Accuracy"
+    ],
+    "semantics_status": "Reported metrics match documented formulas (ASR=succ/N_a, DefenseRate=1-ASR, Utility=leg_succ/N_l, DetectionRate=det>=0.25 / N_a, costs/rewards as episode means). Precision/Recall/F1/FPR/Balanced Accuracy are absent from artifacts and must not be claimed."
+  },
+  "statistical_evidence": {
+    "seed_variance": {
+      "note": "Controlled Phase 7/8A pipeline is deterministic given frozen stream + schedule; cross-seed std is expected to be 0 unless stochastic components are introduced.",
+      "by_method": {
+        "fixed_level_0": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "fixed_level_1": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "fixed_level_2": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "fixed_level_3": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        },
+        "adaptive": {
+          "max_std": 0.0,
+          "all_zero_std": true
+        }
+      }
+    },
+    "ci_method": {
+      "interval": "95% Student-t CI",
+      "formula": "mean \u00b1 t_(0.975, n-1) * std / sqrt(n)",
+      "n": 5,
+      "df": 4,
+      "t_crit": 2.7764451051977925,
+      "std": "sample std (ddof=1)"
+    },
+    "episode_level_tests": [
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "known",
+        "metric": "attack_success",
+        "p_value_holm": 5.684341886080802e-14,
+        "significant_holm_0.05": true
+      },
+      {
+        "comparison": "adaptive vs fixed_level_3",
+        "scenario": "known",
+        "metric": "attack_success",
+        "p_value_holm": 2.2351741790771484e-08,
+        "significant_holm_0.05": true
+      },
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "known",
+        "metric": "reward",
+        "p_value_holm": 0.6878853435796911,
+        "significant_holm_0.05": false
+      },
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "novel",
+        "metric": "attack_success",
+        "p_value_holm": 1.0587911840678754e-21,
+        "significant_holm_0.05": true
+      },
+      {
+        "comparison": "adaptive vs fixed_level_0",
+        "scenario": "evolving",
+        "metric": "attack_success",
+        "p_value_holm": 2.2351741790771484e-08,
+        "significant_holm_0.05": true
+      }
+    ],
+    "multiple_comparison_correction": "Holm-Bonferroni",
+    "limitations": [
+      "Seed-level t-tests between methods are not used because Phase 8A seed variance is zero under the deterministic controlled stack.",
+      "Episode-level sign tests require paired shared episode IDs within a scenario; they are not applied across incompatible populations.",
+      "Boolean attack_success differences yield discrete paired signs; effect sizes are reported as mean diff and sign ratio."
+    ],
+    "validity_note": "Seed-level inferential tests are not used because std=0. Episode-level paired sign tests with Holm correction are the inferential backbone where populations are paired."
+  },
+  "adaptation_evidence": {
+    "levels": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "actions": [
+      "A0",
+      "A1",
+      "A2",
+      "A3"
+    ],
+    "transitions": 25,
+    "increases": 14,
+    "decreases": 11,
+    "signals": {
+      "MAINTAIN": 49,
+      "INCREASE_DEFENSE": 28,
+      "REDUCE_DEFENSE": 23
+    },
+    "forced_transitions_suspected": false
+  },
+  "limitations": [
+    {
+      "limitation": "Deterministic controlled pipeline yields zero cross-seed variance.",
+      "severity": "MAJOR",
+      "implication": "Supports reproducibility, not stochastic robustness / random-init claims."
+    },
+    {
+      "limitation": "Only 5 seeds under a deterministic stack.",
+      "severity": "MODERATE",
+      "implication": "Seed CI is non-informative when std=0."
+    },
+    {
+      "limitation": "Historical-signal ablation does not change aggregates on this protocol.",
+      "severity": "MAJOR",
+      "implication": "Cannot claim historical feedback contributes empirically here."
+    },
+    {
+      "limitation": "Novel-attack evaluation limited by sanitize marker-residual success heuristic and detector miss rate 1.0 on novel set.",
+      "severity": "MAJOR",
+      "implication": "Generalization / novel-handling claims must remain LIMITED."
+    },
+    {
+      "limitation": "Novel and evolving sets are closed-world synthetic templates in the same four families.",
+      "severity": "MAJOR",
+      "implication": "No open-world robustness claim."
+    },
+    {
+      "limitation": "Attack-family counts unequal (19/19/19/18) under first-75 slice.",
+      "severity": "MINOR",
+      "implication": "Family comparisons are descriptive, not balanced factorial."
+    },
+    {
+      "limitation": "MVP rule-based detector/policy; no multi-model LLM coverage.",
+      "severity": "MAJOR",
+      "implication": "External validity limited to this experimental stack."
+    },
+    {
+      "limitation": "Precision/Recall/F1/FPR/Balanced Accuracy not computed in Phase 7\u20138C artifacts.",
+      "severity": "MODERATE",
+      "implication": "Those metrics must not appear as evidenced results."
+    },
+    {
+      "limitation": "Episode-level sign tests use discrete attack_success; seed-level method t-tests intentionally avoided.",
+      "severity": "MINOR",
+      "implication": "Statistical claims rely on paired episode tests + Holm correction + descriptive SUC."
+    }
+  ],
+  "fairness_status": "PASS",
+  "fairness": {
+    "status": "PASS",
+    "evidence": [
+      "Shared phase7_v2_75_25 schedule (75/25) across Fixed and Adaptive comparisons.",
+      "Shared first-75 frozen stream fingerprint across Phase 8A methods.",
+      "Robustness Known/Novel/Evolving use identical schedule and episode counts.",
+      "Known Adaptive ASR consistent across Phase 7, 8A, 8B ablation, and 8C known."
+    ],
+    "notes": [
+      "Adaptive without/with historical uses same protocol; difference is null on aggregates.",
+      "Family utility denominators are attack-only strata (utility=0 by definition)."
+    ]
+  },
+  "metric_integrity_status": "PASS",
+  "metric_semantics": {
+    "implemented_and_reported": [
+      "ASR",
+      "Defense Rate",
+      "Detection Rate",
+      "Utility",
+      "Defense Cost",
+      "Reward",
+      "Security Score",
+      "Mean Defense Level"
+    ],
+    "definitions": {
+      "asr": "successful_attacks / N_attack",
+      "defense_rate": "1 - ASR",
+      "utility": "legitimate_successes / N_legitimate",
+      "defense_cost": "mean(episode.defense_cost)",
+      "reward": "mean(episode.reward)",
+      "detection_rate": "fraction of attack episodes with detection_score >= 0.25",
+      "mean_defense_level": "mean(episode.defense_level)"
+    },
+    "not_present_in_phase7_8_artifacts": [
+      "Precision",
+      "Recall",
+      "F1",
+      "FPR",
+      "Balanced Accuracy"
+    ],
+    "semantics_status": "Reported metrics match documented formulas (ASR=succ/N_a, DefenseRate=1-ASR, Utility=leg_succ/N_l, DetectionRate=det>=0.25 / N_a, costs/rewards as episode means). Precision/Recall/F1/FPR/Balanced Accuracy are absent from artifacts and must not be claimed."
+  },
+  "reproducibility_status": "PASS",
+  "reproducibility": {
+    "status": "PASS",
+    "interpretation": "reproducibility",
+    "not_demonstrated": "robustness_to_random_initialization",
+    "evidence": "Phase 8A all_zero_std across seeds 1\u20135 for all methods."
+  },
+  "generalization_status": "LIMITED",
+  "generalization": {
+    "status": "LIMITED",
+    "reason": "Novel set is structurally/lexically separated from the frozen MVP known set, but remains closed-world synthetic prompt-injection templates in the same four families.",
+    "additional": "MVP attack_success for SANITIZE is defined via residual known malicious markers. Novel marker-free payloads can therefore be labeled unsuccessful after SANITIZE even when detection_score=0. Fixed-L0 (no sanitize) still shows ASR=1.0 on novel, confirming population fairness while limiting claims about sanitize generalization."
+  },
+  "novel_attack_evidence": {
+    "status": "LIMITED",
+    "n": 75,
+    "exact_overlap": 0,
+    "novelty_definition": {
+      "no_exact_overlap_with_frozen_stream": true,
+      "no_exact_overlap_with_mvp_templates": true,
+      "max_token_jaccard_to_known": 0.45,
+      "structural_templates": true,
+      "claim_limit": "Novelty is relative to the frozen known MVP set; not an open-world generalization claim."
+    }
+  },
+  "evolving_attack_evidence": {
+    "status": "PARTIALLY SUPPORTED",
+    "stages": [
+      "stage1_known_simple",
+      "stage2_mixed",
+      "stage3_stronger_novel",
+      "stage4_adaptive_evolving"
+    ],
+    "defense_level_changes_across_stages": true
+  },
+  "overall_readiness": "RESEARCH EVIDENCE READY"
+}

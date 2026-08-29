@@ -60,7 +60,8 @@ class FeedbackEngine:
             adaptation_signal = "INCREASE_DEFENSE"
 
         elif (
-            outcome.legitimate_success
+            outcome.legitimate_task
+            and outcome.legitimate_success
             and outcome.defense_cost >= 0.25
         ):
 
@@ -69,7 +70,8 @@ class FeedbackEngine:
             adaptation_signal = "REDUCE_DEFENSE"
 
         elif (
-            not outcome.legitimate_success
+            outcome.legitimate_task
+            and not outcome.legitimate_success
             and outcome.defense_cost >= 0.50
         ):
 

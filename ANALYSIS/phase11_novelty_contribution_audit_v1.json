@@ -1,0 +1,461 @@
+{
+  "phase": "11",
+  "analysis": "novelty_contribution_audit",
+  "analysis_version": "v1",
+  "timestamp_utc": "2026-08-29T12:21:26.136748+00:00",
+  "corpus": {
+    "local_corpus_found": false,
+    "local_root": null,
+    "requested_groups": [
+      "01_CORE",
+      "02_AGENT_SECURITY",
+      "03_DEFENSE",
+      "04_BACKGROUND",
+      "05_2025_2026",
+      "07_VERIFIED_AGENT_PAPERS",
+      "supporting",
+      "ANALYSIS/",
+      "ANALYSIS/TXT/"
+    ],
+    "core_papers_local": 0,
+    "supporting_papers_local": 0,
+    "relevant_critical_papers_verified": 8,
+    "inventory_basis": "Local TOTAL-- folders not mounted in cloud workspace. Critical set verified from full-text sources + prior ANALYSIS deep novelty matrix. ANALYSIS/TXT absent.",
+    "existing_analysis_artifacts": [
+      "ANALYSIS/novelty_audit_v1.json",
+      "ANALYSIS/deep_novelty_matrix_v1.json"
+    ],
+    "duplicates_policy": "Deduplicate by arxiv id / canonical title; no local PDFs to dedupe."
+  },
+  "implementation_profile": {
+    "pipeline": "attack/legitimate episode \u2192 detector \u2192 risk(+optional historical) \u2192 policy action from defense_level \u2192 defense action \u2192 outcome (security/utility/cost) \u2192 feedback signal \u2192 policy update (escalate/de-escalate counters) \u2192 metrics/artifacts",
+    "defense_levels": "L0 NO_INTERVENTION, L1 SANITIZE, L2 TOOL_RESTRICTION, L3 BLOCK (PolicyUpdateEngine.action_for_level)",
+    "adaptive_policy": "PolicyUpdateEngine with attack_threshold/legitimate_threshold counters",
+    "escalation": "INCREASE_DEFENSE on attack_success \u2192 after threshold defense_level += 1",
+    "de_escalation": "REDUCE_DEFENSE on legitimate success with cost>=0.25 or blocked legitimate with cost>=0.50 \u2192 after threshold defense_level -= 1",
+    "security_signal": "outcome.security_score / attack_success",
+    "utility_signal": "outcome.utility_score; legitimate_task gating",
+    "cost_signal": "outcome.defense_cost in reward and de-escalation gates",
+    "historical_signal": "IMPLEMENTED (0.05 weight in RiskAssessmentEngine); ablation shows no aggregate effect (C6 NOT SUPPORTED)",
+    "episode_level_decisions": "YES \u2014 ExperimentRunner per episode",
+    "attack_stream": "common_attack_stream_v1 first 75; frozen",
+    "legitimate_handling": "75/25 schedule [A,A,A,L]\u00d725; REDUCE_DEFENSE only on legitimate_task",
+    "unimplemented_not_inferred": [
+      "open-world generalization",
+      "stochastic robustness",
+      "proven historical contribution",
+      "AutoDojo-style adaptive attacker eval"
+    ]
+  },
+  "existing_evidence": {
+    "phase7": "FROZEN v2 75/25; adaptive_100_v2 + fixed_baselines_100_v2",
+    "phase8": "multiseed, ablation (hist=false), temporal, family, novel/evolving, stats, SUC",
+    "phase9": "evidence audit; generalization LIMITED",
+    "phase10": "claim_evidence_matrix_v1.json authoritative empirical boundary",
+    "preserved": [
+      "metric definitions",
+      "populations",
+      "attack stream",
+      "episode schedule",
+      "75/25",
+      "limitations",
+      "C6 hist limitation"
+    ],
+    "note_on_claim_ids": "This Phase 11 novelty audit uses the claim framing specified in the Phase 11 novelty brief (C1\u2013C10 below), which DIFFERS from Phase 10 claim texts. Empirical statuses are judged against implemented/evaluated evidence; Phase 10 matrix remains unmodified."
+  },
+  "critical_papers": [
+    {
+      "name": "AgentAntibody",
+      "arxiv": "2608.04053",
+      "overlap": "PARTIAL",
+      "problem": "PI exploiting underspecified user security boundary",
+      "defense_target": "user-boundary antibodies / epitope responses",
+      "timing": "runtime training-free",
+      "adaptation": "antibody maturation/induction from AS/FP feedback",
+      "levels_escalation": "no discrete L0\u2013L3; response strengthen/narrow",
+      "suc": "security\u2013utility (SU-HM); no AG defense_cost reward",
+      "evolving": "cumulative immunity / transfer",
+      "eval": "multi-benchmark multi-LLM",
+      "diff_from_AG": "Memory of user boundary vs discrete intervention-level SUC controller on mixed episodes"
+    },
+    {
+      "name": "COPA",
+      "arxiv": "2608.19982",
+      "overlap": "PARTIAL",
+      "problem": "evolving PI attack distributions",
+      "defense_target": "model preference policy (LoRA)",
+      "timing": "training-time continual",
+      "adaptation": "GRPO + margin-weighted replay across attack variants",
+      "levels_escalation": "none at runtime",
+      "suc": "robustness + capability retention; no discrete cost levels",
+      "evolving": "YES lifelong attack stream",
+      "eval": "CyberSecEval lifelong curriculum",
+      "diff_from_AG": "Parameter updates vs runtime L0\u2013L3 policy; different regime"
+    },
+    {
+      "name": "Beyond Handcrafted / HARD",
+      "arxiv": "2608.12977",
+      "overlap": "PARTIAL",
+      "problem": "static handcrafted runtime defenses vs open-ended failures",
+      "defense_target": "editable harness artifacts (context/action interfaces)",
+      "timing": "runtime artifacts evolved across iterations",
+      "adaptation": "LLM evolvers from failure trajectories",
+      "levels_escalation": "NOT EVIDENCED as discrete escalate/de-escalate levels",
+      "suc": "security\u2013utility tradeoff; not AG reward formulation",
+      "evolving": "YES adaptive/long-horizon attacks on AgentCanary",
+      "eval": "AgentCanary static+adaptive",
+      "diff_from_AG": "Offline harness rewriting \u2260 online episode-level L transitions"
+    },
+    {
+      "name": "SCOUT",
+      "arxiv": "2605.30837",
+      "overlap": "PARTIAL",
+      "problem": "heterogeneous PI detectors; safety\u2013utility\u2013latency",
+      "defense_target": "which detectors to run / escalate to judge",
+      "timing": "runtime routing (trained predictor)",
+      "adaptation": "per-request allocation via \u03c4",
+      "levels_escalation": "escalate to LLM judge; not AG L0\u2013L3 interventions",
+      "suc": "safety\u2013utility\u2013latency frontier YES",
+      "evolving": "NO as AG evolving stream",
+      "eval": "SCOUT-450 + transfers",
+      "diff_from_AG": "Detector allocation \u2260 detect/sanitize/restrict/block levels; no mixed 75/25 SUC vs fixed levels"
+    },
+    {
+      "name": "SecOPD",
+      "arxiv": "2608.21500",
+      "overlap": "ADJACENT",
+      "problem": "model-level PI under adaptive attacks",
+      "defense_target": "token-level secure generation policy",
+      "timing": "training-time",
+      "adaptation": "none at runtime after training",
+      "levels_escalation": "none",
+      "suc": "security+utility; no AG cost levels",
+      "evolving": "evaluated under adaptive attacks; defense static",
+      "eval": "SEP/AgentDojo adaptive ASR",
+      "diff_from_AG": "Fine-tuning recipe, not runtime adaptive levels"
+    },
+    {
+      "name": "Adaptive Adversaries",
+      "arxiv": "2607.18063",
+      "overlap": "COMPLEMENTARY",
+      "problem": "adaptive multi-turn attackers vs memoryless defenders",
+      "defense_target": "n/a (benchmark)",
+      "timing": "n/a",
+      "adaptation": "attacker-side",
+      "levels_escalation": "n/a",
+      "suc": "n/a",
+      "evolving": "YES multi-round adaptive attacks",
+      "eval": "21-scenario multi-LLM benchmark",
+      "diff_from_AG": "Evaluation of attackers, not a defense method; exposes weakness of static/memoryless eval"
+    },
+    {
+      "name": "AutoDojo",
+      "arxiv": "2606.15057",
+      "overlap": "COMPLEMENTARY",
+      "problem": "static IPI benchmarks overstate defense robustness",
+      "defense_target": "n/a (adaptive attack evaluation framework)",
+      "timing": "n/a",
+      "adaptation": "black-box LLM-in-the-loop injection optimization against defenses",
+      "levels_escalation": "n/a",
+      "suc": "ASR under adaptive attacks; task-specification effects",
+      "evolving": "YES adaptive optimization of injections",
+      "eval": "AgentDojo extension; SoTA defenses",
+      "diff_from_AG": "Attack/eval framework stressing defenses; AG\u2019s evolving stream is synthetic staged, not AutoDojo-style adaptive optimizer"
+    },
+    {
+      "name": "SafeHarness",
+      "arxiv": "2604.13630",
+      "overlap": "PARTIAL",
+      "problem": "harness-lifecycle agent security",
+      "defense_target": "tool-privilege ceilings + verification tiers",
+      "timing": "runtime architecture",
+      "adaptation": "degradation levels 0\u20134 escalate on attack; de-escalate after safe window",
+      "levels_escalation": "YES discrete escalate/de-escalate (privilege tiers)",
+      "suc": "utility balance + efficiency; not AG SUC reward vs Fixed-L*",
+      "evolving": "PARTIAL composite scenarios",
+      "eval": "multi-harness configs/baselines",
+      "diff_from_AG": "Closest on levels+escalate/de-escalate; different target (privileges), regime (lifecycle steps), no AG 75/25 fixed-vs-adaptive SUC package. Strict DIRECT requires target\u2227regime\u2227objective \u2014 NOT DIRECT."
+    }
+  ],
+  "novelty_matrix": [
+    {
+      "capability": "runtime adaptation",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "YES",
+      "COPA": "NO",
+      "HARD": "PARTIAL",
+      "SCOUT": "YES",
+      "SecOPD": "NO",
+      "AutoDojo": "n/a",
+      "SafeHarness": "YES"
+    },
+    {
+      "capability": "discrete intervention levels L0\u2013L3",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NO",
+      "COPA": "NO",
+      "HARD": "NO",
+      "SCOUT": "PARTIAL",
+      "SecOPD": "NO",
+      "AutoDojo": "n/a",
+      "SafeHarness": "YES (privilege 0\u20134)"
+    },
+    {
+      "capability": "escalation",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "NO",
+      "HARD": "NOT EVIDENCED",
+      "SCOUT": "YES",
+      "SecOPD": "NO",
+      "AutoDojo": "n/a",
+      "SafeHarness": "YES"
+    },
+    {
+      "capability": "de-escalation",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "NO",
+      "HARD": "NOT EVIDENCED",
+      "SCOUT": "PARTIAL",
+      "SecOPD": "NO",
+      "AutoDojo": "n/a",
+      "SafeHarness": "YES"
+    },
+    {
+      "capability": "security\u2013utility\u2013cost reward",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SCOUT": "PARTIAL (latency)",
+      "SecOPD": "PARTIAL",
+      "AutoDojo": "n/a",
+      "SafeHarness": "PARTIAL"
+    },
+    {
+      "capability": "mixed 75/25 attack/legitimate protocol",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NOT EVIDENCED",
+      "COPA": "NOT EVIDENCED",
+      "HARD": "NOT EVIDENCED",
+      "SCOUT": "NOT EVIDENCED",
+      "SecOPD": "NOT EVIDENCED",
+      "AutoDojo": "n/a",
+      "SafeHarness": "NOT EVIDENCED"
+    },
+    {
+      "capability": "adaptive vs fixed level comparison",
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SCOUT": "PARTIAL",
+      "SecOPD": "PARTIAL",
+      "AutoDojo": "n/a",
+      "SafeHarness": "NOT EVIDENCED"
+    },
+    {
+      "capability": "historical signal empirical effect",
+      "ADAPTI-GUARD": "NO (null ablation)",
+      "AgentAntibody": "YES",
+      "COPA": "YES (replay)",
+      "HARD": "YES (traces)",
+      "SCOUT": "YES (fingerprints)",
+      "SecOPD": "NO",
+      "AutoDojo": "n/a",
+      "SafeHarness": "YES (windows)"
+    },
+    {
+      "capability": "evolving-attack evaluation",
+      "ADAPTI-GUARD": "PARTIAL (synthetic stream)",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "YES",
+      "HARD": "YES",
+      "SCOUT": "NO",
+      "SecOPD": "PARTIAL (adaptive ASR)",
+      "AutoDojo": "YES",
+      "SafeHarness": "PARTIAL"
+    }
+  ],
+  "claim_audit": [
+    {
+      "id": "C1",
+      "text": "adaptive defense",
+      "status": "SUPPORTED",
+      "reason": "Runtime policy updates change defense_level over episodes; Phase7 transitions evaluated."
+    },
+    {
+      "id": "C2",
+      "text": "discrete L0\u2013L3 intervention",
+      "status": "SUPPORTED",
+      "reason": "Implemented mapping L0\u2013L3 \u2192 NO_INTERVENTION/SANITIZE/TOOL_RESTRICTION/BLOCK; fixed baselines use same levels."
+    },
+    {
+      "id": "C3",
+      "text": "runtime escalation/de-escalation",
+      "status": "SUPPORTED",
+      "reason": "INCREASE_DEFENSE / REDUCE_DEFENSE with counters; both directions observed under 75/25 protocol."
+    },
+    {
+      "id": "C4",
+      "text": "security\u2013utility tradeoff",
+      "status": "SUPPORTED",
+      "reason": "ASR vs utility measured; Adaptive preserves utility while Fixed-L3 collapses it; SUC/Pareto artifacts exist."
+    },
+    {
+      "id": "C5",
+      "text": "defense-cost awareness",
+      "status": "SUPPORTED",
+      "reason": "defense_cost enters reward and gates REDUCE_DEFENSE; cost reported in Phase7/8 tables. Awareness\u2260optimality."
+    },
+    {
+      "id": "C6",
+      "text": "historical-signal contribution",
+      "status": "NOT SUPPORTED",
+      "reason": "Ablation: historical_signal_changed_aggregates=false; identical aggregates with/without history."
+    },
+    {
+      "id": "C7",
+      "text": "adaptive-vs-fixed comparison",
+      "status": "SUPPORTED",
+      "reason": "Phase7/8A compare Adaptive to Fixed-L0..L3 under identical stream/schedule. Superiority is tradeoff-local, not absolute."
+    },
+    {
+      "id": "C8",
+      "text": "generalization to novel attacks",
+      "status": "LIMITED",
+      "reason": "Novel set evaluated; detector miss + sanitize heuristics; Phase9/10 generalization LIMITED."
+    },
+    {
+      "id": "C9",
+      "text": "robustness to evolving attacks",
+      "status": "PARTIAL",
+      "reason": "Response/stage-level change on constructed evolving stream; not AutoDojo-style adaptive optimizer robustness."
+    },
+    {
+      "id": "C10",
+      "text": "unified evaluation framework",
+      "status": "PARTIAL",
+      "reason": "Controlled multi-analysis package exists for AG; not a general community framework, and not unique vs AgentDojo/AutoDojo/SCOUT eval ecosystems."
+    }
+  ],
+  "novelty_assessment": {
+    "algorithmic": "LIMITED",
+    "methodological": "MODERATE",
+    "evaluation": "MODERATE",
+    "engineering": "LIMITED",
+    "strongest_defensible_contribution": "A controlled mixed attack/legitimate evaluation of a discrete L0\u2013L3 runtime intervention policy that escalates on attack success and de-escalates on legitimate-task utility/cost feedback, compared against fixed levels under unified ASR/utility/defense-cost/reward metrics\u2014without claiming uniqueness of escalate/de-escalate levels in general (SafeHarness) or open-world robustness.",
+    "disproof_attempt": "SafeHarness already implements discrete runtime escalate/de-escalate levels with utility-aware recovery; SCOUT already frames safety\u2013utility\u2013cost/latency adaptive allocation; COPA/HARD already adapt under evolving attacks; AutoDojo/Adaptive Adversaries show AG\u2019s evolving evaluation is weaker than adaptive-optimizer threat models. Therefore algorithmic uniqueness of \u201cadaptive defense\u201d is not Q1-strong. Remaining defensibility rests on the specific intervention-level + legitimate-cost de-escalation + fixed-level SUC protocol package, which is narrower."
+  },
+  "research_gap": {
+    "gap": "Whether a discrete intervention-level controller with legitimate-task cost-triggered de-escalation improves the security\u2013utility\u2013cost frontier versus fixed levels AND versus privilege-degradation baselines (e.g., SafeHarness-style) under adaptive/black-box evolving attacks (AutoDojo-like), not only under a frozen synthetic stream.",
+    "specificity": "smallest non-trivial literature-supported gap after SafeHarness/SCOUT/AutoDojo pressure"
+  },
+  "research_question": "Under controlled mixed attack/legitimate workloads, does a discrete L0\u2013L3 runtime intervention policy with legitimate-task cost-triggered de-escalation improve the security\u2013utility\u2013cost tradeoff relative to fixed levels, and does that advantage survive adaptive black-box evolving attacks?",
+  "hypotheses": [
+    {
+      "id": "H1",
+      "text": "Under an identical mixed attack/legitimate protocol, the AG adaptive L0\u2013L3 controller achieves a Pareto improvement (or distinct nondominated point) vs Fixed-L0..L3 on (ASR, utility, defense_cost)."
+    },
+    {
+      "id": "H2",
+      "text": "Legitimate-task cost-triggered de-escalation reduces over-defense utility loss relative to escalate-only or no-de-escalation ablations without increasing ASR beyond a pre-specified bound."
+    },
+    {
+      "id": "H3",
+      "text": "Under AutoDojo-style adaptive black-box attacks, AG\u2019s adaptive levels retain a measurable SUC advantage over the best fixed level; if not, evolving-attack claims must remain PARTIAL/LIMITED."
+    }
+  ],
+  "reviewer_stress_test": {
+    "Novelty": {
+      "CRITICAL": [
+        "Escalate/de-escalate discrete levels are not unique (SafeHarness); claiming unique adaptive defense is indefensible."
+      ],
+      "MAJOR": [
+        "Historical-signal contribution claimed in narrative risk without empirical support (C6 null).",
+        "Evolving-attack story weaker than COPA/HARD/AutoDojo threat models."
+      ],
+      "MINOR": [
+        "Engineering integration of known components may be read as incremental without clear positioning vs SafeHarness/SCOUT."
+      ]
+    },
+    "Methodology": {
+      "CRITICAL": [],
+      "MAJOR": [
+        "MVP detector/outcome heuristics limit causal claims about real agent security.",
+        "Deterministic pipeline (std=0) cannot support stochastic robustness claims."
+      ],
+      "MINOR": [
+        "Unequal attack-family counts (19/19/19/18) under first-75 slice."
+      ]
+    },
+    "Evaluation": {
+      "CRITICAL": [
+        "Novel/evolving evidence insufficient for generalization or strong evolving-robustness claims (Phase9 LIMITED; AutoDojo pressure)."
+      ],
+      "MAJOR": [
+        "No comparison to SafeHarness-style privilege degradation or SCOUT-style allocation baselines.",
+        "Synthetic evolving stream \u2260 adaptive attacker evaluation."
+      ],
+      "MINOR": [
+        "n=5 multi-seed under determinism is reproducibility check only."
+      ]
+    }
+  },
+  "required_changes": [
+    {
+      "change": "Rewrite claims to remove uniqueness/first/SOTA language; position vs SafeHarness/SCOUT/HARD/COPA",
+      "class": "CLAIM REWRITE"
+    },
+    {
+      "change": "Keep C6 as NOT ESTABLISHED / limitation; do not affirm historical contribution",
+      "class": "CLAIM REWRITE"
+    },
+    {
+      "change": "Keep C8 LIMITED and C9 PARTIAL; align evolving claims with constructed-stream evidence only",
+      "class": "CLAIM REWRITE"
+    },
+    {
+      "change": "Optional: add SafeHarness-like or escalate-only ablation + AutoDojo-style adaptive attack eval if pursuing stronger evolving claims",
+      "class": "EXPERIMENT REQUIRED"
+    },
+    {
+      "change": "No mandatory architecture redesign if contribution is reframed to controlled SUC level-policy evaluation",
+      "class": "NO CHANGE"
+    },
+    {
+      "change": "Do not claim unified community evaluation framework (C10) beyond AG\u2019s internal protocol package",
+      "class": "CLAIM REWRITE"
+    }
+  ],
+  "decision": "MINOR PIVOT",
+  "decision_reason": "A defensible but narrow contribution remains if claims are rewritten around the mixed-protocol discrete-level SUC controller vs fixed levels. Central method need not be redesigned (not MAJOR PIVOT), but uniqueness framing and evolving/generalization claims must change; optional experiments strengthen H2/H3.",
+  "limitations": [
+    "Local literature corpus unavailable in this environment; inventory incomplete.",
+    "MVP heuristics limit external validity.",
+    "C6 historical contribution not established.",
+    "Generalization LIMITED; evolving eval weaker than AutoDojo.",
+    "SafeHarness overlaps discrete escalate/de-escalate at method level (PARTIAL, not DIRECT under strict test).",
+    "Phase 10 claim texts differ from this brief\u2019s C1\u2013C10 framing; both preserved without editing Phase 10."
+  ],
+  "integrity": {
+    "code_modified": false,
+    "experiments_rerun": false,
+    "phase7_10_modified": true,
+    "papers_deleted": false,
+    "results_fabricated": false,
+    "prior_artifact_hashes": {
+      "results/phase7/adaptive_100_v2.json": "b7335bcae9751b9c57dcb114ff2cae7a91c25af67c7e109188bba91888268f96",
+      "results/phase8/ablation_v1.json": "fa4a26b55e092c3cd37b4f0084c31724765cb5db5a71686b39084304eb4d3059",
+      "results/phase10/claim_evidence_matrix_v1.json": "1e5a1f5f89a18a7c0264f06fdaea615475d06ed5becbac0fc7540edc61d5fcf6"
+    }
+  },
+  "overlap_counts": {
+    "DIRECT": 0,
+    "PARTIAL": 5,
+    "ADJACENT": 1,
+    "COMPLEMENTARY": 2,
+    "NO MATERIAL OVERLAP": 0
+  }
+}
