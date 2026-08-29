@@ -1,0 +1,860 @@
+{
+  "analysis": "deep_novelty_verification",
+  "version": "v1",
+  "timestamp_utc": "2026-08-29T11:47:39.998593+00:00",
+  "corpus": {
+    "requested_root_windows": "C:\\Users\\MohammadReza\\Desktop\\adapti-guard\\paper\\references\\TOTAL--",
+    "requested_root_wsl": "/mnt/c/Users/MohammadReza/Desktop/adapti-guard/paper/references/TOTAL--",
+    "local_corpus_found": false,
+    "local_root": null,
+    "local_files_counted": 0,
+    "local_files_sample": [],
+    "note": "Local TOTAL-- corpus was NOT present in this cloud environment. Critical-paper verification used previously retrieved full-text HTML/PDF extracts (actual paper text, not titles). Full unique-paper inventory of the private corpus is NOT COMPLETE."
+  },
+  "adapti_guard_profile": {
+    "discrete_defense_levels_L0_L3": {
+      "status": "IMPLEMENTED",
+      "evidence": "policy_update_engine.action_for_level maps 0..3 to NO_INTERVENTION/SANITIZE/TOOL_RESTRICTION/BLOCK"
+    },
+    "runtime_policy_adaptation": {
+      "status": "IMPLEMENTED",
+      "evidence": "PolicyUpdateEngine.update adjusts defense_level from feedback signals"
+    },
+    "escalation": {
+      "status": "IMPLEMENTED",
+      "evidence": "INCREASE_DEFENSE increments attack_failures; at threshold defense_level += 1"
+    },
+    "de_escalation": {
+      "status": "IMPLEMENTED",
+      "evidence": "REDUCE_DEFENSE increments legitimate_failures; at threshold defense_level -= 1"
+    },
+    "legitimate_task_feedback": {
+      "status": "IMPLEMENTED",
+      "evidence": "FeedbackEngine REDUCE_DEFENSE on legitimate_task success with cost>=0.25 or blocked legitimate with cost>=0.50"
+    },
+    "utility_aware_adaptation": {
+      "status": "IMPLEMENTED",
+      "evidence": "reward uses utility_weight * utility_feedback; de-escalation gated on legitimate outcomes"
+    },
+    "historical_signal": {
+      "status": "IMPLEMENTED",
+      "evidence": "RiskAssessmentEngine weight 0.05*historical_attack; ExperimentRunner._historical_attack_signal"
+    },
+    "defense_transitions": {
+      "status": "IMPLEMENTED_AND_EVALUATED",
+      "evidence": "Phase7 adaptive transitions recorded; Phase10 C1 SUPPORTED"
+    },
+    "fixed_vs_adaptive_comparison": {
+      "status": "EVALUATED",
+      "evidence": "Phase7/8A fixed_level_0..3 vs adaptive"
+    },
+    "mixed_75_25_protocol": {
+      "status": "EVALUATED",
+      "evidence": "phase7_v2_75_25 schedule; Phase7 frozen"
+    },
+    "multiseed": {
+      "status": "EVALUATED",
+      "evidence": "Phase8A seeds 1-5; std=0"
+    },
+    "temporal_analysis": {
+      "status": "EVALUATED",
+      "evidence": "temporal_analysis_v1.json"
+    },
+    "attack_family_analysis": {
+      "status": "EVALUATED",
+      "evidence": "attack_family_analysis_v1.json"
+    },
+    "novel_evolving_eval": {
+      "status": "EVALUATED",
+      "evidence": "robustness_v1.json; generalization LIMITED"
+    },
+    "security_utility_cost_metrics": {
+      "status": "IMPLEMENTED_AND_EVALUATED",
+      "evidence": "OutcomeResult + FeedbackEngine reward; SUC/Pareto artifacts"
+    },
+    "historical_signal_empirical_contribution": {
+      "status": "CLAIMED_BUT_NOT_SUPPORTED",
+      "evidence": "ablation historical_signal_changed_aggregates=false; Phase10 C6 NOT SUPPORTED"
+    }
+  },
+  "critical_paper_evidence": {
+    "AgentAntibody": {
+      "A_runtime_adaptation": {
+        "value": "YES",
+        "evidence": "te work. We introduce AgentAntibody, a training-free runtime defense that maintains a persistent and evolving operational model of $b_{u}$ . Its design changes the unit of defense from an isolated prompt to a user boundary learned over time. First, AgentAntib"
+      },
+      "B_training_time_adaptation": {
+        "value": "NO",
+        "evidence": "training-free; no weight updates described as primary mechanism"
+      },
+      "C_defense_state_levels": {
+        "value": "NO",
+        "evidence": "antibody library/responses, not discrete L0-L3 intensity levels"
+      },
+      "D_escalation": {
+        "value": "PARTIAL",
+        "evidence": "on occurred but containment failed. The response is therefore strengthened first. The epitope, positive conditions, or threshold may also be refined when the marked event directly shows a missing unsafe condition. When the match margin is small, $\\tau_{A}$ can"
+      },
+      "E_de_escalation": {
+        "value": "PARTIAL",
+        "evidence": "the same confirmed boundary violation. For an FP with a hit, the learned boundary is too broad for this user. The update narrows the epitope, adds the user-confirmed benign condition to $\\mathcal{N}_{A}$ , or raises $\\tau_{A}$ . For BA, the evidence is weaker"
+      },
+      "F_historical_memory": {
+        "value": "YES",
+        "evidence": "ng of the user\u2019s security boundary as a persistent library of antibodies. At runtime, the library recognizes threats to this boundary and mounts corresponding immune responses. Across encounters, it evolves to strengthen the agent\u2019s immunity to future attacks."
+      },
+      "G_feedback_signal": {
+        "value": "YES",
+        "evidence": "k an executed or attempted action as an Attack Success (AS) or False Positive (FP). Labels are attached to actions because one task can contain both outcomes. When feedback is absent, a matched behavior that was blocked or sanitized provides weak Blocked Attac"
+      },
+      "H_utility_signal": {
+        "value": "YES",
+        "evidence": "ses in preventing harmful actions while preserving legitimate task completion, even when the harmful and legitimate actions are both compatible with the stated task. 1Nanjing University, 2Singapore Management University, 3Nanyang Technological University shw"
+      },
+      "I_cost_signal": {
+        "value": "NO",
+        "evidence": "no explicit discrete defense-cost metric evidenced"
+      },
+      "J_policy_update": {
+        "value": "YES",
+        "evidence": null
+      },
+      "K_episode_level_adaptation": {
+        "value": "PARTIAL",
+        "evidence": "across encounters/tasks; not AG episode L-level controller"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "PARTIAL",
+        "evidence": "etting. Starting with an empty library, cumulative ASR falls from 35.0% after five attacks to 6.1% after 80. At that point, only 2.44 antibodies are stored on average and 89.9% of encounters reuse existing ones, indicating compact transfer rather than case acc"
+      },
+      "M_suc_optimization": {
+        "value": "PARTIAL",
+        "evidence": "joint security-utility (SU-HM); cost not as AG defense_cost"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "multi-benchmark, multi-backbone evaluation described"
+      },
+      "overlap_class": "PARTIAL_OVERLAP",
+      "strict_direct_test": {
+        "mechanism_similar": false,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": true,
+        "reason": "Runtime adaptive memory defense for PI, but target is user-boundary antibodies not discrete intervention levels."
+      }
+    },
+    "COPA": {
+      "A_runtime_adaptation": {
+        "value": "NO",
+        "evidence": "continual LoRA/GRPO training pipeline"
+      },
+      "B_training_time_adaptation": {
+        "value": "YES",
+        "evidence": "COPA: Continual Preference Optimization for Adaptive Prompt Injection Defense arXiv:2608.19982v1 [cs.CR] 20 Aug 2026 # COPA: Continual Preference Optimization for Adaptive Prompt Injection Defense Roshan Sood 1, Onat Gung"
+      },
+      "C_defense_state_levels": {
+        "value": "NO",
+        "evidence": "adapter updates, not discrete runtime levels"
+      },
+      "D_escalation": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED as runtime defense escalation"
+      },
+      "E_de_escalation": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "F_historical_memory": {
+        "value": "YES",
+        "evidence": "l curriculum of attack variants, with a margin-weighted replay buffer that prioritizes examples where the model\u2019s preference margin is low. Our key contributions are threefold: (1) Lifelong defense framework. We introduce the first continual learning pipeline"
+      },
+      "G_feedback_signal": {
+        "value": "YES",
+        "evidence": "safety preference / GRPO rewards"
+      },
+      "H_utility_signal": {
+        "value": "YES",
+        "evidence": "mitigating catastrophic forgetting and preserving general-purpose model capabilities. Across lifelong prompt injection attack streams, COPA reduces attack success rate by up to $6.3\u00d76.3\\times$ and $4.4\u00d74.4\\times$ on average compared to state-of-the-art defens"
+      },
+      "I_cost_signal": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED as defense cost metric"
+      },
+      "J_policy_update": {
+        "value": "YES",
+        "evidence": "model adapter policy via GRPO"
+      },
+      "K_episode_level_adaptation": {
+        "value": "NO",
+        "evidence": "task/variant continual learning, not AG episodes"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "YES",
+        "evidence": "ortant in real-world deployments, where evolving attack distributions necessitate continual adaptation without sacrificing robustness to previously encountered threats. We present COPA, a continual preference optimization framework that treats prompt-injection"
+      },
+      "M_suc_optimization": {
+        "value": "PARTIAL",
+        "evidence": "robustness + utility/forgetting; no AG SUC levels"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "lifelong attack stream curriculum"
+      },
+      "overlap_class": "PARTIAL_OVERLAP",
+      "strict_direct_test": {
+        "mechanism_similar": false,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": true,
+        "reason": "Evolving-attack adaptive defense objective, but training-time parameter updates \u2260 runtime level policy."
+      }
+    },
+    "BeyondHandcrafted_HARD": {
+      "A_runtime_adaptation": {
+        "value": "PARTIAL",
+        "evidence": "utonomous Runtime Defense Evolution), a self-evolving runtime defense framework that automatically identifies appropriate intervention strategies and iteratively improves defense artifacts based on observed failure traces. HARD transforms runtime defense devel"
+      },
+      "B_training_time_adaptation": {
+        "value": "NO",
+        "evidence": "harness artifact evolution, not model fine-tuning"
+      },
+      "C_defense_state_levels": {
+        "value": "NO",
+        "evidence": "editable harness components, not L0-L3"
+      },
+      "D_escalation": {
+        "value": "NOT EVIDENCED",
+        "evidence": "no discrete escalate-level controller evidenced"
+      },
+      "E_de_escalation": {
+        "value": "NOT EVIDENCED",
+        "evidence": "no de-escalation level policy evidenced"
+      },
+      "F_historical_memory": {
+        "value": "YES",
+        "evidence": "Evolution Figure 3: Overview of HARD. Failed trajectories are collected and routed to the responsible harness defense artifact. The corresponding evolver refines the harness based on failure feedback, and the updated agent is redeployed for iterative self-ev"
+      },
+      "G_feedback_signal": {
+        "value": "YES",
+        "evidence": "failure trajectories / safety-utility objectives"
+      },
+      "H_utility_signal": {
+        "value": "YES",
+        "evidence": "ver existing handcrafted defenses while preserving benign task utility. Our findings highlight autonomous defense evolution as a promising new paradigm for securing deployed LLM agents, enabling agents to identify defense weaknesses and continuously improve th"
+      },
+      "I_cost_signal": {
+        "value": "NO",
+        "evidence": "security-utility formulation; not AG defense_cost levels"
+      },
+      "J_policy_update": {
+        "value": "YES",
+        "evidence": null
+      },
+      "K_episode_level_adaptation": {
+        "value": "NO",
+        "evidence": "evolution iterations between deployments"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "YES",
+        "evidence": "ning. Under adaptive attacks, including dynamic attack evolution and long-horizon progressive attacks, HARD maintains strong robustness and achieves better performance than handcrafted defenses, demonstrating its ability to generalize beyond predefined attack"
+      },
+      "M_suc_optimization": {
+        "value": "PARTIAL",
+        "evidence": "security-utility tradeoff; cost not AG-style"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "AgentCanary static+adaptive settings"
+      },
+      "overlap_class": "PARTIAL_OVERLAP",
+      "strict_direct_test": {
+        "mechanism_similar": false,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": true,
+        "reason": "Self-evolving runtime defenses, but offline harness rewriting \u2260 online discrete level transitions."
+      }
+    },
+    "SecOPD": {
+      "A_runtime_adaptation": {
+        "value": "NO",
+        "evidence": "defensive fine-tuning recipe"
+      },
+      "B_training_time_adaptation": {
+        "value": "YES",
+        "evidence": "icy Distillation (SecOPD) that provides token-level feedback to guide defensive fine-tuning. The LLM receives an injected sample and produces a rollout, whose tokens are scored by the initialization model given the corresponding clean input. With more fine-gra"
+      },
+      "C_defense_state_levels": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "D_escalation": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "E_de_escalation": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "F_historical_memory": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED as runtime history policy"
+      },
+      "G_feedback_signal": {
+        "value": "YES",
+        "evidence": "token-level teacher advantages"
+      },
+      "H_utility_signal": {
+        "value": "YES",
+        "evidence": "the AgentDojo benchmark 9. SecOPD also maintains the utility of the undefended model, to within a few percentage points. One technical challenge to apply OPD is how to provide feedback on each output token. We show how to instantiate a teacher at training ti"
+      },
+      "I_cost_signal": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "J_policy_update": {
+        "value": "YES",
+        "evidence": "model parameter updates"
+      },
+      "K_episode_level_adaptation": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "PARTIAL",
+        "evidence": "evaluated under adaptive attacks (PISmith), defense itself static after training"
+      },
+      "M_suc_optimization": {
+        "value": "PARTIAL",
+        "evidence": "security+utility; no AG cost levels"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "SEP/AgentDojo adaptive ASR"
+      },
+      "overlap_class": "ADJACENT",
+      "strict_direct_test": {
+        "mechanism_similar": false,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": false,
+        "reason": "Model-level training defense against adaptive attacks; different mechanism and regime from AG runtime levels."
+      }
+    },
+    "AdaptiveAdversaries": {
+      "A_runtime_adaptation": {
+        "value": "NO",
+        "evidence": "benchmark; defender memoryless by design"
+      },
+      "B_training_time_adaptation": {
+        "value": "NO",
+        "evidence": "n/a"
+      },
+      "C_defense_state_levels": {
+        "value": "NO",
+        "evidence": "n/a"
+      },
+      "D_escalation": {
+        "value": "NO",
+        "evidence": "attacker adapts; not defender levels"
+      },
+      "E_de_escalation": {
+        "value": "NO",
+        "evidence": "n/a"
+      },
+      "F_historical_memory": {
+        "value": "PARTIAL",
+        "evidence": "attacker observes prior defender responses"
+      },
+      "G_feedback_signal": {
+        "value": "NO",
+        "evidence": "evaluation scoring, not defense feedback"
+      },
+      "H_utility_signal": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED as utility objective"
+      },
+      "I_cost_signal": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "J_policy_update": {
+        "value": "NO",
+        "evidence": "n/a"
+      },
+      "K_episode_level_adaptation": {
+        "value": "NO",
+        "evidence": "multi-round attacker adaptation"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "YES",
+        "evidence": "We present a 21-scenario benchmark for adaptive multi-round attacks against memoryless LLM defenders: an autonomous LLM attacker observes prior defender responses and pivots across rounds, while each defender response is evaluated as a fresh interaction. Hold"
+      },
+      "M_suc_optimization": {
+        "value": "NO",
+        "evidence": "NOT EVIDENCED"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "21-scenario multi-turn adaptive benchmark"
+      },
+      "overlap_class": "COMPLEMENTARY",
+      "strict_direct_test": {
+        "mechanism_similar": false,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": false,
+        "reason": "Evaluation benchmark for adaptive attackers, not a defense method."
+      }
+    },
+    "SCOUT": {
+      "A_runtime_adaptation": {
+        "value": "YES",
+        "evidence": "allocation: given a heterogeneous pool, decide per request which detectors to run and whether to escalate to an LLM judge. Our framework SCOUT (Scalable and Controllable Outcome-prediction for Uncertainty-aware Triage) makes this decision dynamic by pre dictin"
+      },
+      "B_training_time_adaptation": {
+        "value": "PARTIAL",
+        "evidence": "predictor trained; routing is runtime"
+      },
+      "C_defense_state_levels": {
+        "value": "PARTIAL",
+        "evidence": "threshold \u03c4 and detector pool allocation, not AG L0-L3 intervention levels"
+      },
+      "D_escalation": {
+        "value": "YES",
+        "evidence": "t which detectors to run and whether to escalate to an LLM judge. Our framework SCOUT (Scalable and Controllable Outcome-prediction for Uncertainty-aware Triage) makes this decision dynamic by pre dicting each detector\u2019s per-sample reliability and latency from"
+      },
+      "E_de_escalation": {
+        "value": "PARTIAL",
+        "evidence": "lower \u03c4 uses light detectors more; not AG legitimate-task de-escalation state machine"
+      },
+      "F_historical_memory": {
+        "value": "YES",
+        "evidence": "per-sample reliability and latency from how it behaved on similar past inputs, and exposes a single safety\u2013utility threshold to the operator (where utility bun dles benign-pass rate and wall-clock). To evaluate this setting, we build SCOUT-450, a benchmark tha"
+      },
+      "G_feedback_signal": {
+        "value": "YES",
+        "evidence": "predicted correctness/latency; operator threshold"
+      },
+      "H_utility_signal": {
+        "value": "YES",
+        "evidence": "to the operator (where utility bun dles benign-pass rate and wall-clock). To evaluate this setting, we build SCOUT-450, a benchmark that captures the structurally com plex, agent-facing injections that older prompt injection sets under-represent. On SCOUT-450,"
+      },
+      "I_cost_signal": {
+        "value": "YES",
+        "evidence": "explicit latency/wall-clock cost"
+      },
+      "J_policy_update": {
+        "value": "PARTIAL",
+        "evidence": "routing decision per input; not AG level counters"
+      },
+      "K_episode_level_adaptation": {
+        "value": "NO",
+        "evidence": "per-request allocation, not multi-episode level trajectory"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "NO",
+        "evidence": "transfer benchmarks; not evolving-stream controller"
+      },
+      "M_suc_optimization": {
+        "value": "PARTIAL",
+        "evidence": "safety-utility-latency frontier; not AG reward SUC vs fixed levels"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "SCOUT-450 + external transfers"
+      },
+      "overlap_class": "PARTIAL_OVERLAP",
+      "strict_direct_test": {
+        "mechanism_similar": false,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": true,
+        "reason": "Adaptive resource allocation under safety-utility-cost, but target is detectors not AG defense levels."
+      }
+    },
+    "SafeHarness": {
+      "what_is_it": "Lifecycle-integrated security architecture / defense method embedding Inform/Verify/Constrain/Correct layers into the agent harness.",
+      "not_merely_benchmark": true,
+      "A_runtime_adaptation": {
+        "value": "YES",
+        "evidence": "ction execution, and safe rollback with adaptive degradation at state update. The proposed cross-layer mechanisms tie these layers together, escalating verification rigor, triggering rollbacks, and tightening tool privileges whenever sustained anomalies are de"
+      },
+      "B_training_time_adaptation": {
+        "value": "NO",
+        "evidence": "runtime architecture; no primary fine-tuning recipe"
+      },
+      "C_defense_state_levels": {
+        "value": "YES",
+        "evidence": ". Upon rollback, Correct escalates the degradation level by one step. Each degradation level maps to a progressively lower tool-tier ceiling, aligned one-to-one with Constrain\u2019s five risk tiers: level 0 permits all tiers (normal operation), level 1 disables d"
+      },
+      "D_escalation": {
+        "value": "YES",
+        "evidence": "n and Recovery. Upon rollback, Correct escalates the degradation level by one step. Each degradation level maps to a progressively lower tool-tier ceiling, aligned one-to-one with Constrain\u2019s five risk tiers: level 0 permits all tiers (normal operation), leve"
+      },
+      "E_de_escalation": {
+        "value": "YES",
+        "evidence": "(e.g., 5 steps without violations), the degradation level is reduced by one, gradually restoring privileges; upon recovery, Verify\u2019s minimum verification tier is also de-escalated to its default level, relaxing heightened scrutiny in tandem with restored permi"
+      },
+      "F_historical_memory": {
+        "value": "YES",
+        "evidence": "r; formally, the score is computed as a windowed violation rate $\\hat{v}=\\sum_{i\\in W}\\mathbf{1}[\\text{violated}_{i}]\\,/\\,|W|$ rather than a Shannon entropy. Unlike a cumulative ratio, this design is sensitive to short-term bursts of anomalous activity: a sud"
+      },
+      "G_feedback_signal": {
+        "value": "YES",
+        "evidence": "attack detection / consecutive safe actions / entropy monitor"
+      },
+      "H_utility_signal": {
+        "value": "YES",
+        "evidence": "tandem with restored permissions. This balances safety with utility: a single detected attack need not permanently cripple agent functionality. #### 3.3.5 Cross-Layer Mechanisms Orthogonal to the four lifecycle layers, SafeHarness maintains two cross-layer"
+      },
+      "I_cost_signal": {
+        "value": "PARTIAL",
+        "evidence": "security-efficiency / interception trade-offs; not AG explicit defense_cost in reward"
+      },
+      "J_policy_update": {
+        "value": "YES",
+        "evidence": "degradation level and verification-tier updates"
+      },
+      "K_episode_level_adaptation": {
+        "value": "PARTIAL",
+        "evidence": "step-level within agent lifecycle; not AG mixed attack/legitimate episode stream controller"
+      },
+      "L_adaptive_evolving_attacks": {
+        "value": "PARTIAL",
+        "evidence": "composite attack scenarios discussed; not AG evolving stream protocol"
+      },
+      "M_suc_optimization": {
+        "value": "PARTIAL",
+        "evidence": "utility retained + efficiency trade-offs; no AG SUC reward vs fixed L0-L3"
+      },
+      "N_evaluation_protocol": {
+        "value": "YES",
+        "evidence": "multi-harness configs, baselines, attack scenarios"
+      },
+      "overlap_class": "PARTIAL_OVERLAP",
+      "previous_audit_class": "DIRECT_OVERLAP",
+      "previous_audit_correction": "DOWNGRADED",
+      "strict_direct_test": {
+        "mechanism_similar": true,
+        "adaptation_target_similar": false,
+        "operating_regime_similar": false,
+        "research_objective_similar": false,
+        "direct_overlap_valid": false,
+        "reason": "Shares discrete runtime escalate/de-escalate levels with utility-aware recovery, but adaptation target (tool-tier ceilings), operating regime (harness lifecycle steps), and research objective (lifecycle-integrated architecture) differ materially from ADAPTI-GUARD (detect/sanitize/restrict/block levels under mixed episode SUC protocol). Under required DIRECT criteria (mechanism AND target AND regime AND objective), classify PARTIAL_OVERLAP."
+      },
+      "verification_answers": {
+        "1_what": "Four-layer harness security architecture (Inform/Verify/Constrain/Correct).",
+        "2_type": "defense method / security architecture (not merely a benchmark).",
+        "3_runtime_adaptive": "YES \u2014 adaptive degradation and recovery at runtime.",
+        "4_discrete_levels": "YES \u2014 degradation levels 0\u20134 mapped to tool-tier ceilings.",
+        "5_escalation": "YES \u2014 escalate degradation on confirmed attack/rollback.",
+        "6_de_escalation": "YES \u2014 reduce level after consecutive safe actions.",
+        "7_feedback": "Attack confirmation, safe-action window, windowed violation-rate entropy.",
+        "8_utility_explicit": "YES \u2014 stated safety\u2013utility balance; preserves core task utility.",
+        "9_defense_cost_explicit": "PARTIAL \u2014 efficiency/interception trade-offs; not AG reward defense_cost.",
+        "10_episode_level_policy_updates": "PARTIAL \u2014 step-level lifecycle updates, not AG episode stream.",
+        "11_adaptive_vs_fixed_policies": "NOT EVIDENCED as AG-style Fixed-L0..L3 vs Adaptive controller comparison.",
+        "12_mixed_legitimate_attack_episodes": "NOT EVIDENCED as AG 75/25 controlled schedule.",
+        "13_same_objective_as_AG": "NO \u2014 related security\u2013utility runtime control, different primary objective/formulation."
+      }
+    }
+  },
+  "capability_matrix": {
+    "runtime adaptation": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "YES",
+      "COPA": "NO",
+      "HARD": "PARTIAL",
+      "SecOPD": "NO",
+      "SCOUT": "YES",
+      "SafeHarness": "YES"
+    },
+    "discrete defense levels": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NO",
+      "COPA": "NO",
+      "HARD": "NO",
+      "SecOPD": "NO",
+      "SCOUT": "PARTIAL",
+      "SafeHarness": "YES"
+    },
+    "escalation": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "NO",
+      "HARD": "NOT EVIDENCED",
+      "SecOPD": "NO",
+      "SCOUT": "YES",
+      "SafeHarness": "YES"
+    },
+    "de-escalation": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "NO",
+      "HARD": "NOT EVIDENCED",
+      "SecOPD": "NO",
+      "SCOUT": "PARTIAL",
+      "SafeHarness": "YES"
+    },
+    "historical signal": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "YES",
+      "COPA": "YES",
+      "HARD": "YES",
+      "SecOPD": "NO",
+      "SCOUT": "YES",
+      "SafeHarness": "YES"
+    },
+    "utility-aware feedback": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "YES",
+      "COPA": "YES",
+      "HARD": "YES",
+      "SecOPD": "YES",
+      "SCOUT": "YES",
+      "SafeHarness": "YES"
+    },
+    "defense cost": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NO",
+      "COPA": "NO",
+      "HARD": "NO",
+      "SecOPD": "NO",
+      "SCOUT": "YES",
+      "SafeHarness": "PARTIAL"
+    },
+    "reward": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NO",
+      "COPA": "PARTIAL",
+      "HARD": "NO",
+      "SecOPD": "NO",
+      "SCOUT": "NO",
+      "SafeHarness": "NO"
+    },
+    "episode-level policy update": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "NO",
+      "HARD": "NO",
+      "SecOPD": "NO",
+      "SCOUT": "NO",
+      "SafeHarness": "PARTIAL"
+    },
+    "fixed baseline comparison": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SecOPD": "PARTIAL",
+      "SCOUT": "PARTIAL",
+      "SafeHarness": "NOT EVIDENCED"
+    },
+    "mixed attack/legitimate protocol": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NOT EVIDENCED",
+      "COPA": "NOT EVIDENCED",
+      "HARD": "NOT EVIDENCED",
+      "SecOPD": "NOT EVIDENCED",
+      "SCOUT": "NOT EVIDENCED",
+      "SafeHarness": "NOT EVIDENCED"
+    },
+    "multi-seed": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NOT EVIDENCED",
+      "COPA": "NOT EVIDENCED",
+      "HARD": "NOT EVIDENCED",
+      "SecOPD": "NOT EVIDENCED",
+      "SCOUT": "NOT EVIDENCED",
+      "SafeHarness": "NOT EVIDENCED"
+    },
+    "temporal analysis": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SecOPD": "NO",
+      "SCOUT": "NO",
+      "SafeHarness": "PARTIAL"
+    },
+    "attack-family analysis": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "NOT EVIDENCED",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SecOPD": "NOT EVIDENCED",
+      "SCOUT": "PARTIAL",
+      "SafeHarness": "NOT EVIDENCED"
+    },
+    "novel attacks": {
+      "ADAPTI-GUARD": "PARTIAL",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SecOPD": "PARTIAL",
+      "SCOUT": "PARTIAL",
+      "SafeHarness": "PARTIAL"
+    },
+    "evolving attacks": {
+      "ADAPTI-GUARD": "PARTIAL",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "YES",
+      "HARD": "YES",
+      "SecOPD": "PARTIAL",
+      "SCOUT": "NO",
+      "SafeHarness": "PARTIAL"
+    },
+    "security-utility-cost evaluation": {
+      "ADAPTI-GUARD": "YES",
+      "AgentAntibody": "PARTIAL",
+      "COPA": "PARTIAL",
+      "HARD": "PARTIAL",
+      "SecOPD": "PARTIAL",
+      "SCOUT": "YES",
+      "SafeHarness": "PARTIAL"
+    }
+  },
+  "overlap_summary": {
+    "DIRECT": 0,
+    "PARTIAL": 5,
+    "ADJACENT": 1,
+    "COMPLEMENTARY": 1,
+    "scope": "critical papers + SafeHarness under strict DIRECT criteria"
+  },
+  "safeharness_verification": {
+    "1_what": "Four-layer harness security architecture (Inform/Verify/Constrain/Correct).",
+    "2_type": "defense method / security architecture (not merely a benchmark).",
+    "3_runtime_adaptive": "YES \u2014 adaptive degradation and recovery at runtime.",
+    "4_discrete_levels": "YES \u2014 degradation levels 0\u20134 mapped to tool-tier ceilings.",
+    "5_escalation": "YES \u2014 escalate degradation on confirmed attack/rollback.",
+    "6_de_escalation": "YES \u2014 reduce level after consecutive safe actions.",
+    "7_feedback": "Attack confirmation, safe-action window, windowed violation-rate entropy.",
+    "8_utility_explicit": "YES \u2014 stated safety\u2013utility balance; preserves core task utility.",
+    "9_defense_cost_explicit": "PARTIAL \u2014 efficiency/interception trade-offs; not AG reward defense_cost.",
+    "10_episode_level_policy_updates": "PARTIAL \u2014 step-level lifecycle updates, not AG episode stream.",
+    "11_adaptive_vs_fixed_policies": "NOT EVIDENCED as AG-style Fixed-L0..L3 vs Adaptive controller comparison.",
+    "12_mixed_legitimate_attack_episodes": "NOT EVIDENCED as AG 75/25 controlled schedule.",
+    "13_same_objective_as_AG": "NO \u2014 related security\u2013utility runtime control, different primary objective/formulation."
+  },
+  "safeharness_previous_direct_overlap_valid": false,
+  "contribution_reassessment": {
+    "algorithmic": "LIMITED",
+    "algorithmic_detail": "Discrete L0\u2013L3 intervention levels with thresholded escalate/de-escalate driven by attack success and legitimate-task utility/cost feedback, plus an explicit scalar reward combining security, utility, and defense cost. Escalate/de-escalate levels themselves are not unique (SafeHarness). Reward+legitimate-task de-escalation+fixed-level comparison as a package is distinctive but not a large algorithmic leap.",
+    "evaluation_methodological": "MODERATE",
+    "evaluation_detail": "Controlled 75/25 mixed protocol with multi-seed, temporal, family, novel/evolving, SUC/Pareto, and claim-bounded evidence packaging is the strongest evidence-supported differentiator relative to the verified critical set.",
+    "engineering": "MODERATE",
+    "engineering_detail": "Integration of detector/risk/policy/feedback/evaluation into a reproducible MVP pipeline is an engineering contribution, not by itself scientific novelty."
+  },
+  "safe_contributions": [
+    "A controlled mixed attack/legitimate evaluation protocol comparing adaptive vs fixed discrete intervention levels under unified ASR/utility/defense-cost/reward metrics.",
+    "An explicit legitimate-task-triggered de-escalation rule coupled to defense-cost thresholds in that protocol (distinct from SafeHarness safe-window privilege recovery).",
+    "Evidence-bounded reporting that historical signal is implemented but empirically non-contributory under the AG ablation (C6 NOT SUPPORTED)."
+  ],
+  "claim_impact": [
+    {
+      "claim_id": "C1",
+      "phase10_status": "SUPPORTED",
+      "deep_audit_status": "SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "Do not claim uniqueness of runtime level change; report AG protocol evidence only."
+    },
+    {
+      "claim_id": "C2",
+      "phase10_status": "PARTIALLY SUPPORTED",
+      "deep_audit_status": "PARTIALLY SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "Keep partial; avoid general security superiority."
+    },
+    {
+      "claim_id": "C3",
+      "phase10_status": "SUPPORTED",
+      "deep_audit_status": "SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "Utility preservation is common; claim only under AG protocol vs Fixed-L3."
+    },
+    {
+      "claim_id": "C4",
+      "phase10_status": "SUPPORTED",
+      "deep_audit_status": "SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "SUC tradeoff exists in AG artifacts; do not claim first joint SUC optimization."
+    },
+    {
+      "claim_id": "C5",
+      "phase10_status": "PARTIALLY SUPPORTED",
+      "deep_audit_status": "PARTIALLY SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "Beyond-fixed is protocol-local; SafeHarness/SCOUT also adapt intensity/allocation."
+    },
+    {
+      "claim_id": "C6",
+      "phase10_status": "NOT SUPPORTED",
+      "deep_audit_status": "NOT SUPPORTED",
+      "action": "REMOVE",
+      "note": "Do not affirm historical contribution."
+    },
+    {
+      "claim_id": "C7",
+      "phase10_status": "SUPPORTED",
+      "deep_audit_status": "SUPPORTED",
+      "action": "SAFE",
+      "note": "Descriptive family heterogeneity under AG protocol."
+    },
+    {
+      "claim_id": "C8",
+      "phase10_status": "LIMITED",
+      "deep_audit_status": "LIMITED",
+      "action": "REQUIRES REWRITE",
+      "note": "Keep LIMITED; no generalization claim."
+    },
+    {
+      "claim_id": "C9",
+      "phase10_status": "PARTIALLY SUPPORTED",
+      "deep_audit_status": "PARTIALLY SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "Response on constructed evolving stream only."
+    },
+    {
+      "claim_id": "C10",
+      "phase10_status": "SUPPORTED",
+      "deep_audit_status": "SUPPORTED",
+      "action": "REQUIRES REWRITE",
+      "note": "Reproducibility yes; not stochastic robustness."
+    }
+  ],
+  "final_verdict": "LIMITED",
+  "final_verdict_label": "LIMITED NOVELTY",
+  "required_action": "REVISE CLAIMS",
+  "required_action_detail": "Revise uniqueness wording for C1/C4/C5; keep C6 removed/not established; keep C8 LIMITED and C9 PARTIAL. Also upload/mount local TOTAL-- corpus to complete full inventory; current local count is 0.",
+  "integrity": {
+    "local_corpus_used": false,
+    "critical_fulltext_verified": true,
+    "safeharness_independently_verified": true,
+    "experiments_rerun": false,
+    "phase7_10_modified": false,
+    "source_code_modified": false,
+    "papers_deleted": false,
+    "fabricated_evidence": false,
+    "previous_direct_overlap_corrected": true
+  },
+  "validation": {
+    "actual_local_corpus_used": false,
+    "unique_papers_counted_correctly": false,
+    "supporting_papers_included": true,
+    "critical_papers_verified": true,
+    "safeharness_independently_verified": true,
+    "no_experiments_rerun": true,
+    "phase7_10_unchanged": true,
+    "no_artifacts_overwritten": true,
+    "every_direct_overlap_evidence_supported": true,
+    "no_title_only_conclusions": true,
+    "prior_hashes": {
+      "results/phase7/adaptive_100_v2.json": "b7335bcae9751b9c57dcb114ff2cae7a91c25af67c7e109188bba91888268f96",
+      "results/phase8/ablation_v1.json": "fa4a26b55e092c3cd37b4f0084c31724765cb5db5a71686b39084304eb4d3059",
+      "results/phase10/claim_evidence_matrix_v1.json": "1e5a1f5f89a18a7c0264f06fdaea615475d06ed5becbac0fc7540edc61d5fcf6"
+    },
+    "overall": "DEEP NOVELTY VERIFICATION COMPLETE WITH CORPUS GAP"
+  }
+}

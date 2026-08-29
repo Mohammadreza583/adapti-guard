@@ -1,0 +1,71 @@
+ADAPTI-GUARD — DEEP NOVELTY VERIFICATION v1
+============================================================
+local_corpus_found: False
+local_files_counted: 0
+critical_fulltext_verified: True
+
+SAFEHARNESS VERIFICATION
+  1_what: Four-layer harness security architecture (Inform/Verify/Constrain/Correct).
+  2_type: defense method / security architecture (not merely a benchmark).
+  3_runtime_adaptive: YES — adaptive degradation and recovery at runtime.
+  4_discrete_levels: YES — degradation levels 0–4 mapped to tool-tier ceilings.
+  5_escalation: YES — escalate degradation on confirmed attack/rollback.
+  6_de_escalation: YES — reduce level after consecutive safe actions.
+  7_feedback: Attack confirmation, safe-action window, windowed violation-rate entropy.
+  8_utility_explicit: YES — stated safety–utility balance; preserves core task utility.
+  9_defense_cost_explicit: PARTIAL — efficiency/interception trade-offs; not AG reward defense_cost.
+  10_episode_level_policy_updates: PARTIAL — step-level lifecycle updates, not AG episode stream.
+  11_adaptive_vs_fixed_policies: NOT EVIDENCED as AG-style Fixed-L0..L3 vs Adaptive controller comparison.
+  12_mixed_legitimate_attack_episodes: NOT EVIDENCED as AG 75/25 controlled schedule.
+  13_same_objective_as_AG: NO — related security–utility runtime control, different primary objective/formulation.
+previous DIRECT_OVERLAP valid: False
+reclassified as: PARTIAL_OVERLAP
+
+CAPABILITY MATRIX
+Capability | ADAPTI-GUARD | AgentAntibody | COPA | HARD | SecOPD | SCOUT | SafeHarness
+runtime adaptation | YES | YES | NO | PARTIAL | NO | YES | YES
+discrete defense levels | YES | NO | NO | NO | NO | PARTIAL | YES
+escalation | YES | PARTIAL | NO | NOT EVIDENCED | NO | YES | YES
+de-escalation | YES | PARTIAL | NO | NOT EVIDENCED | NO | PARTIAL | YES
+historical signal | YES | YES | YES | YES | NO | YES | YES
+utility-aware feedback | YES | YES | YES | YES | YES | YES | YES
+defense cost | YES | NO | NO | NO | NO | YES | PARTIAL
+reward | YES | NO | PARTIAL | NO | NO | NO | NO
+episode-level policy update | YES | PARTIAL | NO | NO | NO | NO | PARTIAL
+fixed baseline comparison | YES | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | NOT EVIDENCED
+mixed attack/legitimate protocol | YES | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED
+multi-seed | YES | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED | NOT EVIDENCED
+temporal analysis | YES | PARTIAL | PARTIAL | PARTIAL | NO | NO | PARTIAL
+attack-family analysis | YES | NOT EVIDENCED | PARTIAL | PARTIAL | NOT EVIDENCED | PARTIAL | NOT EVIDENCED
+novel attacks | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL | PARTIAL
+evolving attacks | PARTIAL | PARTIAL | YES | YES | PARTIAL | NO | PARTIAL
+security-utility-cost evaluation | YES | PARTIAL | PARTIAL | PARTIAL | PARTIAL | YES | PARTIAL
+
+OVERLAP (critical+SafeHarness, strict DIRECT test)
+{'DIRECT': 0, 'PARTIAL': 5, 'ADJACENT': 1, 'COMPLEMENTARY': 1, 'scope': 'critical papers + SafeHarness under strict DIRECT criteria'}
+
+CONTRIBUTION
+Algorithmic: LIMITED
+Evaluation: MODERATE
+Engineering: MODERATE
+
+SAFE CONTRIBUTIONS
+1. A controlled mixed attack/legitimate evaluation protocol comparing adaptive vs fixed discrete intervention levels under unified ASR/utility/defense-cost/reward metrics.
+2. An explicit legitimate-task-triggered de-escalation rule coupled to defense-cost thresholds in that protocol (distinct from SafeHarness safe-window privilege recovery).
+3. Evidence-bounded reporting that historical signal is implemented but empirically non-contributory under the AG ablation (C6 NOT SUPPORTED).
+
+CLAIM IMPACT
+C1 SUPPORTED -> REQUIRES REWRITE
+C2 PARTIALLY SUPPORTED -> REQUIRES REWRITE
+C3 SUPPORTED -> REQUIRES REWRITE
+C4 SUPPORTED -> REQUIRES REWRITE
+C5 PARTIALLY SUPPORTED -> REQUIRES REWRITE
+C6 NOT SUPPORTED -> REMOVE
+C7 SUPPORTED -> SAFE
+C8 LIMITED -> REQUIRES REWRITE
+C9 PARTIALLY SUPPORTED -> REQUIRES REWRITE
+C10 SUPPORTED -> REQUIRES REWRITE
+
+FINAL VERDICT: LIMITED NOVELTY
+REQUIRED ACTION: REVISE CLAIMS
+VALIDATION: DEEP NOVELTY VERIFICATION COMPLETE WITH CORPUS GAP
