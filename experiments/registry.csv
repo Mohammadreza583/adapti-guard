@@ -1,1 +1,2 @@
-experiment_id,date,version,status,component,objective,change,dataset,split,samples,seed,tp,tn,fp,fn,precision,recall,f1,balanced_accuracy,fpr,fnr,asr,defense_rate,utility,latency_ms,git_commit,dataset_sha256,run_dir,notes
+experiment_id,run_id,timestamp,status,git_commit,dataset,dataset_hash,target_model,judge_model,n_samples,seed,metrics_path,run_dir,notes
+EXP001,RUN-20260901-010200-4b02d3,,PARTIAL,,benchmark_v3,,,,11,,,results/experiment_runs/EXP001/RUN-20260901-010200-4b02d3,

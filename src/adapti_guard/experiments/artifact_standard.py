@@ -17,8 +17,8 @@ from typing import Any
 
 ARTIFACT_STANDARD_VERSION = "v1"
 
-# TOTAL--/ANALYSIS from .../01_BASE_Q1/adapti_guard/src/adapti_guard/experiments/
-_RESEARCH_ROOT = Path(__file__).resolve().parents[5]
+# Project root: .../src/adapti_guard/experiments/artifact_standard.py -> parents[3]
+_RESEARCH_ROOT = Path(__file__).resolve().parents[3]
 ANALYSIS_DIR = _RESEARCH_ROOT / "ANALYSIS"
 RESEARCH_AUDIT_LOG = ANALYSIS_DIR / "LOGS" / "research_audit.log"
 

@@ -1,0 +1,49 @@
+# Model configuration — secrets only from .env
+models:
+  gpt4o_mini:
+    provider: openrouter
+    model: openai/gpt-4o-mini
+    temperature: 0.0
+    max_tokens: 512
+    api_key_env: OPENROUTER_API_KEY
+
+  llama_3_1_8b:
+    provider: openrouter
+    model: meta-llama/llama-3.1-8b-instruct
+    temperature: 0.0
+    max_tokens: 512
+    api_key_env: OPENROUTER_API_KEY
+
+  qwen_2_5_7b:
+    provider: openrouter
+    model: qwen/qwen-2.5-7b-instruct
+    temperature: 0.0
+    max_tokens: 512
+    api_key_env: OPENROUTER_API_KEY
+
+  judge:
+    provider: openrouter
+    model: google/gemma-2-9b-it
+    temperature: 0.0
+    max_tokens: 256
+    api_key_env: OPENROUTER_API_KEY
+
+  ollama_llama:
+    provider: ollama
+    model: llama3.1:8b
+    temperature: 0.0
+    max_tokens: 512
+
+openrouter:
+  base_url: https://openrouter.ai/api/v1
+  timeout_seconds: 120
+  max_retries: 3
+  retry_backoff_seconds: 2.0
+
+ollama:
+  base_url: http://localhost:11434
+  timeout_seconds: 120
+
+cache:
+  enabled: true
+  directory: .llm_cache
