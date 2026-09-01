@@ -62,3 +62,32 @@ def cohens_h(p1: float, p2: float) -> float:
     from math import asin, sqrt
 
     return 2 * (asin(sqrt(p1)) - asin(sqrt(p2)))
+
+
+def cohens_d(a: Sequence[float], b: Sequence[float]) -> float:
+    """Pooled Cohen's d for two paired or independent samples."""
+    x = np.asarray(a, dtype=float)
+    y = np.asarray(b, dtype=float)
+    if x.size == 0 or y.size == 0:
+        return 0.0
+    nx, ny = x.size, y.size
+    pooled_var = ((nx - 1) * x.var(ddof=1) + (ny - 1) * y.var(ddof=1)) / max(nx + ny - 2, 1)
+    if pooled_var <= 0:
+        return 0.0
+    return float((x.mean() - y.mean()) / np.sqrt(pooled_var))
+
+
+def summarize_multiseed(values_by_seed: dict[int, float]) -> dict[str, float]:
+    """Mean, std, and bootstrap CI across seeds."""
+    values = list(values_by_seed.values())
+    if not values:
+        return {"mean": 0.0, "std": 0.0, "ci_95_lower": 0.0, "ci_95_upper": 0.0, "n_seeds": 0}
+    arr = np.asarray(values, dtype=float)
+    point, low, high = bootstrap_ci(arr)
+    return {
+        "mean": float(np.mean(arr)),
+        "std": float(np.std(arr, ddof=1)) if arr.size > 1 else 0.0,
+        "ci_95_lower": low,
+        "ci_95_upper": high,
+        "n_seeds": int(arr.size),
+    }

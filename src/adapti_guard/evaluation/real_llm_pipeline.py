@@ -7,7 +7,7 @@ from typing import Any
 
 from src.adapti_guard.core.models import DefenseAction
 from src.adapti_guard.defense.action_layer import DefenseActionLayer
-from src.adapti_guard.detector.regex_detector import RegexDetector
+from src.adapti_guard.detectors.regex_detector import RegexDetector
 from src.adapti_guard.evaluation.llm_judge import JudgeInput, JudgeVerdict, LLMJudge
 from src.adapti_guard.evaluation.outcome_evaluator import OutcomeEvaluator, OutcomeResult
 from src.adapti_guard.evaluation.target_model import GenerationRequest, TargetModel

@@ -33,9 +33,9 @@ BASELINE_REGISTRY: list[BaselineSpec] = [
     BaselineSpec(BaselineType.NO_DEFENSE, "No Defense", implemented=True),
     BaselineSpec(BaselineType.REGEX_DEFENSE, "Regex Defense", implemented=True),
     BaselineSpec(BaselineType.ADAPTI_GUARD, "ADAPTI-GUARD Adaptive", implemented=True),
-    BaselineSpec(BaselineType.LLAMA_GUARD, "Llama Guard", implemented=False, notes="Requires ML model integration"),
-    BaselineSpec(BaselineType.PROMPT_GUARD, "Prompt Guard", implemented=False, notes="Requires Meta Prompt Guard API/model"),
-    BaselineSpec(BaselineType.NEMO_GUARDRAILS, "NeMo Guardrails", implemented=False, notes="Requires NeMo installation"),
+    BaselineSpec(BaselineType.LLAMA_GUARD, "Llama Guard", implemented=True, notes="Adapter via OpenRouter; requires API key"),
+    BaselineSpec(BaselineType.PROMPT_GUARD, "Prompt Guard", implemented=True, notes="Heuristic pattern adapter"),
+    BaselineSpec(BaselineType.NEMO_GUARDRAILS, "NeMo Guardrails", implemented=False, notes="Requires nemoguardrails package"),
 ]
 
 

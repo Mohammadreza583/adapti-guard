@@ -43,7 +43,11 @@ datasets/
 !datasets/benchmark_v3/
 !datasets/benchmark_v3/statistics.json
 !datasets/benchmark_v3/dataset_card.md
-backups/
+!datasets/benchmark_v4/
+!datasets/benchmark_v4/statistics.json
+!datasets/benchmark_v4/dataset_card.md
+!datasets/benchmark_v4/hashes.json
+models/
 
 # Generated project reports
 full_project_report.txt

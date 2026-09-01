@@ -1,81 +1,83 @@
 # Q1 Final Readiness Report
 
 **Date:** 2026-09-01  
-**Evidence-based score:** **3.5 / 10** (research prototype with real-eval infrastructure)
+**Evidence-based score:** **4.5 / 10** (research prototype with expanded Q1 infrastructure)
 
-Target 7–8/10 **not achieved** — requires executed experiments at scale.
+Target 7–8/10 **not achieved** — requires executed real-LLM experiments at publication scale.
 
 ---
 
-## Completed improvements
+## Completed improvements (Q1 Enhancement Mission)
 
-| Area | Status |
-|------|--------|
-| Q1 research audit | DONE — `docs/Q1_RESEARCH_AUDIT.md` |
-| Real LLM pipeline (defense → target → judge) | IMPLEMENTED |
-| Independent judge (no detector rules) | IMPLEMENTED |
-| OpenRouter + Ollama target adapters | IMPLEMENTED |
-| Experiment logging + registry | IMPLEMENTED |
-| benchmark_v3 builder + schema | IMPLEMENTED (smoke only) |
-| Adaptive controllers (rule, Bayesian, context) | IMPLEMENTED (unvalidated) |
-| Statistics helpers (bootstrap, McNemar, Wilcoxon) | IMPLEMENTED |
-| Legacy simulation marked | LEGACY_SIMULATION_ONLY |
-| Detector package structure | PARTIAL (`detectors/`) |
-| Reproducibility (Docker, env, run script) | IMPLEMENTED |
-| Garak/Inspect `DefensePipeline` alias | FIXED |
+| Phase | Deliverable | Status |
+|-------|-------------|--------|
+| 0 | `docs/Q1_IMPROVEMENT_TRACKER.md` | DONE |
+| 1 | Real LLM pipeline + EXP002 framework | IMPLEMENTED (BLOCKED execution) |
+| 2 | `datasets/benchmark_v4/` + quality report | DONE (smoke) |
+| 3 | Baseline framework + EXP003 | IMPLEMENTED (BLOCKED execution) |
+| 4 | Controllers + EXP004 | DONE (simulation) |
+| 5 | Hybrid detector (regex+ML+LLM) | IMPLEMENTED |
+| 6 | RAG environment + EXP005 | DONE (offline) |
+| 7 | Agent environment + EXP006 | DONE (offline) |
+| 8 | Statistical validation + multiseed | IMPLEMENTED |
+| 9 | EXP007 ablation | DONE (simulation) |
+| 10 | Reproducibility (lock file, run script) | DONE |
+| 11 | Manuscript upgrade plan | DONE |
 
-## Remaining weaknesses
+---
 
-1. No executed publication-scale real LLM results in repo  
-2. External datasets absent — benchmark_v3 smoke only  
-3. SOTA baselines not implemented (Llama Guard, Prompt Guard, NeMo)  
-4. RAG and agent evaluation BLOCKED (stubs only)  
-5. Detector monolith not fully refactored  
-6. Human judge audit NOT_PERFORMED  
-7. Statistical tests not applied to real experiment outputs  
+## Experiment evidence
 
-## Experiment status
+| ID | Status | Evidence |
+|----|--------|----------|
+| EXP000 | BLOCKED | No API key |
+| EXP001 | PARTIAL | Smoke dataset analysis |
+| EXP002 | BLOCKED | `results/EXP002/metrics.json` |
+| EXP003 | BLOCKED | `results/baseline_comparison.csv` (header only) |
+| EXP004 | DONE | `results/EXP004_adaptive_controller/` (LEGACY_SIMULATION_ONLY) |
+| EXP005 | DONE | `results/EXP005_rag_security/` (offline mock LLM) |
+| EXP006 | DONE | `results/EXP006_agent_security/` (offline mock LLM) |
+| EXP007 | DONE | `results/EXP007_ablation/` (LEGACY_SIMULATION_ONLY) |
 
-| ID | Name | Status |
-|----|------|--------|
-| EXP000 | API smoke | BLOCKED without API key |
-| EXP001 | Dataset analysis | PARTIAL |
-| EXP002 | Real LLM eval | NOT_RUN / BLOCKED |
-| EXP003 | Baseline comparison | NOT_RUN |
-| EXP004 | Adaptive controller | NOT_RUN |
-| EXP005 | RAG security | BLOCKED |
-| EXP006 | Agent security | BLOCKED |
-| EXP007 | Ablation | NOT_RUN |
-| EXP008 | Latency/cost | NOT_RUN |
+---
 
-## Reproducibility status
+## Remaining limitations
 
-**4/10** — scripts and Docker exist; datasets and API results missing from clone.
+1. No publication-scale real LLM judge results
+2. benchmark_v4 smoke-only (`publication_ready: false`)
+3. NeMo Guardrails not integrated
+4. Harmonized runner still uses LEGACY_SIMULATION_ONLY ASR
+5. Human judge audit NOT_PERFORMED
+6. Statistical significance tests pending real EXP002/EXP003 outputs
+
+---
 
 ## Journal readiness
 
 | Dimension | Score |
 |-----------|------:|
 | Scientific novelty (if experiments succeed) | 5 |
-| Technical depth | 5 |
-| Dataset quality | 2 |
-| Experimental rigor | 2 |
-| Baselines | 1 |
-| Statistics (applied) | 1 |
-| Reproducibility | 4 |
-| Code quality | 5 |
-| **Overall** | **3.5** |
+| Technical depth | 6 |
+| Dataset quality | 3 |
+| Experimental rigor | 3 |
+| Baselines | 4 |
+| Statistics (applied) | 4 |
+| Reproducibility | 6 |
+| Code quality | 6 |
+| **Overall** | **4.5** |
 
-## Recommendation
+---
 
-**Do not submit.** Next critical path:
+## Critical path to 7/10
 
-1. `OPENROUTER_API_KEY` → PASS EXP000  
-2. Integrate NotInject/BIPIA → rebuild benchmark_v3  
-3. Run EXP002 on ≥500 test samples × 3 models  
-4. Implement + run EXP003 baselines  
-5. Apply bootstrap CI + McNemar; update `results/baseline_comparison.csv` with real rows only
+1. `OPENROUTER_API_KEY` → EXP000 PASS → EXP002 (≥500 test × 3 models)
+2. Integrate NotInject/BIPIA → `publication_ready: true`
+3. EXP003 with all baselines → populate `baseline_comparison.csv`
+4. Replace simulation ASR with judge-based metrics in EXP004/007
+5. Human judge audit (100-sample κ)
 
-## Estimated effort to 7/10
+---
 
-**12–16 weeks** minimum with dedicated API budget and dataset access.
+## Reproducibility status
+
+**6/10** — `run_all_experiments.sh`, Docker, `requirements-lock.txt`, provenance fields in all experiment configs. Missing: API results and external datasets in clone.
