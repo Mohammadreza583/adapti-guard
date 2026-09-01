@@ -1,4 +1,8 @@
-"""Shared attack-success definition for adaptive and baseline runners."""
+"""Shared attack-success definition for adaptive and baseline runners.
+
+LEGACY_SIMULATION_ONLY — do not use as primary scientific ASR metric.
+Use LLMJudge via real_llm_pipeline.py for publication experiments.
+"""
 
 from src.adapti_guard.core.models import DefenseAction
 

@@ -1,1 +1,12 @@
-experiment_id,date,version,status,component,objective,change,dataset,split,samples,seed,tp,tn,fp,fn,precision,recall,f1,balanced_accuracy,fpr,fnr,asr,defense_rate,utility,latency_ms,git_commit,dataset_sha256,run_dir,notes
+experiment_id,run_id,timestamp,status,git_commit,dataset,dataset_hash,target_model,judge_model,n_samples,seed,metrics_path,run_dir,notes
+EXP001,RUN-20260901-010200-4b02d3,,PARTIAL,,benchmark_v3,,,,11,,,results/experiment_runs/EXP001/RUN-20260901-010200-4b02d3,
+EXP001,RUN-20260901-093803-a9b490,,PARTIAL,,benchmark_v3,,,,11,,,results/experiment_runs/EXP001/RUN-20260901-093803-a9b490,
+EXP000,RUN-20260901-093805-506195,,BLOCKED,,,,,,,,,,
+EXP001,RUN-20260901-093901-cf3a81,,PARTIAL,,benchmark_v3,,,,11,,,results/experiment_runs/EXP001/RUN-20260901-093901-cf3a81,
+EXP000,RUN-20260901-093903-605326,,BLOCKED,,,,,,,,,,
+EXP002,RUN-20260901-093903-d9f372,,BLOCKED,,,,,,,,,,
+EXP003,RUN-20260901-093904-873809,,BLOCKED,,,,,,,,,,
+EXP004,RUN-20260901-093904-01ee44,,DONE,,,,,,,,,,LEGACY_SIMULATION_ONLY
+EXP005,RUN-20260901-093906-9d6922,,DONE,,,,,,,,,,
+EXP006,RUN-20260901-093906-f020b7,,DONE,,,,,,,,,,
+EXP007,RUN-20260901-093907-c3f6b9,,DONE,,,,,,,,,,LEGACY_SIMULATION_ONLY

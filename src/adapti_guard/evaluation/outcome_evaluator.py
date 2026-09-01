@@ -2,6 +2,8 @@ from dataclasses import dataclass
 
 from src.adapti_guard.core.models import DefenseAction
 
+# LEGACY_SIMULATION_ONLY fixed cost table — replace with measured costs in EXP008.
+
 
 @dataclass
 class OutcomeResult:
