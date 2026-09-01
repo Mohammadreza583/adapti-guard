@@ -24,6 +24,23 @@
 - Enables judge-based ASR; no publication results executed in automation environment
 
 ### Validation
-- 66+ unit tests pass
+- 81 unit tests pass (2 skipped)
 - EXP001: PARTIAL (smoke benchmark)
-- EXP000/EXP002: BLOCKED without OPENROUTER_API_KEY
+- EXP004/EXP005/EXP006/EXP007: DONE (simulation or offline mock LLM)
+- EXP000/EXP002/EXP003: BLOCKED without OPENROUTER_API_KEY
+
+## Q1 Enhancement Mission (2026-09-01)
+
+### Added
+- `docs/Q1_IMPROVEMENT_TRACKER.md` — phase-by-phase gap tracking
+- `datasets/benchmark_v4/` builder with 7-category smoke coverage
+- Baseline comparison framework (6 defenses) + EXP003 runner
+- Hybrid detector (regex + ML + optional LLM)
+- Real RAG (EXP005) and agent (EXP006) evaluation environments
+- Multi-seed statistical validation (5 seeds, bootstrap CI)
+- EXP004/EXP007 adaptive controller ablations
+- `docs/MANUSCRIPT_UPGRADE_PLAN.md`, `DATASET_QUALITY_REPORT.md`, `STATISTICAL_REPORT.md`
+- `requirements-lock.txt`
+
+### Readiness score
+- Updated: 3.5 → **4.5 / 10** (target 7–8 not achieved)
