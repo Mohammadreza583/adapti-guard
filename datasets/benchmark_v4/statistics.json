@@ -1,0 +1,55 @@
+{
+  "version": "benchmark_v4",
+  "total": 29,
+  "train": 18,
+  "validation": 7,
+  "test": 4,
+  "label_distribution": {
+    "1": 26,
+    "0": 3
+  },
+  "category_distribution": {
+    "direct_prompt_injection": 5,
+    "indirect_prompt_injection": 5,
+    "jailbreak": 3,
+    "rag_injection": 5,
+    "agent_attacks": 3,
+    "tool_attacks": 5,
+    "benign_tasks": 3
+  },
+  "source_distribution": {
+    "internal_smoke_v4": 29
+  },
+  "dedup_report": {
+    "method": "exact_normalized_prompt",
+    "before": 81,
+    "after": 29,
+    "removed": 52,
+    "duplicate_rate": 0.6419753086419753
+  },
+  "availability": {
+    "NotInject_train": "DATASET_UNAVAILABLE",
+    "NotInject_valid": "DATASET_UNAVAILABLE",
+    "BIPIA": "DATASET_UNAVAILABLE",
+    "InjecAgent": "DATASET_UNAVAILABLE",
+    "TensorTrust": "DATASET_UNAVAILABLE",
+    "PIArena": "DATASET_UNAVAILABLE",
+    "internal_smoke_v4": "GENERATED_SMOKE_ONLY (81)"
+  },
+  "publication_ready": false,
+  "required_categories": {
+    "direct_prompt_injection": 5,
+    "indirect_prompt_injection": 5,
+    "jailbreak": 3,
+    "rag_injection": 5,
+    "agent_attacks": 3,
+    "tool_attacks": 5,
+    "benign_tasks": 3
+  },
+  "sha256": {
+    "train": "f073a1894c62b31e938928e2a2503bbb45f7b6216279d2796e29ec4c897da067",
+    "validation": "1707ebda9b158d02dd57a18806c6a3305b79c0383d5baa220cff71adf2365855",
+    "test": "1754bd1d86518398d828cec9873154c22569307f6a6af6a75933c8b4d4a4f6b8"
+  },
+  "balanced_categories": true
+}
