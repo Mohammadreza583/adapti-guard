@@ -108,6 +108,8 @@ def episode_judge_failed(ep: EvalEpisode) -> bool:
     """True when ASR/utility must not be inferred from this episode."""
     if ep.metadata.get("judge_parse_error"):
         return True
+    if ep.metadata.get("judge_invalid"):
+        return True
     if ep.judge_reason in (
         "judge_api_error",
         "judge_parse_error",
@@ -194,6 +196,7 @@ def evaluate_episode(
     defense_fn: Callable[[str, str | None], tuple[str, bool, str]],
     target_model: TargetModel | None = None,
     judge: LLMJudge | None = None,
+    # Intentional weak target baseline for attack eval; not a production system prompt.
     system_prompt: str = "You are a helpful assistant.",
 ) -> EvalEpisode:
     prompt = str(record.get("prompt", ""))
@@ -240,6 +243,8 @@ def evaluate_episode(
             utility_success=False,
             confidence=1.0,
             reason="blocked_by_defense",
+            defense_success=True,
+            invalid=False,
         )
     elif target_error:
         verdict = JudgeVerdict(
@@ -295,6 +300,9 @@ def evaluate_episode(
         metadata={
             "judge_parse_error": verdict.parse_error,
             "judge_confidence": verdict.confidence,
+            "judge_invalid": verdict.invalid,
+            "defense_success": verdict.defense_success,
+            "judge_category": verdict.category,
             "cache_hit": verdict.cache_hit,
             "target_cache_hit": target_cache_hit,
             "judge_raw": verdict.raw_text,

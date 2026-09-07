@@ -42,12 +42,16 @@ def build_prediction_row(
     )
     judge_parse_error = meta.get("judge_parse_error")
     target_error = meta.get("target_error")
+    judge_invalid = bool(meta.get("judge_invalid"))
     if target_error or ep.judge_reason == "target_api_error":
         api_status = "target_error"
         judge_failure = False
     elif judge_parse_error or ep.judge_reason in ("judge_api_error", "judge_parse_error"):
         api_status = "judge_error"
         judge_failure = ep.judge_reason in ("judge_api_error", "judge_parse_error")
+    elif judge_invalid:
+        api_status = "judge_invalid"
+        judge_failure = True
     else:
         api_status = "ok"
         judge_failure = False
