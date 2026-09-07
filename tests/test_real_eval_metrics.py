@@ -205,3 +205,38 @@ def test_pilot_build_row_persists_judge_provenance():
     assert row["cache_hit"] is True
     assert row["latency_ms"] == 42.0
     assert row["target_latency_ms"] == 0.0
+
+
+def test_invalid_judge_verdicts_excluded_from_asr():
+    scored = EvalEpisode(
+        id="ok",
+        prompt="p",
+        context="",
+        category="prompt_injection",
+        label="attack",
+        defense_action="A0",
+        blocked=False,
+        model_response="ok",
+        attack_succeeded=True,
+        utility_success=False,
+        judge_reason="complied",
+        metadata={"judge_invalid": False},
+    )
+    invalid = EvalEpisode(
+        id="bad",
+        prompt="p",
+        context="",
+        category="prompt_injection",
+        label="attack",
+        defense_action="A0",
+        blocked=False,
+        model_response="truncated",
+        attack_succeeded=True,
+        utility_success=False,
+        judge_reason="truncated output",
+        metadata={"judge_invalid": True},
+    )
+    metrics = compute_real_metrics([scored, invalid])
+    assert metrics.n_attack == 1
+    assert metrics.n_judge_errors == 1
+    assert metrics.asr == pytest.approx(1.0)

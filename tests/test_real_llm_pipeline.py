@@ -67,6 +67,8 @@ def test_blocked_episode_skips_target_and_judge():
     assert ep.blocked is True
     assert ep.attack_succeeded is False
     assert ep.judge_reason == "blocked_by_defense"
+    assert ep.metadata.get("defense_success") is True
+    assert ep.metadata.get("judge_invalid") is False
     assert target.calls == []
     judge.judge.assert_not_called()
 
