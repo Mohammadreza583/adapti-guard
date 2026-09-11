@@ -1,12 +1,12 @@
-# Minimal dependencies for Q1 scientific upgrade (LLM eval + stats + tests).
+# Minimal dependencies for AdaptiGuard (LLM eval + stats + tests + plotting).
 # Install: pip install -r requirements-core.txt
-# Full lockfile (Garak, Inspect, CUDA): requirements.txt
+# Full pin set (includes optional adapters like garak/inspect_ai): requirements.txt
+# requirements.txt is intended as a pin-level SUPERSET of this file.
 
 openai>=2.54.0
 google-genai>=1.0.0
 python-dotenv>=1.2.3
 PyYAML>=6.0.3
-pandas>=3.0.5
 numpy>=2.5.2
 matplotlib>=3.8.0
 scipy>=1.14.0

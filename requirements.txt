@@ -1,3 +1,10 @@
+# Full pinned dependency set for AdaptiGuard.
+# SUPERSET of requirements-core.txt (openai, google-genai, python-dotenv,
+# PyYAML, numpy, matplotlib, scipy, scikit-learn, pytest) plus optional
+# adapters (garak, inspect_ai, transformers, datasets, httpx, …).
+# Packages with zero project imports are listed only in the commented
+# optional/aspirational section at the bottom.
+
 agent-client-protocol==0.12.1
 aioboto3==15.5.0
 aiobotocore==2.25.1
@@ -48,6 +55,7 @@ google-auth==2.57.0
 google-auth-httplib2==0.4.2
 google-cloud-core==2.7.0
 google-cloud-translate==3.27.0
+google-genai==1.0.0
 googleapis-common-protos==1.75.2
 grpc-google-iam-v1==0.14.5
 grpcio==1.83.0
@@ -157,6 +165,8 @@ rpds-py==2026.6.3
 s3fs==2025.9.0
 s3transfer==0.14.0
 safetensors==0.8.0
+scikit-learn==1.5.2
+scipy==1.14.1
 semver==3.0.4
 sentencepiece==0.2.2
 setuptools==84.0.0
