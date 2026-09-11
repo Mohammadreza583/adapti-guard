@@ -91,6 +91,7 @@ lorem==0.1.1
 Markdown==3.10.3
 markdown-it-py==4.2.0
 MarkupSafe==3.0.3
+matplotlib==3.10.0
 mdit-py-plugins==0.6.1
 mdurl==0.1.2
 mikeshardmind-base2048==1.0.4
