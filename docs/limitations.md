@@ -10,5 +10,6 @@
 8. **Partial mixed real-LLM matrices** may abort under rate limits (`REAL_LLM_EVAL_MIXED` status).
 9. **B6 ≡ B3** in `get_defense_fn`.
 10. **No AgentDojo-class tool loop** in the primary harness.
+11. **External tooling scope** — Primary evaluation is a custom Python harness. `garak_adapter.py` and `inspect-test/` are optional thin adapters/sample tasks, not full Garak or Inspect AI pipelines. LangChain/LangGraph, PyRIT, and promptfoo are not integrated.
 
 Do not overclaim. Prefer `docs/final_results.md` and experiment `metrics.json` over narrative summaries.

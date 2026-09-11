@@ -29,6 +29,8 @@ B6 is an **implementation alias** of B3 (`get_defense_fn`).
 | Real LLM | `experiments/REAL_LLM_EVAL/run.py` | Target + Judge when APIs allow |
 | Statistics | `src/adapti_guard/evaluation/statistics.py` | Bootstrap, McNemar, Holm |
 
+Primary evaluation is this custom harness. Optional thin adapters exist (`garak_adapter.py`, `inspect-test/`) but are **not** full Garak/Inspect pipelines; LangChain, PyRIT, and promptfoo are not used.
+
 ## Costs
 
 A0=0.00, A1=0.10, A2=0.25, A3=0.50.
