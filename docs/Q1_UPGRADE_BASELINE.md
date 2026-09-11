@@ -98,8 +98,8 @@ Input (attack / benign prompt)
 | External datasets | **MISSING** in clone | Scripts reference NotInject, BIPIA, InjecAgent, etc. |
 | benchmark_v2 dataset | **MISSING** | Not yet created (Phase 1) |
 | SOTA baselines (Llama Guard, etc.) | **MISSING** | Not implemented |
-| Garak integration | **BROKEN** | Imports non-existent `DefensePipeline` |
-| Inspect AI integration | **BROKEN** | Same `DefensePipeline` import error |
+| Garak integration | **OPTIONAL ADAPTER ONLY** | `garak_adapter.py` is a thin `Generator` wrapper — not a full Garak pipeline (historical note: earlier audit marked BROKEN before `DefensePipeline` alias) |
+| Inspect AI integration | **SAMPLE TASK ONLY** | `inspect-test/` sample — not a full Inspect AI pipeline (same historical caveat) |
 | Statistical inference | **MISSING** | No CIs, no paired tests in codebase |
 | RAG evaluation | **MISSING** | `RAG_ATTACK` weight only in risk engine |
 | Agent evaluation | **MISSING** | Schema fields only in `data/schema.py` |
@@ -117,7 +117,7 @@ Input (attack / benign prompt)
 5. Statistical validation insufficient (single seed, no CIs).
 6. Datasets and `results/` gitignored — clone not self-contained.
 7. Detector is historical patch-stack with duplicated V18 block.
-8. Garak / Inspect integrations broken.
+8. Garak / Inspect are optional adapter/sample only — not full pipeline integrations (do not claim LangChain/PyRIT/promptfoo either).
 9. Held-out NotInject validation: F1≈0.41 (committed metrics in `EXP-017/018`).
 10. Manuscript-grade evidence insufficient for Q1.
 

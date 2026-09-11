@@ -20,7 +20,7 @@ Append-only project history. Do not delete prior entries.
 - NotInject held-out F1 ≈ 0.41
 - No SOTA baselines executed
 - No statistical inference (CIs, paired tests)
-- Garak/Inspect integrations broken (`DefensePipeline` missing)
+- Garak/Inspect limited to optional adapter/sample task (not full pipelines; LangChain/PyRIT/promptfoo not integrated)
 
 ### Q1 upgrade actions (this session)
 

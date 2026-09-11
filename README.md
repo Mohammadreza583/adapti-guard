@@ -52,8 +52,17 @@ Independent Judge (when available) + Metrics
 | `experiments/` | Run artifacts (`real_llm_eval`, `simulation`, `ablations`, …) |
 | `paper/` | Working paper (PDF/TeX) when present |
 | `docs/` | Methodology, threat model, reproducibility, limitations |
+| `garak_adapter.py` | Optional Garak `Generator` adapter (thin wrapper) |
+| `inspect-test/` | Optional Inspect AI sample task (not the primary harness) |
 
 Legacy path symlinks (e.g. `experiments/REAL_LLM_EVAL` → `experiments/real_llm_eval/REAL_LLM_EVAL`) keep older scripts working.
+
+## Tooling / integrations (accurate scope)
+
+Primary evaluation is a **custom Python harness** under `src/adapti_guard/` and `experiments/`.
+
+- **Optional:** a Garak `Generator` adapter (`garak_adapter.py`) and an Inspect AI sample task (`inspect-test/`). These are not a full Garak or Inspect pipeline integration.
+- **Not integrated:** LangChain / LangGraph, PyRIT, or promptfoo (no project imports; do not claim them).
 
 ## Installation
 

@@ -36,3 +36,7 @@ Primary entry: `experiments/REAL_LLM_EVAL/run.py` (symlink-stable path).
 ## Layout note
 
 Experiment directories live under categorical folders (`experiments/real_llm_eval/`, …) with **legacy symlinks** at historical paths for script compatibility.
+
+## Tooling scope
+
+Primary evaluation is the custom Python harness. Optional `garak_adapter.py` / `inspect-test/` are thin adapter/sample only — not full Garak or Inspect pipelines. LangChain, PyRIT, and promptfoo are not part of this repository’s runtime.
