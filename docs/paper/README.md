@@ -4,6 +4,7 @@ Working notes and workshop text. Scientific numbers must come from frozen artifa
 
 | Path | Role |
 | --- | --- |
+| [`dual_track/README.md`](dual_track/README.md) | **Internal:** dual-track Phase-1 report (VNEXT FAIL + Phase-1 confirm); not a venue packet |
 | [`workshop_vnext_fail/README.md`](workshop_vnext_fail/README.md) | **Current:** negative-result workshop/preprint package after VNEXT FAIL |
 | [`workshop_vnext_fail/MANUSCRIPT.md`](workshop_vnext_fail/MANUSCRIPT.md) | English manuscript (abstract–reproducibility) |
 | [`workshop_vnext_fail/CLAIMS_MAP.md`](workshop_vnext_fail/CLAIMS_MAP.md) | Allowed / forbidden claims after FAIL |
