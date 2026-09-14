@@ -1,0 +1,34 @@
+---
+description: AdaptiGuard standing orders (AUTO, dual-track, forbidden claims)
+alwaysApply: true
+---
+
+# AdaptiGuard standing orders
+
+Human entry: `docs/START_HERE.md`. Canonical text: `docs/experiments/MASTER_PROMPT.md`. Keep this file short; do not duplicate those docs.
+
+Read `docs/paper/DUAL_TRACK_STATUS.md` before claims, merge advice, or eval work.
+
+## AUTO (do not violate)
+
+- No merge. No force-push. Human merge only (`docs/paper/workshop_vnext_fail/PR_STACK.md`).
+- No arXiv / workshop / venue submit without explicit human approval in the prompt.
+- No live LLM / OpenRouter / API eval without explicit human approval in the prompt. Default **API=0**.
+- No Phase 2 implementation unless the human names Phase 2 as the task. Docs-only Phase 2 PRs stay unmerged unless asked.
+- No retune. No N change. No edit of frozen JSONL packs.
+- No edit of VNEXT FAIL numbers or `experiments/real_llm_eval/VNEXT_CONFIRM/20260914-133147/`.
+- No edit of Phase-1 confirm AUDIT numbers in place.
+
+## Dual-track (do not mix)
+
+- **Track A:** VNEXT confirmation **FAIL** (pack `523c8818…`, δ̂=0.0820, p=0.0625, U=0.9344). Immutable. Not PASS.
+- **Track B:** Phase-1 confirmatory LIVE **SUPPORTED_IMPROVEMENT** on a **different** pack (`c789811a…`, PHASE1-CORE vs B0). Scoped. Does not reverse Track A.
+- Never mix tracks in one unlabeled win/fail sentence. Claims: `docs/paper/CLAIMS_DUAL_TRACK.md`.
+
+## Forbidden claims (any track)
+
+SOTA; production-ready; solves prompt injection; VNEXT-reversed; VNEXT-ADAPT beats B0; FAIL relabeled PARTIAL/PASS; refusal counted as defense win.
+
+## If the ask is ambiguous
+
+Docs + claims hygiene only. Point to `docs/paper/DUAL_TRACK_STATUS.md`. Do not start live eval, Phase 2 code, or venue text as a submit.
