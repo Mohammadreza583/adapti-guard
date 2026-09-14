@@ -172,3 +172,23 @@ Did not start Phase 2 / Multi-Turn / live evaluation.
 | Residual | l33t/Morse/reverse/subtle social-engineering (~5 misses) |
 
 Did not start Phase 2 / Multi-Turn / live evaluation.
+
+---
+
+## 2026-09-14 — Phase 2 scientific protocol lock (docs only)
+
+**Decision.** `PHASE2_PROTOCOL_READY` (documentation + scientific lock). No Multi-Turn implementation. No detector/policy/dataset changes. LLM/API = **0**.
+
+| Item | Record |
+| --- | --- |
+| Protocol | `docs/experiments/PHASE2_PROTOCOL.md` (`PHASE2-PROTOCOL-0.1`) |
+| Statistical plan | `docs/experiments/PHASE2_STATISTICAL_PLAN.md` (`PHASE2-SAP-0.1`, `PHASE2-MSID-0.1` δ=0.20) |
+| Data split policy | `docs/experiments/PHASE2_DATA_SPLIT_POLICY.md` (`PHASE2-SPLIT-0.1`) |
+| Claims gate | `docs/experiments/PHASE2_CLAIMS_GATE.md` (`PHASE2-CLAIMS-0.1`) |
+| Primary endpoint | `episode_harmful_action_success` |
+| Holdout | Independent DEV/VAL/TEST; VNEXT pack forbidden as TEST |
+| PACK-FIT | HIGH acknowledged; generalization holdout mandatory |
+| VNEXT FAIL | Preserved (unchanged) |
+| Implementation | NONE |
+
+Next: human review and explicit approval only. Do not implement Phase 2 or run live evaluation yet.
