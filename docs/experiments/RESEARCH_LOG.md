@@ -134,3 +134,41 @@ p = 0.0625 is **not** “marginally confirmed.” This FAIL is **not** PARTIAL a
 - Editing frozen JSONL packs
 - arXiv or external venue submit
 - Merging the PR stack (human-only; see [`docs/paper/workshop_vnext_fail/PR_STACK.md`](../paper/workshop_vnext_fail/PR_STACK.md))
+
+---
+
+## 2026-09-14 — Phase 1 core defense quality upgrade (offline)
+
+**Quality gate.** PASS for architecture only. VNEXT confirmation remains **FAIL**. Adaptive cost-aware intervention is **not confirmed**. No live eval.
+
+| Item | Record |
+| --- | --- |
+| Audit | `docs/experiments/PHASE1_CORE_AUDIT.md` |
+| Design | `docs/experiments/PHASE1_CORE_DESIGN.md` |
+| Results | `docs/experiments/PHASE1_CORE_RESULTS.md` |
+| Code | `CoreDefensePipeline` + `PHASE1-CORE` factory; VNEXT-ADAPT unchanged |
+| Tests | `tests/test_phase1_core_pipeline.py` (17 passed) |
+| LLM/API | 0 |
+| Frozen packs | Unchanged (SHA-256 `523c8818…`) |
+
+Rationale: eval factories hardcoded `tool_sensitive=False`, so MEDIUM attacks stayed on A1 while tools still ran. Phase 1 adds a label-blind privilege feature and a tool-permission gate. Remaining: text-only A1; v4 still misses most VNEXT-pack rows (offline A0=112/122, not a performance claim).
+
+Did not start Phase 2 / Multi-Turn / live evaluation.
+
+---
+
+## 2026-09-14 — Phase 1 final quality gate (evidence upgrade, offline)
+
+**Decision.** Phase 1 **PASS** (architecture + evidence quality). VNEXT confirmation remains **FAIL**. LLM/API = 0.
+
+| Item | Record |
+| --- | --- |
+| Failure matrix | Detector misses were mostly evidence-without-primary-gate; not MSID retune |
+| Detector | `evidence_phase1.0` for core only; frozen `evidence_v4.0` kept for VNEXT-ADAPT |
+| Risk / policy | Action-sensitive A0–A3; privilege floors without E4-alone FPs |
+| Hard negatives | Quoted/analysis/redaction → A0 |
+| Offline diagnostic | Attack hits 56/61; benign false A2/A3 = 0 (not an ASR claim) |
+| Gate doc | `docs/experiments/PHASE1_FINAL_QUALITY_GATE.md` |
+| Residual | l33t/Morse/reverse/subtle social-engineering (~5 misses) |
+
+Did not start Phase 2 / Multi-Turn / live evaluation.
