@@ -25,10 +25,13 @@ CONFIGS_DOC = ROOT / "docs/paper/workshop_vnext_fail/CONFIGS_SNAPSHOT.md"
 DONE = ROOT / "docs/paper/workshop_vnext_fail/DONE_CHECKLIST.md"
 PACKET = ROOT / "docs/paper/workshop_vnext_fail/SUBMISSION_PACKET.md"
 SUBMIT_FA = ROOT / "docs/paper/workshop_vnext_fail/SUBMIT_NEXT_FA.md"
-DUAL_STATUS = ROOT / "docs/paper/DUAL_TRACK_STATUS.md"
-CLAIMS_DUAL = ROOT / "docs/paper/CLAIMS_DUAL_TRACK.md"
-RELEASE_FA = ROOT / "docs/paper/RELEASE_NEXT_FA.md"
+DUAL_STATUS = ROOT / "docs/paper/dual_track/DUAL_TRACK_STATUS.md"
+CLAIMS_DUAL = ROOT / "docs/paper/dual_track/CLAIMS_DUAL_TRACK.md"
+RELEASE_FA = ROOT / "docs/paper/dual_track/RELEASE_NEXT_FA.md"
 MASTER_PROMPT = ROOT / "docs/experiments/MASTER_PROMPT.md"
+DUAL_STATUS_STUB = ROOT / "docs/paper/DUAL_TRACK_STATUS.md"
+CLAIMS_DUAL_STUB = ROOT / "docs/paper/CLAIMS_DUAL_TRACK.md"
+RELEASE_FA_STUB = ROOT / "docs/paper/RELEASE_NEXT_FA.md"
 START_HERE = ROOT / "docs/START_HERE.md"
 DOCS_INDEX = ROOT / "docs/paper/DOCS_INDEX.md"
 ROOT_README = ROOT / "README.md"
@@ -307,14 +310,14 @@ def main() -> None:
         if needle not in log:
             fail(f"RESEARCH_LOG missing {needle!r}")
 
-    for n in range(23, 42):
+    for n in range(23, 44):
         if f"[{n}](" not in stack:
             fail(f"PR_STACK missing PR {n}")
     close_skip = stack.upper()
     if "CLOSE / SKIP" not in close_skip and "## CLOSE / SKIP" not in stack:
         fail("PR_STACK missing CLOSE / SKIP section")
-    if "KEEP" not in stack or "#41" not in stack:
-        fail("PR_STACK missing KEEP path / #41")
+    if "KEEP" not in stack or "#41" not in stack or "#43" not in stack:
+        fail("PR_STACK missing KEEP path / #41 / #43")
     if "#35" not in stack or "#37" not in stack or "#38" not in stack or "#40" not in stack:
         fail("PR_STACK missing KEEP merge path PRs")
     if "never merge" not in stack.lower() and "Agents never merge" not in stack:
@@ -391,6 +394,20 @@ def main() -> None:
         if not path.is_file():
             fail(f"missing dual-track doc {path.relative_to(ROOT)}")
 
+    for stub, dest in (
+        (DUAL_STATUS_STUB, "docs/paper/dual_track/DUAL_TRACK_STATUS.md"),
+        (CLAIMS_DUAL_STUB, "docs/paper/dual_track/CLAIMS_DUAL_TRACK.md"),
+        (RELEASE_FA_STUB, "docs/paper/dual_track/RELEASE_NEXT_FA.md"),
+        (ROOT / "docs/experiments/VNEXT_PROTOCOL.md", "docs/experiments/protocols/VNEXT_PROTOCOL.md"),
+    ):
+        if not stub.is_file():
+            fail(f"missing redirect stub {stub.relative_to(ROOT)}")
+        stub_txt = stub.read_text()
+        if "Moved to" not in stub_txt:
+            fail(f"stub {stub.relative_to(ROOT)} missing 'Moved to'")
+        if dest not in stub_txt:
+            fail(f"stub {stub.relative_to(ROOT)} missing dest {dest}")
+
     dual = DUAL_STATUS.read_text()
     claims_dual = CLAIMS_DUAL.read_text()
     release_fa = RELEASE_FA.read_text()
@@ -450,6 +467,7 @@ def main() -> None:
         ("rel_close_skip", "CLOSE / SKIP"),
         ("rel_skip36", "#36"),
         ("rel_keep41", "#41"),
+        ("rel_keep43", "#43"),
     ):
         if needle not in release_fa:
             fail(f"RELEASE_NEXT_FA missing {label}: {needle!r}")
@@ -520,10 +538,10 @@ def main() -> None:
     print("  status=FAIL qualified_win=false")
     print("  b10=5 b01=0 p=0.0625 delta=0.0820 U=0.9344")
     print("  fail_reasons=s5_mcnemar_not_significant,msid_not_met,s4_utility_ineligible")
-    print("  claims_map=FAIL-consistent checklist=CLOSED+FAIL pr_stack=23-41 research_log=2026-09-14")
+    print("  claims_map=FAIL-consistent checklist=CLOSED+FAIL pr_stack=23-43 research_log=2026-09-14")
     print("  submission_packet=HONEST NEGATIVE RESULT submit_next_fa=no-html")
     print("  dual_track=Track A FAIL / Track B SUPPORTED_IMPROVEMENT (no VNEXT win language)")
-    print("  hygiene=START_HERE + DOCS_INDEX + CLOSE/SKIP + PR 23-41 + .cursor/rules")
+    print("  hygiene=START_HERE + DOCS_INDEX + CLOSE/SKIP + PR 23-43 + .cursor/rules")
 
 
 if __name__ == "__main__":

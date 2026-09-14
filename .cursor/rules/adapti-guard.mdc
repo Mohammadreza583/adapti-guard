@@ -7,7 +7,7 @@ alwaysApply: true
 
 Human entry: `docs/START_HERE.md`. Canonical text: `docs/experiments/MASTER_PROMPT.md`. Keep this file short; do not duplicate those docs.
 
-Read `docs/paper/DUAL_TRACK_STATUS.md` before claims, merge advice, or eval work.
+Read `docs/paper/dual_track/DUAL_TRACK_STATUS.md` before claims, merge advice, or eval work.
 
 ## AUTO (do not violate)
 
@@ -23,7 +23,7 @@ Read `docs/paper/DUAL_TRACK_STATUS.md` before claims, merge advice, or eval work
 
 - **Track A:** VNEXT confirmation **FAIL** (pack `523c8818…`, δ̂=0.0820, p=0.0625, U=0.9344). Immutable. Not PASS.
 - **Track B:** Phase-1 confirmatory LIVE **SUPPORTED_IMPROVEMENT** on a **different** pack (`c789811a…`, PHASE1-CORE vs B0). Scoped. Does not reverse Track A.
-- Never mix tracks in one unlabeled win/fail sentence. Claims: `docs/paper/CLAIMS_DUAL_TRACK.md`.
+- Never mix tracks in one unlabeled win/fail sentence. Claims: `docs/paper/dual_track/CLAIMS_DUAL_TRACK.md`.
 
 ## Forbidden claims (any track)
 
@@ -31,4 +31,4 @@ SOTA; production-ready; solves prompt injection; VNEXT-reversed; VNEXT-ADAPT bea
 
 ## If the ask is ambiguous
 
-Docs + claims hygiene only. Point to `docs/paper/DUAL_TRACK_STATUS.md`. Do not start live eval, Phase 2 code, or venue text as a submit.
+Docs + claims hygiene only. Point to `docs/paper/dual_track/DUAL_TRACK_STATUS.md`. Do not start live eval, Phase 2 code, or venue text as a submit.
