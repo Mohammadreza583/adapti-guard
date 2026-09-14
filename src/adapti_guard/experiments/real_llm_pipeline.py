@@ -45,6 +45,7 @@ from src.adapti_guard.evaluation.target_model import (
     OllamaTargetModel,
     TargetModel,
     build_target_model,
+    load_model_config,
 )
 from src.adapti_guard.experiments.defense_baselines import get_defense_fn
 from src.adapti_guard.experiments.env_loader import (
@@ -416,6 +417,12 @@ def run_baseline_evaluation(
                 "completion_tokens": ep.completion_tokens,
                 "target_cache_hit": ep.metadata.get("target_cache_hit"),
                 "judge_parse_error": ep.metadata.get("judge_parse_error"),
+                "taxonomy_class": ep.taxonomy_class,
+                "model_refusal": ep.model_refusal,
+                "detector_hit": ep.detector_hit,
+                "tool_blocked": ep.tool_blocked,
+                "harmful_action_prevented": ep.harmful_action_prevented,
+                "intervention_applied": ep.intervention_applied,
             }
         with predictions_path.open("a", encoding="utf-8") as fh:
             fh.write(json.dumps(pred_row, ensure_ascii=False) + "\n")
@@ -558,6 +565,19 @@ def run_real_llm_pipeline(config: PipelineConfig) -> dict[str, Any]:
 
         t_start = time.perf_counter()
         baseline_results: list[BaselineRunResult] = []
+        bench_path = Path(config.benchmark_dir) / f"{config.split}.jsonl"
+        dataset_hash = sha256_file(bench_path) if bench_path.exists() else ""
+        models_cfg = load_model_config(config.models_config)
+        cache_enabled = bool(models_cfg.get("cache", {}).get("enabled", False))
+        run_context = BaselineRunContext(
+            experiment_id=config.experiment_id,
+            model_id=str(getattr(target, "model_id", config.target_config_key)),
+            model_config_key=config.target_config_key,
+            git_commit=git_commit() or "",
+            seed=config.seed,
+            dataset_hash=dataset_hash,
+            cache_enabled=cache_enabled,
+        )
 
         for baseline_key in config.baselines:
             ctx.log_stdout(f"Running baseline {baseline_key} ({len(records)} episodes)")
@@ -567,6 +587,7 @@ def run_real_llm_pipeline(config: PipelineConfig) -> dict[str, Any]:
                 target=target,
                 judge=judge,
                 output_dir=config.output_dir / baseline_key,
+                run_context=run_context,
             )
             baseline_results.append(result)
             ctx.log_stdout(
@@ -629,7 +650,7 @@ def run_real_llm_pipeline(config: PipelineConfig) -> dict[str, Any]:
                 "status": "COMPLETED",
                 "git_commit": ctx.run_dir.joinpath("git_commit.txt").read_text().strip(),
                 "dataset": str(config.benchmark_dir),
-                "dataset_hash": "",
+                "dataset_hash": dataset_hash,
                 "target_model": config.target_config_key,
                 "judge_model": config.judge_config_key,
                 "n_samples": str(len(records)),

@@ -520,6 +520,15 @@ def load_benchmark_mixed_records(
         prompt = str(row.get("prompt") or row.get("text") or "")
         context = str(row.get("context") or "")
         is_benign = _is_benign_record(row)
+        meta = row.get("metadata") or {}
+        if not isinstance(meta, dict):
+            meta = {}
+        tool_call = row.get("tool_call")
+        if tool_call is None:
+            tool_call = meta.get("tool_call")
+        success_condition = str(
+            row.get("success_condition") or meta.get("success_condition") or ""
+        )
         records.append({
             "id": str(row.get("id", "")),
             "prompt": prompt,
@@ -532,7 +541,10 @@ def load_benchmark_mixed_records(
             "label": "benign" if is_benign else "attack",
             "source": row.get("source", ""),
             "attack_type": row.get("attack_type", ""),
-            "metadata": row.get("metadata") or {},
+            "success_condition": success_condition,
+            "tool_call": tool_call,
+            "tools": row.get("tools") or meta.get("tools"),
+            "metadata": meta,
         })
 
     meta = {
