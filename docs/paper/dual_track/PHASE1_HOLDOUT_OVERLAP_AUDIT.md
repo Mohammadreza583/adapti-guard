@@ -97,11 +97,28 @@ Docs (`PHASE1_FINAL_CLOSEOUT.md`, `PHASE1_DETECTOR_STUDY.md`) record holdout as 
 
 ### Counts (same method as independence audit; J≥0.40)
 
-From `python3 scripts/audit_phase1_holdout_overlap_origin.py`:
+From `python3 scripts/audit_phase1_holdout_overlap_origin.py` / full classification:
 
 - Near-pairs: **59** (benign↔benign 37; attack↔attack 22)
-- Exact prompt / prompt+context: **0** (prior audit; builder contamination screen)
+- Exact prompt / prompt+context: **0** (builder contamination screen + this classification)
 - Many-to-one inflation: e.g. `p1h_ben_004` appears in **10** pairs; `p1h_atk_019` in **9**; `p1h_atk_004` in **9**
+
+### Full 59/59 pair classification (this close-out)
+
+**Repro:** `python3 scripts/classify_phase1_holdout_pairs_full59.py`  
+**Tables:** `docs/paper/dual_track/artifacts/phase1_holdout_pairs_full59.md`  
+**JSON:** `docs/paper/dual_track/artifacts/phase1_holdout_pairs_full59.json`
+
+| Class | Count |
+|-------|------:|
+| `SAME_SCAFFOLD_DIFF_ENTITY` | 35 |
+| `SAME_SCAFFOLD_DIFF_WORDING` | 24 |
+| `COINCIDENTAL_SHORT_OVERLAP` | 0 |
+| `GENUINE_DUPLICATE` | **0** |
+
+**Statement:** **0 of 59 are `GENUINE_DUPLICATE`.** Every near-pair is scaffold reuse (entity/value swap or paraphrase), not an exact clone. No pair required stopping for contamination escalation under the Part A rule.
+
+Classes were assigned by inspecting each pair’s prompt/context text (not metadata provenance fields). Full per-pair table with J, SequenceMatcher ratio, and one-line justification is in the artifacts linked above (not inlined here to keep this audit readable).
 
 ### Builders
 
@@ -112,24 +129,19 @@ From `python3 scripts/audit_phase1_holdout_overlap_origin.py`:
 
 No shared importable template module. Confirm builder **duplicates** the same scaffolds as holdout text (standup email, maintenance ticket, translate hard-neg, RAG “retrieved note…”, tool “recommended action”, delayed “hidden step”), then parameterizes IDs/`P1C-*` markers. Confirm builder also **exact-match screens** against holdout (`build_phase1_confirm_v1.py` forbid set includes holdout path) — explains zero exact copies despite shared scaffolds.
 
-### Sample diffs (≥10 pairs; highest ratios)
+### Illustrative diffs (not a sample substitute — full table is 59/59)
 
-| Pair | J / SM | Pattern (plain) |
-|------|--------|-----------------|
-| `p1c_ben_042` ↔ `p1h_ben_012` | 0.796 / 0.949 | Same hard-neg translate scaffold; **Spanish** vs **French** |
-| `p1c_ben_046` ↔ `p1h_ben_016` | 0.685 / 0.861 | Same log-parse hard-neg; wording slightly expanded on holdout |
-| `p1c_ben_004` ↔ `p1h_ben_004` | 0.676 / 0.894 | Same `send_email`→`team-sync@company.example` standup scaffold; body text differs |
-| `p1c_ben_008` ↔ `p1h_ben_004` | 0.676 / 0.894 | Same (confirm variant index 8 vs same holdout row) |
-| `p1c_ben_003` ↔ `p1h_ben_006` | 0.671 / 0.944 | Same `maintenance_ticket` scaffold; payload `zone-3 warm` vs `HVAC zone 3 warm` |
-| `p1c_ben_012/016/020/024/028/032/036` ↔ `p1h_ben_004` | ~0.667 / ~0.90 | Confirm **enumerates** standup variants against one holdout prototype |
-| `p1c_atk_020`…`028` ↔ `p1h_atk_019` | 0.571 / 0.833 | Same tool-observation “perform the recommended action” attack family; confirm “Continue from…” vs holdout “Parse the JSON…” |
-| `p1c_atk_011`…`019` ↔ `p1h_atk_004` | ~0.506 / ~0.809 | Same indirect-RAG “summarize the retrieved note…” scaffold |
-
-Full structured sample: `docs/paper/dual_track/artifacts/phase1_holdout_overlap_origin.json`.
+| Pair | J / SM | Class |
+|------|--------|-------|
+| `p1c_ben_042` ↔ `p1h_ben_012` | 0.796 / 0.949 | `SAME_SCAFFOLD_DIFF_ENTITY` (Spanish vs French) |
+| `p1c_ben_046` ↔ `p1h_ben_016` | 0.685 / 0.861 | `SAME_SCAFFOLD_DIFF_WORDING` (log-parse hard-neg) |
+| `p1c_ben_004` ↔ `p1h_ben_004` | 0.676 / 0.894 | `SAME_SCAFFOLD_DIFF_ENTITY` (standup body) |
+| `p1c_atk_020` ↔ `p1h_atk_019` | 0.571 / 0.833 | `SAME_SCAFFOLD_DIFF_WORDING` (recommended-action) |
+| `p1c_atk_011` ↔ `p1h_atk_004` | 0.506 / 0.809 | `SAME_SCAFFOLD_DIFF_WORDING` (retrieved-note RAG) |
 
 ### Q2 verdict: **SHARED_TEMPLATE_FAMILY (not shared seed; not exact clone)**
 
-Similarity is explained by **reused Phase-1 threat/benign scaffolds** authored ~15 minutes apart (`519ceff` then `20f389b`), with confirm intentionally parameterizing variants and blocking exact copies. Seeds differ (`1411` vs `20260914`). No common generation library in-repo.
+Similarity is explained by **reused Phase-1 threat/benign scaffolds** authored ~15 minutes apart (`519ceff` then `20f389b`), with confirm intentionally parameterizing variants and blocking exact copies. Seeds differ (`1411` vs `20260914`). No common generation library in-repo. **Full 59/59 review:** 0 `GENUINE_DUPLICATE`, 35 entity-swap, 24 wording-paraphrase scaffolds.
 
 ---
 
