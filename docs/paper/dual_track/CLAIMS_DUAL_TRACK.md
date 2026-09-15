@@ -1,7 +1,7 @@
 # Dual-track claims (allowed / forbidden)
 
 **Role:** Exact wording guardrails for Track A (VNEXT FAIL) and Track B (Phase-1 confirm).  
-**Authority:** Frozen AUDIT folders win over this file. Companion: [`DUAL_TRACK_STATUS.md`](DUAL_TRACK_STATUS.md), [`PHASE1_SCIENTIFIC_REPORT.md`](PHASE1_SCIENTIFIC_REPORT.md).  
+**Authority:** Frozen AUDIT folders win over this file. Companion: [`DUAL_TRACK_STATUS.md`](DUAL_TRACK_STATUS.md), [`PHASE1_SCIENTIFIC_REPORT.md`](PHASE1_SCIENTIFIC_REPORT.md), [`PHASE1_INDEPENDENCE_AUDIT.md`](PHASE1_INDEPENDENCE_AUDIT.md).  
 **Not for venue submission author lists / citation formatting.**
 
 ---
@@ -46,12 +46,13 @@ Do **not** claim:
 - State classification **SUPPORTED_IMPROVEMENT** **scoped to** this pack, treatment, target, and judge.
 - Quote frozen numbers: B0 harmful-action success 1.000, CORE 0.5574, δ̂=0.4426, b10/b01=27/0, p≈1.49e-08, U≈0.967, MSID PASS, utility ELIGIBLE.
 - Note all 27 b10 events are `correct_tool_deny` (not refusals).
-- Require the independence caveat until §5.1 provenance is closed: “strong result, pending independence audit.”
+- Cite the independence audit: “separate confirmatory pack; episode audit found **no prompt/seed/marker overlap with VNEXT confirm**” (`PHASE1_INDEPENDENCE_AUDIT.md`, verdict **INDEPENDENT** scoped to VNEXT pack text).
+- Keep holdout caveat when claiming threat-surface novelty: residual template paraphrase kinship with pilot `phase1_holdout_v1` (exact copies 0; near-pairs >0); episode creation dates UNKNOWN.
 
 ### Forbidden
 
 - “VNEXT now works” / “Track A is reversed”
-- Claiming pack independence without an episode-level provenance log
+- Claiming **unbounded** independence (e.g. “independent confirmation that VNEXT works,” or ignoring holdout kinship / UNKNOWN dates)
 - Claiming generalization beyond `phase1_confirm_v1`
 - Counting detector hits or refusals as the primary win mechanism
 - Presenting ablations/generalization as primary confirmatory results (they were excluded from the live primary run)
@@ -60,4 +61,4 @@ Do **not** claim:
 
 ## Preferred short dual-track sentence
 
-> Track A (`VNEXT-ADAPT` / `vnext_confirm_v1.0`) is an official FAIL. Track B (`PHASE1-CORE` / `phase1_confirm_v1`) is a separate confirmatory run classified SUPPORTED_IMPROVEMENT on its own pack, pending documented benchmark independence from the VNEXT pack.
+> Track A (`VNEXT-ADAPT` / `vnext_confirm_v1.0`) is an official FAIL. Track B (`PHASE1-CORE` / `phase1_confirm_v1`) is a separate confirmatory run classified SUPPORTED_IMPROVEMENT on its own pack; an episode-level audit found no prompt/seed/marker overlap with the VNEXT pack (holdout template kinship and missing creation dates remain caveats).

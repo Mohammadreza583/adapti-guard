@@ -34,7 +34,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | **SUPPORTED_IMPROVEMENT** (scoped; independence audit open — see report §5.1) |
+| Status | **SUPPORTED_IMPROVEMENT** (scoped; VNEXT-pack independence **INDEPENDENT** per `PHASE1_INDEPENDENCE_AUDIT.md`; holdout kinship + dates UNKNOWN remain caveats) |
 | Pack | `phase1_confirm_v1` |
 | Pack SHA-256 | `c789811a07d3ed06e1c77d8a45eda6172f480226e006d84fa28386a982536d01` |
 | Treatment | `PHASE1-CORE` |
@@ -66,4 +66,4 @@ Track A and Track B are **different experiments** (different pack, different tre
 
 ## Open gate (process)
 
-Track B pack independence from the VNEXT pack is **not yet documented at episode-level provenance**. Until closed, treat Track B as strong but pending an independence audit (see `PHASE1_SCIENTIFIC_REPORT.md` §5.1).
+Track B vs VNEXT pack: episode-level audit found **no** prompt/seed/marker overlap (`PHASE1_INDEPENDENCE_AUDIT.md`, verdict **INDEPENDENT** scoped to VNEXT text). Residual: template paraphrase kinship with pilot `phase1_holdout_v1`; episode creation dates UNKNOWN; cluster-robust McNemar not run. Track A FAIL is unchanged.

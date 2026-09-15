@@ -147,14 +147,22 @@ Track A: b10/b01 = 5/0 → BF₁₀ ≈ 6 → “positive” only; with p=0.0625
 
 ## 5. Independence of confirmatory packs
 
-### 5.1 Status: unresolved (sensitivity not run)
+### 5.1 Status: INDEPENDENT (VNEXT pack text) — audit closed offline
 
-No cluster-robust or mixed-effects sensitivity vs template/family clustering is in the frozen AUDIT artifacts for this report cycle.
+Episode-level provenance + deterministic near-duplicate audit: [`PHASE1_INDEPENDENCE_AUDIT.md`](PHASE1_INDEPENDENCE_AUDIT.md) (metrics: `docs/paper/dual_track/artifacts/phase1_independence_audit_metrics.json`). **API=0.**
 
-**Disposition:** Moved to **Limitations §6.2** with explicit bias direction. Highest-priority scientific open item remains, but it is **not** the preferred explanation of A-vs-B classification tension (§4.3).
+| Check vs `vnext_confirm_v1` | Result |
+|-----------------------------|--------|
+| Exact normalized prompt / prompt+context | **0** overlaps |
+| Near-dupes (char-5gram Jaccard ≥ 0.25) | **0** |
+| Seeds / builders / markers | Distinct (`20260914` / `build_phase1_confirm_v1.py` / `P1C-*` vs `61` / VNEXT builder / `VNC1-MARK-*`) |
 
-**Allowed interim language:** “separate confirmatory pack under Phase-1 locks.”  
-**Disallowed:** “independent confirmation of VNEXT” / “proven pack independence.”
+**Verdict (scoped):** **INDEPENDENT** of the VNEXT confirmatory pack under those screens. Family *name* overlap is taxonomy only — not shared generator.
+
+**Still open (not blocking VNEXT-pack independence):** (a) episode creation dates **UNKNOWN**; (b) template paraphrase kinship with pilot `phase1_holdout_v1` (exact copies 0; near-pairs >0); (c) cluster-robust McNemar sensitivity **not run** — see §6.2.
+
+**Allowed language:** “separate confirmatory pack; audited with no VNEXT prompt/seed/marker overlap.”  
+**Disallowed:** “Track B reverses Track A” / unbounded “independent confirmation that VNEXT works.”
 
 ---
 
@@ -166,13 +174,15 @@ No cluster-robust or mixed-effects sensitivity vs template/family clustering is 
 - Missing 95% CI(δ̂) in Track A AUDIT blocks interval-based comparison of precision across tracks (**blocking gap**).
 - Track B success does **not** reclassify Track A or support “VNEXT works after all.”
 
-### 6.2 §5.1 independence — unresolved; bias direction
+### 6.2 §5.1 independence — VNEXT-pack audit closed; residual limits
 
-If packs share templates/families or correlated episode difficulty:
+**Closed:** VNEXT confirmatory pack text overlap (exact/near) — see §5.1 / `PHASE1_INDEPENDENCE_AUDIT.md`. Does **not** reclassify Track A.
 
-- **Direction:** Positive bias for Track B’s *generalizability* claim (effect may not transfer to a truly disjoint threat surface); possible **underestimation of variance** if clustering is ignored (McNemar treats pairs as independent across episodes).
-- **Magnitude:** Unknown without cluster-robust / mixed-effects sensitivity. Do not treat current p/CI as cluster-adjusted.
-- Until closed: forbid “independent evidence that VNEXT fails is wrong.”
+**Residual:**
+
+- **Holdout template kinship:** `phase1_confirm_v1` shows near-paraphrase similarity to pilot `phase1_holdout_v1` (not VNEXT; not a documented fit source). **Bias direction if over-claimed as fully novel threat surface:** optimistic generalizability within Phase-1 authored templates.
+- **Clustering / variance:** Cluster-robust or mixed-effects sensitivity still **not** in frozen AUDIT. If intra-family correlation exists, McNemar p/CI may **understate variance** (anti-conservative precision). Magnitude unknown.
+- **Creation dates UNKNOWN:** cannot prove chronology vs detector iteration from episode fields alone.
 
 ### 6.3 AUDIT dataset generalizability bounds
 
@@ -253,9 +263,9 @@ Prelive / sample-size references: `scripts/run_phase1_prelive_gate.py`, `scripts
 | Track B | **`SUPPORTED_IMPROVEMENT`** under Phase-1 locks — retained |
 | Cross-track | B does **not** reverse A; separate estimands — retained |
 | Certainty | Prefer **supported / consistent with / under locked protocol**; avoid proven / confirms / overturns |
-| Independence | Unresolved; separate pack only — retained |
+| Independence | VNEXT-pack text: **INDEPENDENT** per audit; holdout kinship + dates UNKNOWN remain caveats |
 
-Edits this pass: removed “confirms”/over-certain phrasing; A-vs-B tension attributed to scope/effect/method (§4.3); independence demoted to Limitations.
+Edits this pass: §5.1 closed for VNEXT-pack text via offline audit; numbers unchanged.
 
 ---
 
@@ -285,6 +295,7 @@ Edits this pass: removed “confirms”/over-certain phrasing; A-vs-B tension at
 | 8 | §7 REPRO: AUDIT paths, SHAs, seeds, offline verify + runner pointers | REPRO |
 | 9 | Aligned Track B p→1.49012e-08 and cost→0.14221311475409837 to AUDIT (removed drifted 1.485… / 0.1418…) | FREEZE |
 | 10 | AUDIT numbers (δ̂, p, U, b10/b01; BF₁₀ derived from 27/0) left as AUDIT/formula | FREEZE |
+| 11 | §5.1 → INDEPENDENT (VNEXT pack text) via `PHASE1_INDEPENDENCE_AUDIT.md`; §6.2 residual holdout/clustering/dates | INDEP |
 
 **Numbers frozen (must match AUDIT):**  
 A: δ̂=0.0820, p=0.0625, U=0.9344, b10/b01=5/0.  
