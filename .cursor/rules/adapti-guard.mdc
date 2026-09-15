@@ -1,33 +1,39 @@
 ---
-description: AdaptiGuard standing orders (AUTO, dual-track, forbidden claims)
+description: AdaptiGuard standing orders (AUTO, dual-track, 10-rule constitution mirror)
 alwaysApply: true
 ---
 
 # AdaptiGuard standing orders
 
-Human entry: `docs/START_HERE.md`. Canonical text: `docs/experiments/MASTER_PROMPT.md`. Keep this file short; do not duplicate those docs.
+Human entry: `docs/START_HERE.md`. **Canonical text:** `docs/experiments/MASTER_PROMPT.md` (10 invariants). Keep this file short; do not invent rules that contradict the canonical file.
 
 Read `docs/paper/dual_track/DUAL_TRACK_STATUS.md` before claims, merge advice, or eval work.
 
-## AUTO (do not violate)
+## AUTO (rules 1–6, 9 compressed)
 
-- No merge. No force-push. Human merge only (`docs/paper/workshop_vnext_fail/PR_STACK.md`).
-- No arXiv / workshop / venue submit without explicit human approval in the prompt.
-- No live LLM / OpenRouter / API eval without explicit human approval in the prompt. Default **API=0**.
-- No Phase 2 implementation unless the human names Phase 2 as the task. Docs-only Phase 2 PRs stay unmerged unless asked.
-- No retune. No N change. No edit of frozen JSONL packs.
-- No edit of VNEXT FAIL numbers or `experiments/real_llm_eval/VNEXT_CONFIRM/20260914-133147/`.
-- No edit of Phase-1 confirm AUDIT numbers in place.
+- **Frozen:** no edit/retune/regenerate of `datasets/frozen/**`, `experiments/real_llm_eval/**`, or SHA-quoted AUDIT artifacts.
+- **Label-blind:** gold `is_attack` / `label` / `category` never enter detector→risk→policy→action.
+- **No retune** on confirmatory packs (`vnext_confirm_v1`, `phase1_confirm_v1`, …).
+- **Taxonomy:** `target_refusal` is not a defense win; only `correct_block` / `correct_tool_deny` (documented equivalents).
+- **Qualified win:** MSID (δ̂≥0.20) **and** significance **and** U≥0.95 — all three.
+- **Live LLM:** only after rule-6 sequence (frozen holdout → frozen detector/policy → written plan → human budget sign-off). Default **API=0**.
+- **No merge / no force-push / no venue submit** without explicit human approval. Human merge only (`docs/paper/workshop_vnext_fail/PR_STACK.md`).
+- No Phase 2 **implementation** unless the human names Phase 2 as the task.
 
-## Dual-track (do not mix)
+## Dual-track (rule 7)
 
 - **Track A:** VNEXT confirmation **FAIL** (pack `523c8818…`, δ̂=0.0820, p=0.0625, U=0.9344). Immutable. Not PASS.
 - **Track B:** Phase-1 confirmatory LIVE **SUPPORTED_IMPROVEMENT** on a **different** pack (`c789811a…`, PHASE1-CORE vs B0). Scoped. Does not reverse Track A.
 - Never mix tracks in one unlabeled win/fail sentence. Claims: `docs/paper/dual_track/CLAIMS_DUAL_TRACK.md`.
 
+## Honesty + PR hygiene (rules 8, 10)
+
+- Missing CI/sensitivity → say **BLOCKING GAP** / unresolved; never fabricate.
+- PR descriptions must quote hashes checked, commands/output, and API count (self-verifying).
+
 ## Forbidden claims (any track)
 
-SOTA; production-ready; solves prompt injection; VNEXT-reversed; VNEXT-ADAPT beats B0; FAIL relabeled PARTIAL/PASS; refusal counted as defense win.
+SOTA; production-ready; solves prompt injection; VNEXT-reversed; VNEXT-ADAPT beats B0; FAIL relabeled PARTIAL/PASS; refusal counted as defense win; Phase-2/multi-turn live “done”; unlabeled external baseline/SOTA; unbounded independence.
 
 ## If the ask is ambiguous
 
