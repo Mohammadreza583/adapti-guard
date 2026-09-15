@@ -82,14 +82,13 @@ Generated on branch `cursor/pr-triage-1411`. Evidence basis:
 
 ## Counts
 
-| Bucket | Count |
-| --- | ---: |
-| SUPERSEDED | 31 (#16, #18, #20–#28, #30–#48 except #29/#36 already counted here; wait — see below) |
-| STILL_RELEVANT | 3 (#17, #48, #49) |
-| STALE_EXPERIMENT | 16 (#1–#15, #29) |
-| UNCLEAR | 0 |
-
-Exact counts from table rows: **STALE_EXPERIMENT 16** (#1–#15, #29); **SUPERSEDED 29** (#16, #18, #20–#28, #30–#47); **STILL_RELEVANT 3** (#17, #48, #49); **UNCLEAR 0**. Total classified = **48** open PRs including #49.
+| Bucket | Count | PRs |
+| --- | ---: | --- |
+| STALE_EXPERIMENT | 16 | #1–#15, #29 |
+| SUPERSEDED | 29 | #16, #18, #20–#28, #30–#47 |
+| STILL_RELEVANT | 3 | #17, #48, #49 |
+| UNCLEAR | 0 | — |
+| **Total** | **48** | includes #49 opened during close-out |
 
 ---
 
