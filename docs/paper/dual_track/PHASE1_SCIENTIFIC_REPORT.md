@@ -159,9 +159,11 @@ Episode-level provenance + deterministic near-duplicate audit: [`PHASE1_INDEPEND
 
 **Verdict (scoped):** **INDEPENDENT** of the VNEXT confirmatory pack under those screens. Family *name* overlap is taxonomy only — not shared generator.
 
-**Still open (not blocking VNEXT-pack independence):** (a) episode creation dates **UNKNOWN**; (b) template paraphrase kinship with pilot `phase1_holdout_v1` (exact copies 0; near-pairs >0); (c) cluster-robust McNemar sensitivity **not run** — see §6.2.
+**Still open (not blocking VNEXT-pack independence):** (a) episode creation dates **UNKNOWN**; (b) cluster-robust McNemar sensitivity **not run** — see §6.2.
 
-**Allowed language:** “separate confirmatory pack; audited with no VNEXT prompt/seed/marker overlap.”  
+**Holdout kinship (narrowed):** `PHASE1_HOLDOUT_OVERLAP_AUDIT.md` — tuning usage **NOT_USED_IN_TUNING**; similarity = **SHARED_TEMPLATE_FAMILY** (scaffolds reused; exact copies 0; seeds differ). Does **not** reopen VNEXT independence and does **not** reclassify Track B numbers.
+
+**Allowed language:** “separate confirmatory pack; audited with no VNEXT prompt/seed/marker overlap; holdout similarity is shared scaffolds without detector-tuning use.”  
 **Disallowed:** “Track B reverses Track A” / unbounded “independent confirmation that VNEXT works.”
 
 ---
@@ -174,15 +176,20 @@ Episode-level provenance + deterministic near-duplicate audit: [`PHASE1_INDEPEND
 - Missing 95% CI(δ̂) in Track A AUDIT blocks interval-based comparison of precision across tracks (**blocking gap**).
 - Track B success does **not** reclassify Track A or support “VNEXT works after all.”
 
-### 6.2 §5.1 independence — VNEXT-pack audit closed; residual limits
+### 6.2 §5.1 independence — VNEXT-pack audit closed; holdout kinship narrowed
 
 **Closed:** VNEXT confirmatory pack text overlap (exact/near) — see §5.1 / `PHASE1_INDEPENDENCE_AUDIT.md`. Does **not** reclassify Track A.
 
+**Holdout (further audit):** `PHASE1_HOLDOUT_OVERLAP_AUDIT.md`
+
+- **Tuning usage:** **NOT_USED_IN_TUNING** in reachable git history (`evidence_phase1.0` authored in `c462945` before holdout path existed; lock hashes that pre-holdout blob; no post-holdout detector/threshold edits).
+- **Similarity origin:** **SHARED_TEMPLATE_FAMILY** — confirm builder reuses holdout scaffolds with parameter swaps; exact copies blocked; many-to-one pair inflation. **Bias if over-claimed as fully novel surface:** optimistic generalizability within Phase-1 authored templates — **not** evidence of detector fit-on-holdout contamination.
+
 **Residual:**
 
-- **Holdout template kinship:** `phase1_confirm_v1` shows near-paraphrase similarity to pilot `phase1_holdout_v1` (not VNEXT; not a documented fit source). **Bias direction if over-claimed as fully novel threat surface:** optimistic generalizability within Phase-1 authored templates.
-- **Clustering / variance:** Cluster-robust or mixed-effects sensitivity still **not** in frozen AUDIT. If intra-family correlation exists, McNemar p/CI may **understate variance** (anti-conservative precision). Magnitude unknown.
+- **Clustering / variance:** Cluster-robust or mixed-effects sensitivity still **not** in frozen AUDIT. Magnitude unknown.
 - **Creation dates UNKNOWN:** cannot prove chronology vs detector iteration from episode fields alone.
+- **Git limit:** uncommitted local drafts are unobservable; documented as limit, not used to invent contamination.
 
 ### 6.3 AUDIT dataset generalizability bounds
 
@@ -263,9 +270,9 @@ Prelive / sample-size references: `scripts/run_phase1_prelive_gate.py`, `scripts
 | Track B | **`SUPPORTED_IMPROVEMENT`** under Phase-1 locks — retained |
 | Cross-track | B does **not** reverse A; separate estimands — retained |
 | Certainty | Prefer **supported / consistent with / under locked protocol**; avoid proven / confirms / overturns |
-| Independence | VNEXT-pack text: **INDEPENDENT** per audit; holdout kinship + dates UNKNOWN remain caveats |
+| Independence | VNEXT-pack text: **INDEPENDENT**; holdout: **NOT_USED_IN_TUNING** + **SHARED_TEMPLATE_FAMILY** (`PHASE1_HOLDOUT_OVERLAP_AUDIT.md`) |
 
-Edits this pass: §5.1 closed for VNEXT-pack text via offline audit; numbers unchanged.
+Edits this pass: holdout overlap forensics closed for tuning contamination; AUDIT numbers unchanged.
 
 ---
 
@@ -296,6 +303,7 @@ Edits this pass: §5.1 closed for VNEXT-pack text via offline audit; numbers unc
 | 9 | Aligned Track B p→1.49012e-08 and cost→0.14221311475409837 to AUDIT (removed drifted 1.485… / 0.1418…) | FREEZE |
 | 10 | AUDIT numbers (δ̂, p, U, b10/b01; BF₁₀ derived from 27/0) left as AUDIT/formula | FREEZE |
 | 11 | §5.1 → INDEPENDENT (VNEXT pack text) via `PHASE1_INDEPENDENCE_AUDIT.md`; §6.2 residual holdout/clustering/dates | INDEP |
+| 12 | Holdout forensics: NOT_USED_IN_TUNING + SHARED_TEMPLATE_FAMILY (`PHASE1_HOLDOUT_OVERLAP_AUDIT.md`); numbers frozen | HOLDOUT |
 
 **Numbers frozen (must match AUDIT):**  
 A: δ̂=0.0820, p=0.0625, U=0.9344, b10/b01=5/0.  

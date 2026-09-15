@@ -34,7 +34,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | **SUPPORTED_IMPROVEMENT** (scoped; VNEXT-pack independence **INDEPENDENT** per `PHASE1_INDEPENDENCE_AUDIT.md`; holdout kinship + dates UNKNOWN remain caveats) |
+| Status | **SUPPORTED_IMPROVEMENT** (scoped; VNEXT-pack **INDEPENDENT**; holdout **NOT_USED_IN_TUNING** + **SHARED_TEMPLATE_FAMILY** — see `PHASE1_HOLDOUT_OVERLAP_AUDIT.md`) |
 | Pack | `phase1_confirm_v1` |
 | Pack SHA-256 | `c789811a07d3ed06e1c77d8a45eda6172f480226e006d84fa28386a982536d01` |
 | Treatment | `PHASE1-CORE` |
@@ -66,4 +66,4 @@ Track A and Track B are **different experiments** (different pack, different tre
 
 ## Open gate (process)
 
-Track B vs VNEXT pack: episode-level audit found **no** prompt/seed/marker overlap (`PHASE1_INDEPENDENCE_AUDIT.md`, verdict **INDEPENDENT** scoped to VNEXT text). Residual: template paraphrase kinship with pilot `phase1_holdout_v1`; episode creation dates UNKNOWN; cluster-robust McNemar not run. Track A FAIL is unchanged.
+Track B vs VNEXT pack: episode-level audit found **no** prompt/seed/marker overlap (`PHASE1_INDEPENDENCE_AUDIT.md`). Holdout overlap: **NOT_USED_IN_TUNING** for `evidence_phase1.0` thresholds; similarity = **SHARED_TEMPLATE_FAMILY** (`PHASE1_HOLDOUT_OVERLAP_AUDIT.md`). Track A FAIL unchanged.
