@@ -1,7 +1,7 @@
 # Dual-track claims (allowed / forbidden)
 
 **Role:** Exact wording guardrails for Track A (VNEXT FAIL) and Track B (Phase-1 confirm).  
-**Authority:** Frozen AUDIT folders win over this file. Companion: [`DUAL_TRACK_STATUS.md`](DUAL_TRACK_STATUS.md), [`PHASE1_SCIENTIFIC_REPORT.md`](PHASE1_SCIENTIFIC_REPORT.md), [`PHASE1_INDEPENDENCE_AUDIT.md`](PHASE1_INDEPENDENCE_AUDIT.md).  
+**Authority:** Frozen AUDIT folders win over this file. Companion: [`DUAL_TRACK_STATUS.md`](DUAL_TRACK_STATUS.md), [`PHASE1_SCIENTIFIC_REPORT.md`](PHASE1_SCIENTIFIC_REPORT.md), [`PHASE1_INDEPENDENCE_AUDIT.md`](PHASE1_INDEPENDENCE_AUDIT.md), [`PHASE1_HOLDOUT_OVERLAP_AUDIT.md`](PHASE1_HOLDOUT_OVERLAP_AUDIT.md).  
 **Not for venue submission author lists / citation formatting.**
 
 ---
@@ -47,12 +47,14 @@ Do **not** claim:
 - Quote frozen numbers: B0 harmful-action success 1.000, CORE 0.5574, δ̂=0.4426, b10/b01=27/0, p≈1.49e-08, U≈0.967, MSID PASS, utility ELIGIBLE.
 - Note all 27 b10 events are `correct_tool_deny` (not refusals).
 - Cite the independence audit: “separate confirmatory pack; episode audit found **no prompt/seed/marker overlap with VNEXT confirm**” (`PHASE1_INDEPENDENCE_AUDIT.md`, verdict **INDEPENDENT** scoped to VNEXT pack text).
-- Keep holdout caveat when claiming threat-surface novelty: residual template paraphrase kinship with pilot `phase1_holdout_v1` (exact copies 0; near-pairs >0); episode creation dates UNKNOWN.
+- Cite holdout forensics: near-similarity is **SHARED_TEMPLATE_FAMILY**; detector tuning usage **NOT_USED_IN_TUNING** (`PHASE1_HOLDOUT_OVERLAP_AUDIT.md`). Exact copies 0.
+- Keep caveats: episode creation dates UNKNOWN; do not claim a fully novel Phase-1 threat surface solely from confirm vs holdout.
 
 ### Forbidden
 
 - “VNEXT now works” / “Track A is reversed”
-- Claiming **unbounded** independence (e.g. “independent confirmation that VNEXT works,” or ignoring holdout kinship / UNKNOWN dates)
+- Claiming **unbounded** independence (e.g. “independent confirmation that VNEXT works”)
+- Claiming holdout was a detector-fit set **without** citing contrary git forensics (or after this audit, claiming holdout contamination of `evidence_phase1.0` thresholds)
 - Claiming generalization beyond `phase1_confirm_v1`
 - Counting detector hits or refusals as the primary win mechanism
 - Presenting ablations/generalization as primary confirmatory results (they were excluded from the live primary run)
@@ -61,4 +63,4 @@ Do **not** claim:
 
 ## Preferred short dual-track sentence
 
-> Track A (`VNEXT-ADAPT` / `vnext_confirm_v1.0`) is an official FAIL. Track B (`PHASE1-CORE` / `phase1_confirm_v1`) is a separate confirmatory run classified SUPPORTED_IMPROVEMENT on its own pack; an episode-level audit found no prompt/seed/marker overlap with the VNEXT pack (holdout template kinship and missing creation dates remain caveats).
+> Track A (`VNEXT-ADAPT` / `vnext_confirm_v1.0`) is an official FAIL. Track B (`PHASE1-CORE` / `phase1_confirm_v1`) is a separate confirmatory run classified SUPPORTED_IMPROVEMENT on its own pack; episode audit found no prompt/seed/marker overlap with the VNEXT pack. Similarity to pilot `phase1_holdout_v1` is shared scaffolds without git-evidenced detector-tuning use.
